@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Untitled
+    </title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.css"
+      integrity="sha256-A7VA5VRIGuWNdMLr/ydUEmYKKoBYqoRVF+Bwxup4KRg="
+      crossorigin="anonymous"
+    />
+
+    <style>
+      p svg {
+        display: inline-block;
+        line-height: inherit;
+        vertical-align: inherit;
+      }
+    </style>
+  </head>
+
+  <body class="sans-serif fw2">
+    <div class="center mw8">
+      <header class="mw8 center ma4 ma5-ns">
+        <h1 class="f2 mb2 fw3 lh-title">
+          Goldies <span class="o-50">v0.1.0</span>
+        </h1>
+        <p class="f4 fw3 mb4 db lh-copy mt1">
+          Documentation
+          <svg
+            class="white"
+            aria-label="code"
+            viewBox="0 0 14 16"
+            role="img"
+            width="0.65em"
+            height="0.65em"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"
+            ></path>
+          </svg>
+          with
+          <svg
+            class="fill-red"
+            aria-label="love"
+            viewBox="0 0 12 16"
+            version="1.1"
+            role="img"
+            width="0.65em"
+            height="0.65em"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.2 3c-.52-.63-1.25-.95-2.2-1-.97 0-1.69.42-2.2 1-.51.58-.78.92-.8 1-.02-.08-.28-.42-.8-1-.52-.58-1.17-1-2.2-1-.95.05-1.69.38-2.2 1-.52.61-.78 1.28-.8 2 0 .52.09 1.52.67 2.67C1.25 8.82 3.01 10.61 6 13c2.98-2.39 4.77-4.17 5.34-5.33C11.91 6.51 12 5.5 12 5c-.02-.72-.28-1.39-.8-2.02V3z"
+            ></path>
+          </svg>
+          by
+          <a class="link pb1" href="https://hudson.dev/">@hudson</a>.
+        </p>
+      </header>
+      <div class="wrapper"></div>
+    </div>
+
+    <script type="module" defer>
+      import { get } from '/src/fetch/get.mjs'
+
+      get('https://jsonplaceholder.typicode.com/todos/1', {}, console.log)
+    </script>
+  </body>
+</html>

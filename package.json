@@ -1,0 +1,39 @@
+{
+  "name": "goldies",
+  "version": "1.0.0",
+  "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
+  "scripts": {
+    "start": "zero src/",
+    "test": "node -r esm && ava `src/**/*.test.js`"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^2.2.0",
+    "browser-env": "^3.2.6",
+    "docz": "^2.0.0-rc.1",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "esm": "^3.2.25",
+    "prettier": "1.18.2",
+    "prettier-config-standard": "^1.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "zero": "^1.0.17"
+  },
+  "dependencies": {
+    "node-fetch": "latest"
+  }
+}
