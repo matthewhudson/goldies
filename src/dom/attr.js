@@ -1,6 +1,6 @@
 /**
  * Set attribute `name` to `val`, or get attr `name`.
- * github.com/bpmn-io/min-dom/blob/master/lib/attr.js
+ * Derived from: github.com/bpmn-io/min-dom/blob/master/lib/attr.js
  *
  * @param {Element} el
  * @param {String} name

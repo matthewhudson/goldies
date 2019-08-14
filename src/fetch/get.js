@@ -1,4 +1,4 @@
-import { error } from '../utils/errors.mjs'
+import { error } from '../utils/errors'
 
 const isServer = typeof window === 'undefined'
 const fetch = isServer ? require('node-fetch') : window.fetch

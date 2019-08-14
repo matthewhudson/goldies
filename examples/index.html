@@ -67,9 +67,8 @@
       <div class="wrapper"></div>
     </div>
 
-    <script type="module" defer>
-      import { get } from '/src/fetch/get.mjs'
-
+    <script src="../src/fetch/get.js"></script>
+    <script>
       get('https://jsonplaceholder.typicode.com/todos/1', {}, console.log)
     </script>
   </body>

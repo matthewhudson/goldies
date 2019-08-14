@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "scripts": {
-    "start": "zero src/",
-    "test": "node -r esm && ava `src/**/*.test.js`"
+    "start": "zero",
+    "test": "ava `src/**/*.test.js`"
   },
   "ava": {
     "require": [

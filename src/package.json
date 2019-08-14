@@ -1,0 +1,11 @@
+{
+  "name": "zero-app",
+  "private": true,
+  "scripts": {
+    "start": "zero"
+  },
+  "dependencies": {
+    "colors": "latest",
+    "node-fetch": "latest"
+  }
+}
