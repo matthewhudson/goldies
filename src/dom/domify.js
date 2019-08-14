@@ -1,5 +1,5 @@
 /**
- * Convert HTML string to DOM object. 
+ * Convert HTML string to DOM object.
  * @example
  * const $el = domify('<p>example</p>')
  * @param {String} html
