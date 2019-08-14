@@ -1,7 +1,7 @@
-export function error (msg) {
+export function E (msg) {
   return new Error(msg)
 }
 
-export function throwFunc (err) {
+export function T (err) {
   throw err
 }

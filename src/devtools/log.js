@@ -1,16 +1,16 @@
-import colors from 'colors'
+const colors = require('colors')
 
 colors.setTheme({
   error: 'red',
   success: 'green'
 })
 
-const ler = msg => {
-  console.error(`ERROR: ${msg}`.red)
+const le = msg => {
+  console.error(`[ERROR]: ${msg}`.red)
 }
 
-const log = msg => {
+const l = msg => {
   console.log(msg.success)
 }
 
-export { ler, log }
+export { le, l }
