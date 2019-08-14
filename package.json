@@ -1,7 +1,7 @@
 {
   "name": "goldies",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "scripts": {
     "start": "zero",
