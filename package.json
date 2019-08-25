@@ -1,11 +1,12 @@
 {
   "name": "goldies",
-  "type": "module",
   "version": "1.1.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "scripts": {
-    "start": "zero",
-    "test": "ava `src/**/*.test.js`"
+    "test": "ava `src/**/*.test.js`",
+    "start": "parcel src/index.js",
+    "dev": "parcel src/index.js",
+    "build": "parcel build src/index.js"
   },
   "author": "",
   "license": "ISC",

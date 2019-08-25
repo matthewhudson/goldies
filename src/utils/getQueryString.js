@@ -1,4 +1,4 @@
-/*!
+/**
  * Get the value of a query string from a URL
  * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {String} field The field to get the value of
