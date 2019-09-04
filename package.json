@@ -1,6 +1,6 @@
 {
   "name": "goldies",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "main": "lib/index.js",
   "module": "es/index.js",
