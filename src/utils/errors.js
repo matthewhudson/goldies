@@ -1,7 +1,8 @@
-export function E (msg) {
+export function error ({ msg }) {
   return new Error(msg)
 }
 
-export function T (err) {
+// catastrophic error
+export function cerror (err) {
   throw err
 }

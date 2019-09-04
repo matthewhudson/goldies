@@ -276,4 +276,10 @@ layers/
 layer/
 _diary/
 
+# NWB
+/coverage
+/es
+/lib
+/umd
+
 # End of custom

@@ -2,26 +2,34 @@
   "name": "goldies",
   "version": "2.0.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "umd"
+  ],
   "scripts": {
-    "test": "ava `src/**/*.test.js`",
-    "start": "parcel src/index.js",
-    "dev": "parcel src/index.js",
-    "build": "parcel build src/index.js"
+    "build": "nwb build-web-module",
+    "clean": "nwb clean-module",
+    "prepublishOnly": "npm run build",
+    "test": "nwb test",
+    "test:coverage": "nwb test --coverage",
+    "test:watch": "nwb test --server"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Matthew Hudson",
+    "email": "matthud@gmail.com",
+    "url": "https://hudson.dev"
+  },
+  "license": "MIT",
   "ava": {
     "require": [
       "esm"
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
     "ava": "^2.2.0",
-    "browser-env": "^3.2.6",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-prettier-standard": "^3.0.1",
@@ -31,7 +39,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
-    "esm": "^3.2.25",
+    "nwb": "^0.23.0",
     "prettier": "1.18.2",
     "prettier-config-standard": "^1.0.1"
   },
