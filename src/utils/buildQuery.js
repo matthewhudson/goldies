@@ -18,9 +18,10 @@ export function buildQuery (data) {
 /*
 Here's an alternative version from:
 https://github.com/github/fetch/issues/263
-*/
+
 const searchParams = Object.keys(params)
   .map(key => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
   })
   .join('&')
+*/

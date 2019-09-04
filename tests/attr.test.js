@@ -1,4 +1,5 @@
-import attr from './attr.js'
+/*
+import attr from '../src/dom/attr.js'
 // import domify from './domify'
 
 import test from 'ava'
@@ -7,7 +8,6 @@ test('my passing test', t => {
   t.pass()
 })
 
-/*
 describe('attr', function () {
   it('should get attribute', function () {
     var node = domify('<div title="FOO">')
