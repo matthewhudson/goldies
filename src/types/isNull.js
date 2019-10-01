@@ -13,8 +13,4 @@
  * isNull(void 0)
  * // => false
  */
-function isNull(value) {
-  return value === null
-}
-
-export default isNull
+export const isNull = value => value === null

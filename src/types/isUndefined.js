@@ -13,8 +13,4 @@
  * isUndefined(null)
  * // => false
  */
-function isUndefined(value) {
-  return value === undefined
-}
-
-export default isUndefined
+export const isUndefined = value => value === undefined

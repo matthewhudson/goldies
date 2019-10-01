@@ -5,7 +5,7 @@
  * @param  {Function} callback The callback test to run
  * @return {Object}            The new, filtered object
  */
-export default function (obj, callback) {
+export const filter = (obj, callback) => {
   // Setup a new object
   const filtered = {}
 

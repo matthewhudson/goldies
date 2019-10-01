@@ -6,6 +6,6 @@
  *
  * @return {Boolean}
  */
-export function has (target, key) {
+export const has = (target, key) => {
   return Object.prototype.hasOwnProperty.call(target, key)
 }

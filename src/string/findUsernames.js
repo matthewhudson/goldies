@@ -8,7 +8,7 @@
  * @param {String} haystack the text to search
  * @returns {Array} zero or more usernames
  */
-export default function findUsernames (haystack) {
+export const findUsernames = haystack => {
   const NEEDLE = /\B@[a-z0-9_-]+/gi
   const find = haystack => haystack.match(NEEDLE)
   return find(haystack)

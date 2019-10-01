@@ -16,8 +16,4 @@
  * isNil(NaN)
  * // => false
  */
-function isNil(value) {
-  return value == null
-}
-
-export default isNil
+export const isNil = value => value == null

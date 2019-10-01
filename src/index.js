@@ -1,49 +1,121 @@
-/* export * from './array/dedupe.js'
-export * from './dom/selectors.js'
-export * from './fetch/get.js'
-export * from './string/findUsernames.js'
-*/
-export * from './array/dedupe.js'
-export * from './color/contrast.js'
-export * from './color/isHex.js'
-export * from './convert/base64ToBlob.js'
-export * from './convert/fromArray.js'
-export * from './convert/fromBase64.js'
-export * from './convert/json.js'
-export * from './convert/toBase64.js'
-export * from './devtools/log.js'
-export * from './dom/attr.js'
-// export * from './dom/attr.test.js'
-export * from './dom/classes.js'
-export * from './dom/domify.js'
-export * from './dom/getCustomVariables.js'
-export * from './dom/getDataAttributes.js'
-export * from './dom/selectors.js'
-export * from './fetch/get.js'
-// export * from './files/isFileType.js'
-// export * from './files/list.js'
-// export * from './files/open.js'
-export * from './format/bytes.js'
-// export * from './index.js'
-// export * from './node/cmd.js'
-// export * from './node/port.js'
-export * from './object/clone.js'
-export * from './object/filter.js'
-export * from './object/has.js'
-export * from './object/pick.js'
-export * from './string/endsWith.js'
-export * from './string/findUsernames.js'
-export * from './string/startWith.js'
-export * from './types/isDefined.js'
-export * from './types/isNil.js'
-export * from './types/isNull.js'
-export * from './types/isUndefined.js'
-export * from './types/isUrl.js'
-export * from './types/isValidJSON.js'
-export * from './utils/buildQuery.js'
-export * from './utils/errors.js'
-export * from './utils/escapeHTML.js'
-export * from './utils/getQueryString.js'
-export * from './utils/getURLParams.js'
-export * from './utils/s3.js'
-export * from './utils/sleep.js'
+import { dedupe } from './array/dedupe.js'
+
+// import {} from './files/isFileType.js'
+// import {} from './files/list.js'
+// import {} from './files/open.js'
+import { getContrast } from './color/contrast.js'
+import { isValidHexSimpleColor } from './color/isHex.js'
+
+import { base64ToBlob } from './convert/base64ToBlob.js'
+import { fromArray } from './convert/fromArray.js'
+import { fromBase64 } from './convert/fromBase64.js'
+import { parseJSONFromBytes } from './convert/json.js'
+import { toBase64 } from './convert/toBase64.js'
+
+// import {} from './devtools/log.js'
+import { attr } from './dom/attr.js'
+import { addClass, hasClass, removeClass, toggleClass } from './dom/classes.js'
+import { domify } from './dom/domify.js'
+import { getCustomVariables } from './dom/getCustomVariables.js'
+import { getDataAttributes } from './dom/getDataAttributes.js'
+import { $, $$ } from './dom/selectors.js'
+
+import { get } from './fetch/get.js'
+
+import { bytesToSize } from './format/bytes.js'
+
+// import {} from './node/cmd.js'
+// import {} from './node/port.js'
+import { clone } from './object/clone.js'
+import { filter } from './object/filter.js'
+import { has } from './object/has.js'
+import { pick } from './object/pick.js'
+
+import { endsWith } from './string/endsWith.js'
+import { findUsernames } from './string/findUsernames.js'
+import { startsWith } from './string/startsWith.js'
+
+import { isDefined } from './types/isDefined.js'
+import { isJSON } from './types/isJSON.js'
+import { isNil } from './types/isNil.js'
+import { isNull } from './types/isNull.js'
+import { isUndefined } from './types/isUndefined.js'
+import { isUrl } from './types/isUrl.js'
+
+import { buildQuery } from './utils/buildQuery.js'
+import { error, cerror } from './utils/errors.js'
+import { getQueryString } from './utils/getQueryString.js'
+import { getUrlParams } from './utils/getUrlParams.js'
+import { isBrowser } from './utils/isBrowser.js'
+import { isServer } from './utils/isServer.js'
+
+import { escapeHTML } from './utils/escapeHTML.js'
+import { isS3, parseS3 } from './utils/s3.js'
+import { sleep } from './utils/sleep.js'
+
+export default {
+  array: {
+    dedupe
+  },
+  dom: {
+    $,
+    $$,
+    attr,
+    domify,
+    addClass,
+    hasClass,
+    removeClass,
+    toggleClass,
+    getCustomVariables,
+    getDataAttributes
+  },
+  color: {
+    isValidHexSimpleColor,
+    getContrast
+  },
+  convert: {
+    base64ToBlob,
+    fromArray,
+    fromBase64,
+    parseJSONFromBytes,
+    toBase64
+  },
+  fetch: {
+    get
+  },
+  format: {
+    bytesToSize
+  },
+  string: {
+    endsWith,
+    findUsernames,
+    startsWith
+  },
+  types: {
+    isDefined,
+    isJSON,
+    isNil,
+    isNull,
+    isUrl,
+    isUndefined
+  },
+  object: {
+    clone,
+    filter,
+    has,
+    pick
+  },
+  utils: {
+    buildQuery,
+    error,
+    cerror,
+    escapeHTML,
+    isBrowser,
+    isServer,
+    isS3,
+    getQueryString,
+    getUrlParams,
+    parseS3,
+    sleep
+  }
+}

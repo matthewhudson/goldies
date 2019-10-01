@@ -1,4 +1,4 @@
-function b64toBlob (b64Data, contentType, sliceSize) {
+export const base64ToBlob = (b64Data, contentType, sliceSize) => {
   contentType = contentType || ''
   sliceSize = sliceSize || 512
 

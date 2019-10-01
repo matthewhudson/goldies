@@ -4,7 +4,7 @@
  * @param  {Object} obj The object to clone
  * @return {Object} The clone of the object
  */
-export default function clone (obj) {
+export const clone = obj => {
   // Create new object
   const clone = {}
 

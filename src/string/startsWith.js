@@ -1,4 +1,4 @@
 // Insensitive startWith
-export function startWith (str, start) {
+export const startsWith = (str, start) => {
   return str.toLowerCase().indexOf(start.toLowerCase()) === 0
 }

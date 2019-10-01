@@ -4,7 +4,7 @@
  * @param {*} data
  * @returns {Boolean}
  */
-export const isValidJSON = data => {
+export const isJSON = data => {
   try {
     JSON.parse(data)
     return true

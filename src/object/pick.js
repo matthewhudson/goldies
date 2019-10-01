@@ -5,7 +5,7 @@
  * @param  {Array}  props An array of properties to use
  * @return {Object}       The new object
  */
-export default function (obj, props) {
+export const pick = (obj, props) => {
   // Make sure object and properties are provided
   if (!obj || !props) return
 

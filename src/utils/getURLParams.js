@@ -4,7 +4,7 @@
  * @param  {String} url The URL
  * @return {Object}     The URL parameters
  */
-export function getParams (url) {
+export const getUrlParams = url => {
   var params = {}
   var parser = document.createElement('a')
   parser.href = url || window.location.href

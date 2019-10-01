@@ -1,5 +1,5 @@
 // Insensitive endsWith
-export function endsWith (str, ends) {
+export const endsWith = (str, ends) => {
   return (
     str.toLowerCase().lastIndexOf(ends.toLowerCase()) ===
     str.length - ends.length
