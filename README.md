@@ -2,6 +2,34 @@
 
 > My grab bag of helpful JavaScript & tidbits.
 
+## Installation
+
+```sh
+npm i goldies
+```
+
+And then import it:
+
+```js
+// using es modules
+import goldies from 'goldies'
+
+// common.js
+const device = require('goldies').default
+```
+
+Or use script tags and globals.
+
+```html
+<script src="https://unpkg.com/goldies@4.0.0/umd/goldies.min.js"></script>
+```
+
+And then access it off the global like so:
+
+```js
+console.log('goldies.utils.isBrowser() === %s', goldies.utils.isBrowser())
+```
+
 ## Background
 
 The code and other tools here serve as my own personal reference points. In some
@@ -29,7 +57,7 @@ seconds or less.
 
 ###### [Redux w/o React](https://github.com/morkro/tetrys)
 
-For smaller projects 
+For smaller projects
 
 ###### [Fetch Wrapper](https://github.com/codex-team/ajax)
 

@@ -28,7 +28,7 @@
     <div class="center mw8">
       <header class="mw8 center ma4 ma5-ns">
         <h1 class="f2 mb2 fw3 lh-title">
-          Goldies <span class="o-50">v0.1.0</span>
+          Goldies <span class="o-50">v4.0.0</span>
         </h1>
         <p class="f4 fw3 mb4 db lh-copy mt1">
           Documentation
@@ -64,12 +64,49 @@
           <a class="link pb1" href="https://hudson.dev/">@hudson</a>.
         </p>
       </header>
-      <div class="wrapper"></div>
+      <div class="wrapper">
+        <h2>Documentation</h2>
+        <p>TKTKTK</p>
+        <p>
+          <i
+            >Most functions are documented w/ JSDoc... friendlier docs coming
+            soon.</i
+          >
+        </p>
+
+        <h2>Example Code</h2>
+        <p
+          class="codepen"
+          data-height="265"
+          data-theme-id="light"
+          data-default-tab="js"
+          data-user="matthewhudson"
+          data-slug-hash="vYBqdpZ"
+          style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+          data-pen-title="Goldies JS Web Module"
+        >
+          <span
+            >See the Pen
+            <a href="https://codepen.io/matthewhudson/pen/vYBqdpZ">
+              Goldies JS Web Module</a
+            >
+            by Matthew Hudson (<a href="https://codepen.io/matthewhudson"
+              >@matthewhudson</a
+            >) on <a href="https://codepen.io">CodePen</a>.</span
+          >
+        </p>
+        <script
+          async
+          src="https://static.codepen.io/assets/embed/ei.js"
+        ></script>
+      </div>
     </div>
 
-    <script src="../umd/goldies.js"></script>
+    <!--<script src="../umd/goldies.js"></script>-->
+    <script src="https://unpkg.com/goldies@4.0.0/umd/goldies.min.js"></script>
     <script>
-      get('https://jsonplaceholder.typicode.com/todos/1', {}, console.log)
+      console.log('goldies.utils.isBrowser === %s', goldies.utils.isBrowser)
+      console.log('goldies.utils.isServer === %s', goldies.utils.isServer)
     </script>
   </body>
 </html>
