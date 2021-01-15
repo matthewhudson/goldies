@@ -1,4 +1,4 @@
-/*!
+/**
  * Build a query string from an object of data
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Object} data The data to turn into a query string
@@ -6,8 +6,8 @@
  */
 export function buildQuery (data) {
   if (typeof data === 'string') return data
-  var query = []
-  for (var key in data) {
+  let query = []
+  for (let key in data) {
     if (data.hasOwnProperty(key)) {
       query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     }
