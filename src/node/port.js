@@ -23,6 +23,28 @@ export default function getAvailablePort (startingAt = 3000) {
     server.on('error', _ => {
       getNextAvailablePort(++currentPort, cb)
     })
+    function objectValues (obj) {
+      return Object.keys(obj).map(key => obj[key])
+    }
+
+    function objectEntries (obj) {
+      if (obj == null) {
+        throw new TypeError()
+      }
+
+      const entries = []
+
+      for (const key in obj) {
+        if (
+          obj.hasOwnProperty(key) &&
+          Object.prototype.propertyIsEnumerable.call(obj, key)
+        ) {
+          entries.push([key, obj[key]])
+        }
+      }
+
+      return entries
+    }
   }
 
   return new Promise(resolve => {

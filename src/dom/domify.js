@@ -5,5 +5,6 @@
  * @param {String} html
  * @returns {Node}
  */
-export const domify = html =>
-  new DOMParser().parseFromString(html, 'text/html').body.firstNode
+export default function domify (html) {
+  return new DOMParser().parseFromString(html, 'text/html').body.firstNode
+}

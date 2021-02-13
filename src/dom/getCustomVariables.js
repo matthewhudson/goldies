@@ -1,5 +1,5 @@
 // stackoverflow.com/questions/45763121/list-css-custom-properties-css-variables
-export const getCustomVariables = () => {
+export default function getCustomVariables () {
   const variables = [].slice
     .call(document.styleSheets)
     .map(styleSheet => [].slice.call(styleSheet.cssRules))

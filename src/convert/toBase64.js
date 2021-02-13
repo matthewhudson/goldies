@@ -1,1 +1,3 @@
-export const toBase64 = str => new Buffer(str || '', 'ascii').toString('base64')
+export default function toBase64 (str) {
+  return new Buffer(str || '', 'ascii').toString('base64')
+}
