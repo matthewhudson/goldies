@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/getQueryString.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,31 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: utils/getQueryString.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Get the value of a query string from a URL
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} field The field to get the value of
+ * @param  {String} url   The URL to get the value from [optional]
+ * @return {String}       The value
+ */
+export function getQueryString (field, url) {
+  var href = url || window.location.href
+  var reg = new RegExp('[?&amp;]' + field + '=([^&amp;#]*)', 'i')
+  var string = reg.exec(href)
+  return string ? string[1] : null
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: node/port.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: node/port.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Get a port available for listening.
+ * @example Can be used as promise:
+ * getAvailablePort(8080).then(port => {
+ *   console.log(`${port} is available`)
+ * }
+ * @example Or with async/await:
+ * async function () {
+ *   const port = await getAvailablePort(8080)
+ * }
+ * @param {Number} [startingAt=3000] Port to begin scanning from.
+ * @returns {Number} Returns a unused port.
+ */
+export default function getAvailablePort (startingAt = 3000) {
+  function getNextAvailablePort (currentPort, cb) {
+    const server = net.createServer()
+    server.listen(currentPort, _ => {
+      server.once('close', _ => {
+        cb(currentPort)
+      })
+      server.close()
+    })
+    server.on('error', _ => {
+      getNextAvailablePort(++currentPort, cb)
+    })
+  }
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  return new Promise(resolve => {
+    getNextAvailablePort(startingAt, resolve)
+  })
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

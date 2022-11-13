@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: object/clone.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,38 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: object/clone.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Create an immutable clone of an object
+ * Adapted from: (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object} obj The object to clone
+ * @return {Object} The clone of the object
+ */
+export const clone = obj => {
+  // Create new object
+  const clone = {}
 
+  // Loop through each item in the original
+  // Recursively copy it's value and add to the clone
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] = clone(obj[key])
+    }
+  }
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  return clone
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

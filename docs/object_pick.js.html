@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: object/pick.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: object/pick.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Create a new object composed of properties picked from another object
+ * Adapted from: (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object} obj   The object to pick properties from
+ * @param  {Array}  props An array of properties to use
+ * @return {Object}       The new object
+ */
+export const pick = (obj, props) => {
+  // Make sure object and properties are provided
+  if (!obj || !props) return
 
+  // Create new object
+  const picked = {}
 
-    <h3> </h3>
+  // Loop through props and push to new object
+  props.forEach(prop => {
+    picked[prop] = obj[prop]
+  })
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  // Return new object
+  return picked
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

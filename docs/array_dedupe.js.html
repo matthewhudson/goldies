@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: array/dedupe.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: array/dedupe.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Remove duplicate items from an array
+ * Adapted from: (c) 2019 Chris Ferdinandi, MIT License
+ * https://gomakethings.com
+ * @param  {Array} arr The array
+ * @return {Array}     A new array with duplicates removed
+ */
+export function dedupe (arr) {
+  return arr.filter((item, index) => {
+    return arr.indexOf(item) === index
+  })
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

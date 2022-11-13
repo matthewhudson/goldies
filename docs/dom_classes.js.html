@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: dom/classes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,71 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: dom/classes.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Check if an element has a given CSS class name.
+ *
+ * @example
+ * const result = hasClass($element, 'some-class-to-check')
+ *
+ * @param {DOMElement} $element - A DOM element to check.
+ * @param {String} className - A class to check the DOM element for.
+ * @returns {Boolean} Returns true if element has class, false if not.
+ */
+export function hasClass($element, className) {
+  return $element.classList.contains(className);
+}
+
+/**
+ * Add a CSS class name to an element.
+ *
+ * @example
+ * addClass($element, 'another-class')
+ *
+ * @param {DOMElement} $element - A DOM element to check.
+ * @param {String} className - A class to add to the DOM element.
+ */
+export function addClass($element, className) {
+  return $element.classList.add(className);
+}
+
+/**
+ * Remove a CSS class name from an element.
+ *
+ * @example
+ * removeClass($element, 'another-class')
+ *
+ * @param {DOMElement} $element - A DOM element to remove the class name from.
+ * @param {String} className - A class to remove from the DOM element.
+ */
+export function removeClass($element, className) {
+  return $element.classList.remove(className);
+}
 
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Toggle a CSS class name from an element.
+ *
+ * @example
+ * toggleClass($element, 'another-class')
+ *
+ * @param {DOMElement} $element - A DOM element to toggle the class name on.
+ * @param {String} className - A class to toggle off/on the DOM element.
+ */
+export function toggleClass($element, className) {
+  return $element.classList.toggle(className);
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: format/bytes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,35 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: format/bytes.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Format bytes into something human readable:
+ * 1000 bytes = 1 MB
+ * Derived from: gist.github.com/lanqy/5193417
+ * @param {Number} bytes
+ * @param {String} [separator=' '] Add a space or other character between number and text
+ * @returns {String} Human readable format
+ */
+export const bytesToSize = (bytes, separator = ' ') => {
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  return () => {
+    if (bytes === 0) return 'n/a'
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+    if (i === 0) return `${bytes}${separator}${sizes[i]}`
+    return `${(bytes / 1024 ** i).toFixed(1)}${separator}${sizes[i]}`
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

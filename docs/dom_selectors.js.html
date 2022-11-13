@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: dom/selectors.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,46 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: dom/selectors.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Get the first element in the document matching selector.
+ * Shorthand for `querySelector`.
+ * 
+ * @example
+ * const $elA = $('.foo')
+ * const $elB = $('#bar')
+ * const $elC = $('section')
+ * 
+ * @param {!string} selector - DOM selector
+ * @param {?HTMLElement} [context=document] - context element for DOM query
+ * @return {NodeList}
+ */
+export const $ = document.querySelector.bind(document)
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Get all elements in the document matching selector.
+ * Shorthand for `querySelectorAll`
+ * 
+ * @example
+ * const $elA = $$('.example')
+ * const $elB = $$('input[value]')
+ * 
+ * @param {!string} selector - DOM selector
+ * @param {?Element} [context=document] - context element for DOM query
+ * @return {NodeList}
+ */
+export const $$ = document.querySelectorAll.bind(document)
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: utils/getURLParams.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,37 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: utils/getURLParams.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Get the URL parameters
+ * source: https://css-tricks.com/snippets/javascript/get-url-variables/
+ * @param  {String} url The URL
+ * @return {Object}     The URL parameters
+ */
+export const getUrlParams = url => {
+  var params = {}
+  var parser = document.createElement('a')
+  parser.href = url || window.location.href
+  var query = parser.search.substring(1)
+  var vars = query.split('&amp;')
+  if (vars.length &lt; 1 || vars[0].length &lt; 1) return params
+  for (var i = 0; i &lt; vars.length; i++) {
+    var pair = vars[i].split('=')
+    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1])
+  }
+  return params
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

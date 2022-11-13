@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: types/isJSON.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,32 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: types/isJSON.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Safely verifies input argument is valid JSON.
+ *
+ * @param {*} data
+ * @returns {Boolean}
+ */
+export const isJSON = data => {
+  try {
+    JSON.parse(data)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
