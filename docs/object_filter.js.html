@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: object/filter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: object/filter.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Create a new object composed of properties that meet specific criteria
+ * Adapted from: (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object}   obj      The original object
+ * @param  {Function} callback The callback test to run
+ * @return {Object}            The new, filtered object
+ */
+export const filter = (obj, callback) => {
+  // Setup a new object
+  const filtered = {}
 
+  // Loop through each item in the object and test it
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // If the callback validates true, push item to the new object
+      if (callback(obj[key], key, obj)) {
+        filtered[key] = obj[key]
+      }
+    }
+  }
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  // Return the new object
+  return filtered
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: dom/attr.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,52 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: dom/attr.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Set attribute `name` to `val`, or get attr `name`.
+ * Derived from: github.com/bpmn-io/min-dom/blob/master/lib/attr.js
+ *
+ * @example &lt;caption>Get element `style` attribute&lt;/caption>
+ * const style = attr($('.el'), 'style')
+ * 
+ * @example &lt;caption>Remove element `style` attribute&lt;/caption>
+ * attr($('.el') 'style', null)
+ * 
+ * @example &lt;caption>Set element `id` attribute&lt;/caption>
+ * attr($('.el'), 'id', 'new-element-id')
+ * 
+ * @param {Element} $element - DOM Element
+ * @param {String} attributeName - The name of the DOM element attribute.
+ * @param {String} [attributeValue] - The new value for the DOM element.
+ * @returns {*} 
+ */
+export function attr ($element, attributeName, attributeValue) {
+  // Get attribute
+  if (arguments.length === 2) {
+    return $element.getAttribute(attributeName)
+  }
 
+  // Remove attribute
+  if (attributeValue === null) {
+    return $element.removeAttribute(attributeName)
+  }
 
-    <h3> </h3>
+  // Set attribute
+  $element.setAttribute(attributeName, attributeValue)
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  return $element
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

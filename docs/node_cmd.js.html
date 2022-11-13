@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: node/cmd.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,36 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: node/cmd.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Executes a shell command and return it as a Promise.
+ * Original Author: medium.com/@ali.dev/how-to-use-promise-with-exec-in-node-js-a39c4d7bbf77
+ *
+ * @param {string} cmd
+ * @returns {Promise&lt;string>}
+ */
+export default function sh (cmd) {
+  const { exec } = require('child_process')
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.warn(error)
+      }
+      resolve(stdout || stderr)
+    })
+  })
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

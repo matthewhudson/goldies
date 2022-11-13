@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: string/findUsernames.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,33 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: string/findUsernames.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Searches and returns a string for any social accounts
+ * Adapted from: https://stackoverflow.com/questions/15265605/how-to-pull-mentions-out-of-strings-like-twitter-in-javascript
+ * Full/Official version: https://github.com/twitter/twitter-text
+ * @example
+ * const haystack = '@jpotts18 what is up man? Are you hanging out with @kyle_clegg'
+ * const users = findUsernames(haystack) // ['@jpotts18', '@kyle_clegg']
+ * @param {String} haystack the text to search
+ * @returns {Array} zero or more usernames
+ */
+export const findUsernames = haystack => {
+  const NEEDLE = /\B@[a-z0-9_-]+/gi
+  const find = haystack => haystack.match(NEEDLE)
+  return find(haystack)
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

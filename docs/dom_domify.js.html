@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: dom/domify.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: dom/domify.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Convert HTML string to DOM object.
+ * 
+ * @example
+ * const $el = domify('&lt;p>example&lt;/p>')
+ * 
+ * @param {String} html - A raw HTML string.
+ * @returns {Node}
+ */
+export function domify(html) {
+  return new DOMParser().parseFromString(html, "text/html").body.firstNode;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: dom/getDataAttributes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,30 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: dom/getDataAttributes.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Returns all HTML `data-*` attributes attached to an element.
+ * 
+ * @example Can be used as promise:
+ * const dataAttributes = getDataAttributes($el)
+ *
+ * @param {HTMLElement} $element
+ * @return {DOMStringMap} dataset
+ */
+export function getDataAttributes ($element) {
+  return $element.dataset;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

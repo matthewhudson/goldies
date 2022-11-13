@@ -15,7 +15,8 @@
     "prepublishOnly": "npm run build",
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
+    "test:watch": "nwb test --server",
+    "docs:generate": "jsdoc -c ./jsdoc.json"
   },
   "author": {
     "name": "Matthew Hudson",
@@ -39,6 +40,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
+    "jsdoc": "^4.0.0",
     "nwb": "^0.25.2",
     "prettier": "1.18.2",
     "prettier-config-standard": "^1.0.1"
