@@ -5,8 +5,8 @@
  * const $el = domify('<p>example</p>')
  * 
  * @param {String} html - A raw HTML string.
- * @returns {Node}
+ * @returns {HTMLDocument}
  */
-export function domify(html) {
-  return new DOMParser().parseFromString(html, "text/html").body.firstNode;
+export default function domify(html) {
+  return new DOMParser().parseFromString(html, "text/html").body.children[0];
 }
