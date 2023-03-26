@@ -11,7 +11,7 @@
  * @param {Number} [startingAt=3000] Port to begin scanning from.
  * @returns {Number} Returns a unused port.
  */
-export default function getAvailablePort (startingAt = 3000) {
+export function getAvailablePort (startingAt = 3000) {
   function getNextAvailablePort (currentPort, cb) {
     const server = net.createServer()
     server.listen(currentPort, _ => {

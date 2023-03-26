@@ -7,6 +7,6 @@
  * @param {String} html - A raw HTML string.
  * @returns {HTMLDocument}
  */
-export default function domify(html) {
+export function domify(html) {
   return new DOMParser().parseFromString(html, "text/html").body.children[0];
 }

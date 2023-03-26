@@ -16,7 +16,7 @@ import { toBase64 } from './convert/toBase64.js'
 import { attr } from './dom/attr.js'
 import { addClass, hasClass, removeClass, toggleClass } from './dom/classes.js'
 import { domify } from './dom/domify.js'
-import { getCustomVariables } from './dom/getCustomVariables.js'
+import { getCustomCSSVariables } from './dom/getCustomCSSVariables.js'
 import { getDataAttributes } from './dom/getDataAttributes.js'
 import { $, $$ } from './dom/selectors.js'
 
