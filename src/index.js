@@ -48,6 +48,7 @@ import { getQueryString } from './utils/getQueryString.js'
 import { getURLParams } from './utils/getURLParams.js'
 import { isBrowser } from './utils/isBrowser.js'
 import { isServer } from './utils/isServer.js'
+import { reloadPageWhenOnline } from './utils/reloadPageWhenOnline.js'
 
 import { escapeHTML } from './utils/escapeHTML.js'
 import { isS3, parseS3 } from './utils/s3.js'
@@ -116,6 +117,7 @@ export default {
     getQueryString,
     getURLParams,
     parseS3,
-    sleep
+    sleep,
+    reloadPageWhenOnline
   }
 }

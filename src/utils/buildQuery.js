@@ -1,27 +1,17 @@
-/*!
- * Build a query string from an object of data
- * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Object} data The data to turn into a query string
- * @return {String}      The query string
+/**
+ * Build a query string from an object of data.
+ *
+ * @param {Object} data - The data to turn into a query string.
+ * @returns {string} The query string.
+ * @example
+ * const data = { param1: 'value1', param2: 'value2' };
+ * // returns 'param1=value1&param2=value2'
+ * const queryString = buildQuery(data);
  */
 export function buildQuery (data) {
   if (typeof data === 'string') return data
-  var query = []
-  for (var key in data) {
-    if (data.hasOwnProperty(key)) {
-      query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    }
-  }
-  return query.join('&')
+
+  return Object.keys(data)
+    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&')
 }
-
-/*
-Here's an alternative version from:
-https://github.com/github/fetch/issues/263
-
-const searchParams = Object.keys(params)
-  .map(key => {
-    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
-  })
-  .join('&')
-*/
