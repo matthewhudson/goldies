@@ -22,7 +22,7 @@ import { $, $$ } from './dom/selectors.js'
 
 import { get } from './fetch/get.js'
 
-import { bytesToSize } from './format/bytes.js'
+import { formatBytes } from './format/formatBytes.js'
 
 // import {} from './node/cmd.js'
 // import {} from './node/port.js'
@@ -84,7 +84,7 @@ export default {
     get
   },
   format: {
-    bytesToSize
+    formatBytes
   },
   string: {
     endsWith,
