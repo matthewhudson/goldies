@@ -15,8 +15,7 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "test": "jest",
-    "test:coverage": "jest --coverage && codecov",
-    "release": "semantic-release --no-ci --release-as 5.0.0"
+    "test:coverage": "jest --coverage && codecov"
   },
   "author": {
     "name": "Matthew Hudson",
