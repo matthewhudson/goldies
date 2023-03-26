@@ -4,7 +4,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/matthewhudson/goldies/main.yml)
 [![codecov](https://codecov.io/github/matthewhudson/goldies/branch/main/graph/badge.svg?token=kVXZchiGn4)](https://codecov.io/github/matthewhudson/goldies)
-![npm](https://img.shields.io/npm/v/goldies)
+[![npm](https://img.shields.io/npm/v/goldies)](https://www.npmjs.com/package/goldies)
 
 ## Table of Contents
 
