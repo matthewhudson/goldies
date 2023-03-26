@@ -5,7 +5,7 @@
  * @param  {Array} arr The array
  * @return {Array}     A new array with duplicates removed
  */
-export default function dedupe(arr) {
+export function dedupe(arr) {
   return arr.filter((item, index) => {
     return arr.indexOf(item) === index;
   });

@@ -5,7 +5,7 @@
  * @param {string} cmd
  * @returns {Promise<string>}
  */
-export default function sh (cmd) {
+export function sh (cmd) {
   const { exec } = require('child_process')
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
