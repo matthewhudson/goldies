@@ -1,6 +1,6 @@
 {
   "name": "goldies",
-  "version": "0.0.0-development",
+  "version": "4.0.2",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "type": "module",
   "main": "dist/cjs/goldies.js",
