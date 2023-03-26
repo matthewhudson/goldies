@@ -1,41 +1,55 @@
+import fs from 'fs/promises'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import terser  from '@rollup/plugin-terser'
+import terser from '@rollup/plugin-terser'
+import replace from '@rollup/plugin-replace'
 
-const input = 'src/index.js'
+async function readJSONFile (filePath) {
+  try {
+    const fileContent = await fs.readFile(filePath, 'utf-8')
+    return JSON.parse(fileContent)
+  } catch (error) {
+    console.error(`Error reading JSON file: ${error.message}`)
+    return null
+  }
+}
 
-const plugins = [resolve(), commonjs(), terser()]
+const pkg = await readJSONFile('./package.json')
 
-// Add any external dependencies that shouldn't be bundled
-const external = []
+const env = process.env.NODE_ENV
 
 export default [
   {
-    input,
+    input: 'src/index.js',
     output: {
-      file: 'dist/cjs/goldies.js',
-      format: 'cjs'
-    },
-    plugins,
-    external
-  },
-  {
-    input,
-    output: {
-      file: 'dist/esm/goldies.js',
-      format: 'esm'
-    },
-    plugins,
-    external
-  },
-  {
-    input,
-    output: {
-      file: 'dist/browser/goldies.min.js',
+      name: 'goldies',
+      file: pkg.browser,
       format: 'umd',
-      name: 'goldies'
+      sourcemap: true
     },
-    plugins,
-    external
+    plugins: [
+      resolve(),
+      commonjs(),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(env),
+        preventAssignment: true
+      }),
+      env === 'production' && terser()
+    ]
+  },
+  {
+    input: 'src/index.js',
+    external: Object.keys(pkg.dependencies),
+    output: [
+      { file: pkg.main, format: 'cjs', sourcemap: true },
+      { file: pkg.module, format: 'esm', sourcemap: true }
+    ],
+    plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(env),
+        preventAssignment: true
+      }),
+      env === 'production' && terser()
+    ]
   }
 ]

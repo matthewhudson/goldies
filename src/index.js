@@ -45,7 +45,7 @@ import { isUrl } from './types/isUrl.js'
 import { buildQuery } from './utils/buildQuery.js'
 import { error, cerror } from './utils/errors.js'
 import { getQueryString } from './utils/getQueryString.js'
-import { getUrlParams } from './utils/getUrlParams.js'
+import { getURLParams } from './utils/getURLParams.js'
 import { isBrowser } from './utils/isBrowser.js'
 import { isServer } from './utils/isServer.js'
 
@@ -114,7 +114,7 @@ export default {
     isServer,
     isS3,
     getQueryString,
-    getUrlParams,
+    getURLParams,
     parseS3,
     sleep
   }

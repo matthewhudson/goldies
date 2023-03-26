@@ -1,19 +1,17 @@
 /**
- * Get the URL parameters
- * source: https://css-tricks.com/snippets/javascript/get-url-variables/
- * @param  {String} url The URL
- * @return {Object}     The URL parameters
+ * Get the URL parameters from a given URL string.
+ *
+ * @param {string} url - The URL to extract parameters from.
+ * @returns {Object} The URL parameters as key-value pairs.
+ * @example
+ * const url = 'https://example.com?param1=value1&param2=value2';
+ * // returns { param1: 'value1', param2: 'value2' }
+ * const params = getUrlParams(url);
  */
-export const getUrlParams = url => {
-  var params = {}
-  var parser = document.createElement('a')
-  parser.href = url || window.location.href
-  var query = parser.search.substring(1)
-  var vars = query.split('&')
-  if (vars.length < 1 || vars[0].length < 1) return params
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split('=')
-    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1])
-  }
-  return params
+export function getURLParams (url) {
+  const params = new URLSearchParams(new URL(url).search)
+
+  return Object.fromEntries(
+    Array.from(params.entries()).map(([key, value]) => [decodeURIComponent(key), decodeURIComponent(value)])
+  )
 }
