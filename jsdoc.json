@@ -6,7 +6,17 @@
   },
   "recurseDepth": 10,
   "opts": {
+    "encoding": "utf8",
+    "verbose": true,
+    "recurse": true,
     "destination": "./docs/",
-    "recurse": true
+    "template": "./node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "homepageTitle": "goldies",
+      "title": "goldies",
+      "default_theme": "light",
+      "displayModuleHeader": true,
+      "includeFilesListInHomepage": true
+    }
   }
 }
