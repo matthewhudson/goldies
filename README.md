@@ -2,6 +2,10 @@
 
 > ✨ 🔧 A collection of JavaScript helpers covering the DOM, debugging, de-/serialization, sanitization, validation, HTTP requests and more.
 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/matthewhudson/goldies/main.yml)
+[![codecov](https://codecov.io/github/matthewhudson/goldies/branch/main/graph/badge.svg?token=kVXZchiGn4)](https://codecov.io/github/matthewhudson/goldies)
+![npm](https://img.shields.io/npm/v/goldies)
+
 ## Table of Contents
 
 - [Installation](#installation)
