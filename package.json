@@ -1,6 +1,6 @@
 {
   "name": "goldies",
-  "version": "4.0.1",
+  "version": "0.0.0-development",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "type": "module",
   "main": "dist/cjs/goldies.js",
@@ -16,7 +16,7 @@
     "lint:fix": "standard --fix",
     "test": "jest",
     "test:coverage": "jest --coverage && codecov",
-    "semantic-release": "semantic-release"
+    "release": "semantic-release --no-ci --release-as 5.0.0"
   },
   "author": {
     "name": "Matthew Hudson",
@@ -43,7 +43,7 @@
     "rollup": "3.20.1",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
-    "semantic-release": "20.1.3",
+    "semantic-release": "^21.0.0",
     "standard": "17.0.0"
   },
   "dependencies": {
@@ -54,5 +54,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewhudson/goldies.git"
   }
 }
