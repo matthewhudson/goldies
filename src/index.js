@@ -3,8 +3,8 @@ import { dedupe } from './array/dedupe.js'
 // import {} from './files/isFileType.js'
 // import {} from './files/list.js'
 // import {} from './files/open.js'
-import { getContrast } from './color/contrast.js'
-import { isValidHexSimpleColor } from './color/isHex.js'
+import { getContrast } from './color/getContrast.js'
+import { isValidHexSimpleColor } from './color/isValidHexSimpleColor.js'
 
 import { base64ToBlob } from './convert/base64ToBlob.js'
 import { fromArray } from './convert/fromArray.js'
@@ -66,7 +66,7 @@ export default {
     hasClass,
     removeClass,
     toggleClass,
-    getCustomVariables,
+    getCustomCSSVariables,
     getDataAttributes
   },
   color: {
