@@ -15,7 +15,8 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "test": "jest",
-    "test:coverage": "jest --coverage && codecov"
+    "test:coverage": "jest --coverage && codecov",
+    "validate": "npm run lint && npm run test && npm run build"
   },
   "author": {
     "name": "Matthew Hudson",
