@@ -9,9 +9,9 @@ export function sh (cmd) {
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
       if (error) {
-        console.warn(error)
+        resolve(stderr)
       }
-      resolve(stdout || stderr)
+      resolve(stdout)
     })
   })
 }
