@@ -269,17 +269,3 @@ Temporary Items
 .history
 
 # End of https://www.gitignore.io/api/visualstudiocod
-
-### Custom ###
-# Ignore Lambda layers
-layers/
-layer/
-_diary/
-
-# NWB
-/coverage
-/es
-/lib
-/umd
-
-# End of custom
