@@ -20,7 +20,7 @@
     "docs:generate": "npx jsdoc --configure ./jsdoc.json --verbose",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "test": "jest",
+    "test": "npx jest",
     "test:coverage": "jest --coverage && codecov",
     "validate": "npm run lint && npm run test && npm run build"
   },
@@ -56,8 +56,7 @@
     "standard": "17.0.0"
   },
   "dependencies": {
-    "colors": "1.4.0",
-    "node-fetch": "latest"
+    "colors": "1.4.0"
   },
   "config": {
     "commitizen": {

@@ -5,6 +5,6 @@ export default {
     '^(.+).js$': '$1'
   },
   transform: {
-    '^.+\\.js$': 'babel-jest'
+    '^.+\\.(js|jsx|mjs)$': 'babel-jest'
   }
 }

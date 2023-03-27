@@ -1,4 +1,4 @@
-import { getLanguage, getMessage } from './language-utils'
+import { getLanguage, getMessage } from './language'
 
 describe('getLanguage', () => {
   const originalNavigator = global.navigator
