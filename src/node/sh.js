@@ -1,9 +1,8 @@
 /**
- * Executes a shell command and return it as a Promise.
- * Original Author: medium.com/@ali.dev/how-to-use-promise-with-exec-in-node-js-a39c4d7bbf77
+ * Executes a shell command and returns it as a Promise.
  *
- * @param {string} cmd
- * @returns {Promise<string>}
+ * @param {string} cmd - The shell command to execute.
+ * @returns {Promise<string>} - A Promise that resolves with the output of the shell command.
  */
 export function sh (cmd) {
   const { exec } = require('child_process')

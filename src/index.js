@@ -22,8 +22,9 @@ import { $, $$ } from './dom/selectors.js'
 
 import { formatBytes } from './format/formatBytes.js'
 
-// import {} from './node/cmd.js'
-// import {} from './node/port.js'
+import { sh } from './node/sh.js'
+import { getAvailablePort } from './node/port.js'
+
 import { clone } from './object/clone.js'
 import { filter } from './object/filter.js'
 import { has } from './object/has.js'
@@ -84,6 +85,10 @@ export default {
     endsWith,
     findUsernames,
     startsWith
+  },
+  node: {
+    getAvailablePort,
+    sh
   },
   types: {
     isDefined,
