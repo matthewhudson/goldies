@@ -1,8 +1,11 @@
 import fs from 'fs/promises'
-import resolve from 'rollup-plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
+import babel from '@rollup/plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import terser from '@rollup/plugin-terser'
 import replace from '@rollup/plugin-replace'
+import polyfills from 'rollup-plugin-node-polyfills'
+import polyfillNode from 'rollup-plugin-polyfill-node'
 
 async function readJSONFile (filePath) {
   try {
@@ -28,8 +31,17 @@ export default [
       sourcemap: true
     },
     plugins: [
-      resolve(),
+      resolve({
+        preferBuiltins: false
+      }),
       commonjs(),
+      babel({
+        babelHelpers: 'runtime',
+        exclude: 'node_modules/**',
+        plugins: ['@babel/plugin-transform-runtime']
+      }),
+      polyfills(),
+      polyfillNode(),
       replace({
         'process.env.NODE_ENV': JSON.stringify(env),
         preventAssignment: true
