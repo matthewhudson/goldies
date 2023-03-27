@@ -1,17 +1,20 @@
 /**
- * Create a new object composed of properties that meet specific criteria
- * Adapted from: (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Object}   obj      The original object
- * @param  {Function} callback The callback test to run
- * @return {Object}            The new, filtered object
+ * Create a new object composed of properties that meet specific criteria.
+ *
+ * @param {Object} obj - The original object.
+ * @param {Function} callback - The callback test to run.
+ * @returns {Object} - The new, filtered object.
  */
-export const filter = (obj, callback) => {
-  // Setup a new object
+export function filter (obj, callback) {
+  /**
+   * A new object that will hold properties that pass the given test.
+   * @type {Object}
+   */
   const filtered = {}
 
   // Loop through each item in the object and test it
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       // If the callback validates true, push item to the new object
       if (callback(obj[key], key, obj)) {
         filtered[key] = obj[key]

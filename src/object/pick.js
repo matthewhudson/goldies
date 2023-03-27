@@ -1,22 +1,29 @@
 /**
- * Create a new object composed of properties picked from another object
- * Adapted from: (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Object} obj   The object to pick properties from
- * @param  {Array}  props An array of properties to use
- * @return {Object}       The new object
+ * Creates a new object composed of properties picked from another object.
+ *
+ * @param {Object} obj - The object to pick properties from.
+ * @param {Array<string>} props - An array of property names to use.
+ * @returns {Object} - The new object.
+ * @example
+ *
+ * const sourceObj = {
+ *   a: 1,
+ *   b: 2,
+ *   c: 3
+ * }
+ *
+ * const pickedObj = pick(sourceObj, ['a', 'c'])
+ *
+ * // pickedObj is now { a: 1, c: 3 }
  */
-export const pick = (obj, props) => {
-  // Make sure object and properties are provided
+export function pick (obj, props) {
   if (!obj || !props) return
 
-  // Create new object
   const picked = {}
 
-  // Loop through props and push to new object
-  props.forEach(prop => {
+  for (const prop of props) {
     picked[prop] = obj[prop]
-  })
+  }
 
-  // Return new object
   return picked
 }

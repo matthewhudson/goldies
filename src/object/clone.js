@@ -1,20 +1,30 @@
 /**
- * Create an immutable clone of an object
- * Adapted from: (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Object} obj The object to clone
- * @return {Object} The clone of the object
+ * Creates an immutable clone of an object.
+ *
+ * @param {Object} obj - The object to clone.
+ * @returns {Object} - The clone of the object.
+ *
+ * @example
+ * const original = { a: 1, b: { c: 2 } };
+ *
+ * const cloned = clone(original);
+ *
+ * cloned.a = 3;
+ * cloned.b.c = 4;
+ *
+ * console.log(original); // { a: 1, b: { c: 2 } }
+ * console.log(cloned);   // { a: 3, b: { c: 4 } }
  */
-export const clone = obj => {
-  // Create new object
-  const clone = {}
-
-  // Loop through each item in the original
-  // Recursively copy it's value and add to the clone
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      clone[key] = clone(obj[key])
-    }
+export function clone (obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj
   }
 
-  return clone
+  const clonedObj = Array.isArray(obj) ? [] : {}
+
+  for (const [key, value] of Object.entries(obj)) {
+    clonedObj[key] = clone(value)
+  }
+
+  return Object.freeze(clonedObj)
 }
