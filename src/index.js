@@ -1,8 +1,10 @@
 import { dedupe } from './array/dedupe.js'
 
-// import {} from './files/isFileType.js'
-// import {} from './files/list.js'
-// import {} from './files/open.js'
+import { getDirectoryTree } from './files/getDirectoryTree.js'
+import { getFileType } from './files/getFileType.js'
+import { isDirectory } from './files/isDirectory.js'
+import { readFile } from './files/readFile.js'
+
 import { getContrast } from './color/getContrast.js'
 import { isValidHexSimpleColor } from './color/isValidHexSimpleColor.js'
 
@@ -77,6 +79,12 @@ export default {
     fromBase64,
     parseJSONFromBytes,
     toBase64
+  },
+  files: {
+    getDirectoryTree,
+    getFileType,
+    isDirectory,
+    readFile
   },
   format: {
     formatBytes

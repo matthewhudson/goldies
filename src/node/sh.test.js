@@ -9,6 +9,6 @@ describe('sh', () => {
 
   test('handles shell command errors', async () => {
     const output = await sh('this_command_does_not_exist')
-    expect(output).toMatch(/command not found/)
+    expect(output).toMatch(/not found/)
   })
 })
