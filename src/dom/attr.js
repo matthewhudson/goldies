@@ -2,19 +2,22 @@
  * Set attribute `name` to `val`, or get attr `name`.
  * Derived from: github.com/bpmn-io/min-dom/blob/master/lib/attr.js
  *
- * @example <caption>Get element `style` attribute</caption>
- * const style = attr($('.el'), 'style')
- * 
- * @example <caption>Remove element `style` attribute</caption>
- * attr($('.el') 'style', null)
- * 
- * @example <caption>Set element `id` attribute</caption>
- * attr($('.el'), 'id', 'new-element-id')
- * 
+ * @example
+ * // Get element `style` attribute
+ * const style = attr($('.el'), 'style');
+ *
+ * @example
+ * // Remove element `style` attribute
+ * attr($('.el'), 'style', null);
+ *
+ * @example
+ * // Set element `id` attribute
+ * attr($('.el'), 'id', 'new-element-id');
+ *
  * @param {Element} $element - DOM Element
- * @param {String} attributeName - The name of the DOM element attribute.
- * @param {String} [attributeValue] - The new value for the DOM element.
- * @returns {*} 
+ * @param {string} attributeName - The name of the DOM element attribute.
+ * @param {string} [attributeValue] - The new value for the DOM element.
+ * @returns {Element|string|null} - Updated element or attribute value.
  */
 export function attr ($element, attributeName, attributeValue) {
   // Get attribute
