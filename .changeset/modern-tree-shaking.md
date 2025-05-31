@@ -1,5 +1,5 @@
 ---
-"goldies": minor
+"goldies": major
 ---
 
 ## Modern Tree-Shaking and Build System Improvements
