@@ -4,7 +4,6 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
 import replace from '@rollup/plugin-replace'
-import polyfills from 'rollup-plugin-node-polyfills'
 import polyfillNode from 'rollup-plugin-polyfill-node'
 import typescript from '@rollup/plugin-typescript'
 

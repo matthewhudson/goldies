@@ -9,7 +9,7 @@
 export function fromBase64(base64String: string = ''): string {
   try {
     return Buffer.from(base64String, 'base64').toString('utf-8');
-  } catch (error) {
+  } catch {
     return '';
   }
 }

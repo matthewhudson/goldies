@@ -41,7 +41,7 @@ export async function getAvailablePort(startingAt: number = 3000): Promise<numbe
     try {
       await getNextAvailablePort(port);
       return port;
-    } catch (err) {
+    } catch {
       port++;
     }
   }

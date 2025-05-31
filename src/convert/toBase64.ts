@@ -8,7 +8,7 @@
 export function toBase64(inputString: string = ''): string {
   try {
     return Buffer.from(inputString, 'utf-8').toString('base64');
-  } catch (error) {
+  } catch {
     return '';
   }
 }

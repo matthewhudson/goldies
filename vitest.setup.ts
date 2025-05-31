@@ -1,4 +1,3 @@
-import { vi } from 'vitest';
 import { JSDOM } from 'jsdom';
 
 // Create a JSDOM instance for testing
