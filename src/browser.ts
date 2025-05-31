@@ -1,10 +1,5 @@
 import { dedupe } from './array/dedupe';
 
-import { getDirectoryTree } from './files/getDirectoryTree';
-import { getFileType } from './files/getFileType';
-import { isDirectory } from './files/isDirectory';
-import { readFile } from './files/readFile';
-
 import { getContrast } from './color/getContrast';
 import { isValidHexSimpleColor } from './color/isValidHexSimpleColor';
 
@@ -23,9 +18,6 @@ import { $, $$ } from './dom/selectors';
 
 import { formatBytes } from './format/formatBytes';
 
-import { sh } from './node/sh';
-import { getAvailablePort } from './node/port';
-
 import { clone } from './object/clone';
 import { filter } from './object/filter';
 import { has } from './object/has';
@@ -43,7 +35,6 @@ import { isUndefined } from './types/isUndefined';
 import { isUrl } from './types/isUrl';
 
 import { buildQuery } from './utils/buildQuery';
-// getQueryString import removed - file not found
 import { getURLParams } from './utils/getURLParams';
 import { isBrowser } from './utils/isBrowser';
 import { isServer } from './utils/isServer';
@@ -52,7 +43,8 @@ import { escapeHTML } from './utils/escapeHTML';
 import { isS3, parseS3 } from './utils/s3';
 import { sleep } from './utils/sleep';
 
-export interface Goldies {
+// Define the browser-specific interface
+export interface BrowserGoldies {
   array: {
     dedupe: typeof dedupe;
   };
@@ -79,12 +71,6 @@ export interface Goldies {
     parseJSONFromBytes: typeof parseJSONFromBytes;
     toBase64: typeof toBase64;
   };
-  files: {
-    getDirectoryTree: typeof getDirectoryTree;
-    getFileType: typeof getFileType;
-    isDirectory: typeof isDirectory;
-    readFile: typeof readFile;
-  };
   format: {
     formatBytes: typeof formatBytes;
   };
@@ -92,10 +78,6 @@ export interface Goldies {
     endsWith: typeof endsWith;
     findUsernames: typeof findUsernames;
     startsWith: typeof startsWith;
-  };
-  node: {
-    getAvailablePort: typeof getAvailablePort;
-    sh: typeof sh;
   };
   types: {
     isDefined: typeof isDefined;
@@ -117,7 +99,6 @@ export interface Goldies {
     isBrowser: typeof isBrowser;
     isServer: typeof isServer;
     isS3: typeof isS3;
-    // getQueryString removed - file not found
     getURLParams: typeof getURLParams;
     parseS3: typeof parseS3;
     sleep: typeof sleep;
@@ -125,7 +106,8 @@ export interface Goldies {
   };
 }
 
-const goldies: Goldies = {
+// Create browser-only bundle
+const browserGoldies: BrowserGoldies = {
   array: {
     dedupe,
   },
@@ -152,12 +134,6 @@ const goldies: Goldies = {
     parseJSONFromBytes,
     toBase64,
   },
-  files: {
-    getDirectoryTree,
-    getFileType,
-    isDirectory,
-    readFile,
-  },
   format: {
     formatBytes,
   },
@@ -165,10 +141,6 @@ const goldies: Goldies = {
     endsWith,
     findUsernames,
     startsWith,
-  },
-  node: {
-    getAvailablePort,
-    sh,
   },
   types: {
     isDefined,
@@ -190,7 +162,6 @@ const goldies: Goldies = {
     isBrowser,
     isServer,
     isS3,
-    // getQueryString removed
     getURLParams,
     parseS3,
     sleep,
@@ -198,4 +169,4 @@ const goldies: Goldies = {
   },
 };
 
-export default goldies;
+export default browserGoldies;

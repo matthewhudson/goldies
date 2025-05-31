@@ -6,13 +6,181 @@
   "main": "./dist/cjs/goldies.js",
   "module": "./dist/esm/goldies.js",
   "browser": "./dist/browser/goldies.min.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/modules/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/modules/types/index.d.ts",
+      "browser": "./dist/browser/goldies.min.js",
       "import": "./dist/esm/goldies.js",
-      "require": "./dist/cjs/goldies.js",
-      "browser": "./dist/browser/goldies.min.js"
+      "require": "./dist/cjs/goldies.js"
+    },
+    "./array/dedupe": {
+      "types": "./dist/modules/types/array/dedupe.d.ts",
+      "import": "./dist/modules/array/dedupe.js"
+    },
+    "./color/getContrast": {
+      "types": "./dist/modules/types/color/getContrast.d.ts",
+      "import": "./dist/modules/color/getContrast.js"
+    },
+    "./color/isValidHexSimpleColor": {
+      "types": "./dist/modules/types/color/isValidHexSimpleColor.d.ts",
+      "import": "./dist/modules/color/isValidHexSimpleColor.js"
+    },
+    "./convert/base64ToBlob": {
+      "types": "./dist/modules/types/convert/base64ToBlob.d.ts",
+      "import": "./dist/modules/convert/base64ToBlob.js"
+    },
+    "./convert/fromArray": {
+      "types": "./dist/modules/types/convert/fromArray.d.ts",
+      "import": "./dist/modules/convert/fromArray.js"
+    },
+    "./convert/fromBase64": {
+      "types": "./dist/modules/types/convert/fromBase64.d.ts",
+      "import": "./dist/modules/convert/fromBase64.js"
+    },
+    "./convert/parseJSONFromBytes": {
+      "types": "./dist/modules/types/convert/parseJSONFromBytes.d.ts",
+      "import": "./dist/modules/convert/parseJSONFromBytes.js"
+    },
+    "./convert/toBase64": {
+      "types": "./dist/modules/types/convert/toBase64.d.ts",
+      "import": "./dist/modules/convert/toBase64.js"
+    },
+    "./dom/attr": {
+      "types": "./dist/modules/types/dom/attr.d.ts",
+      "import": "./dist/modules/dom/attr.js"
+    },
+    "./dom/classes": {
+      "types": "./dist/modules/types/dom/classes.d.ts",
+      "import": "./dist/modules/dom/classes.js"
+    },
+    "./dom/domify": {
+      "types": "./dist/modules/types/dom/domify.d.ts",
+      "import": "./dist/modules/dom/domify.js"
+    },
+    "./dom/getCustomCSSVariables": {
+      "types": "./dist/modules/types/dom/getCustomCSSVariables.d.ts",
+      "import": "./dist/modules/dom/getCustomCSSVariables.js"
+    },
+    "./dom/getDataAttributes": {
+      "types": "./dist/modules/types/dom/getDataAttributes.d.ts",
+      "import": "./dist/modules/dom/getDataAttributes.js"
+    },
+    "./dom/selectors": {
+      "types": "./dist/modules/types/dom/selectors.d.ts",
+      "import": "./dist/modules/dom/selectors.js"
+    },
+    "./format/formatBytes": {
+      "types": "./dist/modules/types/format/formatBytes.d.ts",
+      "import": "./dist/modules/format/formatBytes.js"
+    },
+    "./object/clone": {
+      "types": "./dist/modules/types/object/clone.d.ts",
+      "import": "./dist/modules/object/clone.js"
+    },
+    "./object/filter": {
+      "types": "./dist/modules/types/object/filter.d.ts",
+      "import": "./dist/modules/object/filter.js"
+    },
+    "./object/has": {
+      "types": "./dist/modules/types/object/has.d.ts",
+      "import": "./dist/modules/object/has.js"
+    },
+    "./object/pick": {
+      "types": "./dist/modules/types/object/pick.d.ts",
+      "import": "./dist/modules/object/pick.js"
+    },
+    "./string/endsWith": {
+      "types": "./dist/modules/types/string/endsWith.d.ts",
+      "import": "./dist/modules/string/endsWith.js"
+    },
+    "./string/findUsernames": {
+      "types": "./dist/modules/types/string/findUsernames.d.ts",
+      "import": "./dist/modules/string/findUsernames.js"
+    },
+    "./string/startsWith": {
+      "types": "./dist/modules/types/string/startsWith.d.ts",
+      "import": "./dist/modules/string/startsWith.js"
+    },
+    "./types/isDefined": {
+      "types": "./dist/modules/types/types/isDefined.d.ts",
+      "import": "./dist/modules/types/isDefined.js"
+    },
+    "./types/isJSON": {
+      "types": "./dist/modules/types/types/isJSON.d.ts",
+      "import": "./dist/modules/types/isJSON.js"
+    },
+    "./types/isNil": {
+      "types": "./dist/modules/types/types/isNil.d.ts",
+      "import": "./dist/modules/types/isNil.js"
+    },
+    "./types/isNull": {
+      "types": "./dist/modules/types/types/isNull.d.ts",
+      "import": "./dist/modules/types/isNull.js"
+    },
+    "./types/isUndefined": {
+      "types": "./dist/modules/types/types/isUndefined.d.ts",
+      "import": "./dist/modules/types/isUndefined.js"
+    },
+    "./types/isUrl": {
+      "types": "./dist/modules/types/types/isUrl.d.ts",
+      "import": "./dist/modules/types/isUrl.js"
+    },
+    "./utils/buildQuery": {
+      "types": "./dist/modules/types/utils/buildQuery.d.ts",
+      "import": "./dist/modules/utils/buildQuery.js"
+    },
+    "./utils/escapeHTML": {
+      "types": "./dist/modules/types/utils/escapeHTML.d.ts",
+      "import": "./dist/modules/utils/escapeHTML.js"
+    },
+    "./utils/getURLParams": {
+      "types": "./dist/modules/types/utils/getURLParams.d.ts",
+      "import": "./dist/modules/utils/getURLParams.js"
+    },
+    "./utils/isBrowser": {
+      "types": "./dist/modules/types/utils/isBrowser.d.ts",
+      "import": "./dist/modules/utils/isBrowser.js"
+    },
+    "./utils/isServer": {
+      "types": "./dist/modules/types/utils/isServer.d.ts",
+      "import": "./dist/modules/utils/isServer.js"
+    },
+    "./utils/reloadPageWhenOnline": {
+      "types": "./dist/modules/types/utils/reloadPageWhenOnline.d.ts",
+      "import": "./dist/modules/utils/reloadPageWhenOnline.js"
+    },
+    "./utils/s3": {
+      "types": "./dist/modules/types/utils/s3.d.ts",
+      "import": "./dist/modules/utils/s3.js"
+    },
+    "./utils/sleep": {
+      "types": "./dist/modules/types/utils/sleep.d.ts",
+      "import": "./dist/modules/utils/sleep.js"
+    },
+    "./files/getDirectoryTree": {
+      "types": "./dist/modules/types/files/getDirectoryTree.d.ts",
+      "import": "./dist/modules/files/getDirectoryTree.js"
+    },
+    "./files/getFileType": {
+      "types": "./dist/modules/types/files/getFileType.d.ts",
+      "import": "./dist/modules/files/getFileType.js"
+    },
+    "./files/isDirectory": {
+      "types": "./dist/modules/types/files/isDirectory.d.ts",
+      "import": "./dist/modules/files/isDirectory.js"
+    },
+    "./files/readFile": {
+      "types": "./dist/modules/types/files/readFile.d.ts",
+      "import": "./dist/modules/files/readFile.js"
+    },
+    "./node/port": {
+      "types": "./dist/modules/types/node/port.d.ts",
+      "import": "./dist/modules/node/port.js"
+    },
+    "./node/sh": {
+      "types": "./dist/modules/types/node/sh.d.ts",
+      "import": "./dist/modules/node/sh.js"
     }
   },
   "sideEffects": false,
@@ -36,7 +204,10 @@
     "prepare": "husky install",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "validate": "npm run lint && npm run test && npm run build"
+    "validate": "npm run lint && npm run test && npm run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "npm run build && changeset publish"
   },
   "author": {
     "name": "Matthew Hudson",
@@ -45,31 +216,49 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/plugin-transform-runtime": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/runtime": "^7.27.4",
     "@changesets/cli": "^2.27.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20.17.57",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "@vitest/coverage-v8": "^1.3.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
+    "@types/node": "^22.15.29",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "@vitest/coverage-v8": "^3.1.4",
+    "conventional-changelog-cli": "^5.0.0",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
     "husky": "^9.0.11",
     "jsdom": "^26.1.0",
     "kleur": "^4.1.5",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^16.1.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "rollup": "^4.12.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "rollup-plugin-polyfill-node": "^0.13.0",
+    "tmp": "^0.2.3",
+    "tslib": "^2.8.1",
     "tsup": "^8.0.2",
-    "typedoc": "^0.25.8",
-    "typescript": "^5.3.3",
-    "vitest": "^1.3.1"
+    "typedoc": "^0.28.5",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
   },
   "dependencies": {
     "kleur": "^4.1.5"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",
