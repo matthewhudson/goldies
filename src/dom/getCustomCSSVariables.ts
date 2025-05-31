@@ -5,9 +5,9 @@
  * @example
  * const allCustomCSSVariables = getCustomCSSVariables('<p>example</p>')
  *
- * @returns {Array}
+ * @returns {Array<{key: string, value: string}>} Array of CSS variable objects with key and value properties
  */
-export function getCustomCSSVariables() {
+export function getCustomCSSVariables(): Array<{key: string, value: string}> {
   const variables = [].slice
     .call(document.styleSheets)
     .map(styleSheet => [].slice.call(styleSheet.cssRules))

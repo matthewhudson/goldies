@@ -11,4 +11,4 @@
  * isUndefined(null)
  * // => false
  */
-export const isUndefined = value => value === undefined
+export const isUndefined = (value: unknown): boolean => value === undefined

@@ -14,4 +14,4 @@
  * isNil(NaN);
  * // => false
  */
-export const isNil = (value) => value == null
+export const isNil = (value: unknown): boolean => value == null

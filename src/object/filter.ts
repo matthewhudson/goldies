@@ -9,7 +9,7 @@
  * const filtered = filter(original, (value) => value > 1);
  * console.log(filtered); // { b: 2, c: 3 }
  */
-export function filter<T extends Record<string, any>>(
+export function filter<T extends Record<string, unknown>>(
   obj: T,
   callback: (value: T[keyof T], key: keyof T, obj: T) => boolean
 ): Partial<T> {

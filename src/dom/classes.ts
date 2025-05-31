@@ -8,7 +8,7 @@
  * @param {String} className - A class to check the DOM element for.
  * @returns {Boolean} Returns true if element has class, false if not.
  */
-export function hasClass($element, className) {
+export function hasClass($element: Element, className: string): boolean {
   return $element.classList.contains(className);
 }
 
@@ -21,8 +21,8 @@ export function hasClass($element, className) {
  * @param {DOMElement} $element - A DOM element to check.
  * @param {String} className - A class to add to the DOM element.
  */
-export function addClass($element, className) {
-  return $element.classList.add(className);
+export function addClass($element: Element, className: string): void {
+  $element.classList.add(className);
 }
 
 /**
@@ -34,8 +34,8 @@ export function addClass($element, className) {
  * @param {DOMElement} $element - A DOM element to remove the class name from.
  * @param {String} className - A class to remove from the DOM element.
  */
-export function removeClass($element, className) {
-  return $element.classList.remove(className);
+export function removeClass($element: Element, className: string): void {
+  $element.classList.remove(className);
 }
 
 
@@ -48,6 +48,6 @@ export function removeClass($element, className) {
  * @param {DOMElement} $element - A DOM element to toggle the class name on.
  * @param {String} className - A class to toggle off/on the DOM element.
  */
-export function toggleClass($element, className) {
+export function toggleClass($element: Element, className: string): boolean {
   return $element.classList.toggle(className);
 }

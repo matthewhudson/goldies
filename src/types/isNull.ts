@@ -11,4 +11,4 @@
  * isNull(void 0)
  * // => false
  */
-export const isNull = value => value === null
+export const isNull = (value: unknown): boolean => value === null

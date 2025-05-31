@@ -7,13 +7,13 @@ describe('pick()', () => {
   })
 
   test('returns empty object if either object or properties are not provided', () => {
-    expect(pick({} as Record<string, any>, ['foo', 'baz'])).toEqual({});
+    expect(pick({} as Record<string, unknown>, ['foo', 'baz'])).toEqual({});
     const obj = { foo: 'bar', baz: 'qux' };
     expect(pick(obj, [] as Array<keyof typeof obj>)).toEqual({});
   });
 
   test('returns empty object if source object is empty', () => {
-    const emptyObj: Record<string, any> = {};
+    const emptyObj: Record<string, unknown> = {};
     expect(pick(emptyObj, ['foo', 'baz'])).toEqual({});
   });
 

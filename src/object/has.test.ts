@@ -12,7 +12,7 @@ describe('has', () => {
   })
 
   test('returns false if property is in prototype chain', () => {
-    function Foo () {}
+    function Foo(): void {}
     Foo.prototype.bar = true
     const obj = new Foo()
     expect(has(obj, 'bar')).toBe(false)

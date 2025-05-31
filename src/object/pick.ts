@@ -16,7 +16,7 @@
  *
  * // pickedObj is now { a: 1, c: 3 }
  */
-export function pick<T extends Record<string, any>, K extends keyof T>(
+export function pick<T extends Record<string, unknown>, K extends keyof T>(
   obj: T,
   props: K[]
 ): Pick<T, K> {
