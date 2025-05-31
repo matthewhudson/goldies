@@ -3,8 +3,11 @@
 A wide-ranging collection of JavaScript helpers covering debugging, serialization, sanitization, validation, HTTP requests and more.
 
 [![npm version](https://badge.fury.io/js/goldies.svg)](https://badge.fury.io/js/goldies)
+[![npm downloads](https://img.shields.io/npm/dm/goldies.svg)](https://www.npmjs.com/package/goldies)
+[![Bundle size](https://img.shields.io/bundlephobia/minzip/goldies)](https://bundlephobia.com/package/goldies)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js: v22](https://img.shields.io/badge/node-v22-green.svg)](https://nodejs.org/en/)
 [![CI](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml/badge.svg)](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml)
 
 ## Features
