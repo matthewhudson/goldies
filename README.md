@@ -1,60 +1,98 @@
-# Goldies - "Good & Golden Oldies"
+# Goldies
 
-> ✨ 🔧 A collection of JavaScript helpers covering the DOM, debugging, de-/serialization, sanitization, validation, HTTP requests and more.
+A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/matthewhudson/goldies/main.yml)
-[![codecov](https://codecov.io/github/matthewhudson/goldies/branch/main/graph/badge.svg?token=kVXZchiGn4)](https://codecov.io/github/matthewhudson/goldies)
-[![npm](https://img.shields.io/npm/v/goldies)](https://www.npmjs.com/package/goldies)
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Using ES Modules](#using-es-modules)
-  - [Using CommonJS](#using-commonjs)
-  - [Using Script Tags and Globals](#using-script-tags-and-globals)
-- [Background](#background)
+[![npm version](https://badge.fury.io/js/goldies.svg)](https://badge.fury.io/js/goldies)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![CI](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml/badge.svg)](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml)
 
 ## Installation
 
 ```bash
-npm install goldies --save
+npm install goldies
 ```
 
 ## Usage
 
-### Using ES Modules
+```typescript
+import goldies from 'goldies';
 
-```js
-// Import specific functions from the package
-import { dedupe } from 'goldies';
+// Array utilities
+const uniqueArray = goldies.array.dedupe([1, 2, 2, 3]);
+
+// DOM utilities
+const element = goldies.dom.$('#myElement');
+goldies.dom.addClass(element, 'active');
+
+// Color utilities
+const isValid = goldies.color.isValidHexSimpleColor('#ff0000');
+
+// File utilities
+const isDir = await goldies.files.isDirectory('/path/to/dir');
+
+// String utilities
+const hasUsername = goldies.string.findUsernames('Hello @user123');
+
+// Type checking
+const isDefined = goldies.types.isDefined(someValue);
+
+// Object utilities
+const cloned = goldies.object.clone(originalObject);
+
+// Utility functions
+const params = goldies.utils.getURLParams('https://example.com?foo=bar');
 ```
 
-### Using CommonJS
+## Features
 
-```js
-// Import specific functions from the package
-const { dedupe } = require('goldies');
+- **Array Utilities**: Deduplication, filtering, and more
+- **DOM Utilities**: Element selection, class manipulation, and attribute handling
+- **Color Utilities**: Color validation and contrast calculation
+- **File Utilities**: Directory tree generation, file type detection
+- **String Utilities**: Pattern matching, username detection
+- **Type Checking**: Comprehensive type checking utilities
+- **Object Utilities**: Cloning, filtering, and property manipulation
+- **General Utilities**: URL parsing, query string building, and more
+
+## TypeScript Support
+
+This package is written in TypeScript and includes type definitions. You get full type safety and autocompletion when using it in TypeScript projects.
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run tests
+npm test
+
+# Build the package
+npm run build
+
+# Lint the code
+npm run lint
+
+# Format the code
+npm run format
 ```
 
-### Using Script Tags and Globals
+## Contributing
 
-Include the script tag in your HTML file:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```html
-<script src="https://unpkg.com/goldies@5.0.0/dist/browser/goldies.min.js"></script>
-```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Then, access the functions off the global goldies object:
+## License
 
-```js
-console.log('goldies.dedupe([1, 2, 2]) === %s', goldies.dedupe([1, 2, 2]));
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Background
+## Author
 
-The code and other tools here serve as my own personal reference points. In some
-cases, they're URL tools, or DOM helpers. But more often than not, they're tiny
-chunks of code I've forgotten and had to lookup on Google or StackOverflow.
-
-Plan is to keep them here and add tests/benchmark/notes when appropriate.
+- Matthew Hudson ([@matthewhudson](https://github.com/matthewhudson))
+- Website: [hudson.dev](https://hudson.dev)
