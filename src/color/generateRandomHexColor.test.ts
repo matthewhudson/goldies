@@ -56,7 +56,7 @@ describe('generateRandomHexColor', () => {
     it('should properly pad short hex values with zeros', () => {
       // Mock Math.random to return a small value that needs padding
       const originalRandom = Math.random;
-      Math.random = () => 0.000001;
+      Math.random = (): number => 0.000001;
       
       const color = generateRandomHexColor();
       expect(color).toMatch(/^#[0-9a-f]{6}$/);
@@ -69,7 +69,7 @@ describe('generateRandomHexColor', () => {
   describe('edge cases', () => {
     it('should handle Math.random returning 0', () => {
       const originalRandom = Math.random;
-      Math.random = () => 0;
+      Math.random = (): number => 0;
       
       const color = generateRandomHexColor();
       expect(color).toBe('#000000');
@@ -79,7 +79,7 @@ describe('generateRandomHexColor', () => {
 
     it('should handle Math.random returning close to 1', () => {
       const originalRandom = Math.random;
-      Math.random = () => 0.999999;
+      Math.random = (): number => 0.999999;
       
       const color = generateRandomHexColor();
       expect(color).toMatch(/^#[0-9a-f]{6}$/);
