@@ -57,7 +57,7 @@ describe('calculateRelativeLuminance', () => {
   });
 
   describe('grayscale values', () => {
-    it('should return approximately 0.0304 for #808080 (gray)', () => {
+    it('should return approximately 0.2159 for #808080 (gray)', () => {
       const result = calculateRelativeLuminance('#808080');
       expect(result).toBeCloseTo(0.2159, 4);
     });

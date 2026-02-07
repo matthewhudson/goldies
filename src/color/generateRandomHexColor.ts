@@ -1,7 +1,7 @@
 /**
  * Generates a random hexadecimal color code.
  *
- * Creates a cryptographically random color in the full RGB color space,
+ * Creates a pseudo-random color in the full RGB color space,
  * returning a properly formatted 6-digit hex color string.
  *
  * @returns A random 6-character hexadecimal color code with leading `#`.
