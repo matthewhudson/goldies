@@ -105,8 +105,8 @@ export default [
       'array/dedupe': 'src/array/dedupe.ts',
       
       // Color modules
-      'color/getContrast': 'src/color/getContrast.ts',
-      'color/isValidHexSimpleColor': 'src/color/isValidHexSimpleColor.ts',
+      'color/getContrastColor': 'src/color/getContrastColor.ts',
+      'color/isValidHexColor': 'src/color/isValidHexColor.ts',
       
       // Convert modules
       'convert/base64ToBlob': 'src/convert/base64ToBlob.ts',

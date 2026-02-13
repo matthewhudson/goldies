@@ -1,7 +1,7 @@
 import { dedupe } from './array/dedupe';
 
-import { getContrast } from './color/getContrast';
-import { isValidHexSimpleColor } from './color/isValidHexSimpleColor';
+import { getContrastColor } from './color/getContrastColor';
+import { isValidHexColor } from './color/isValidHexColor';
 
 import { base64ToBlob } from './convert/base64ToBlob';
 import { fromArray } from './convert/fromArray';
@@ -61,8 +61,8 @@ export interface BrowserGoldies {
     getDataAttributes: typeof getDataAttributes;
   };
   color: {
-    isValidHexSimpleColor: typeof isValidHexSimpleColor;
-    getContrast: typeof getContrast;
+    isValidHexColor: typeof isValidHexColor;
+    getContrastColor: typeof getContrastColor;
   };
   convert: {
     base64ToBlob: typeof base64ToBlob;
@@ -124,8 +124,8 @@ const browserGoldies: BrowserGoldies = {
     getDataAttributes,
   },
   color: {
-    isValidHexSimpleColor,
-    getContrast,
+    isValidHexColor,
+    getContrastColor,
   },
   convert: {
     base64ToBlob,

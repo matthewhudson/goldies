@@ -5,8 +5,8 @@ import { getFileType } from './files/getFileType';
 import { isDirectory } from './files/isDirectory';
 import { readFile } from './files/readFile';
 
-import { getContrast } from './color/getContrast';
-import { isValidHexSimpleColor } from './color/isValidHexSimpleColor';
+import { getContrastColor } from './color/getContrastColor';
+import { isValidHexColor } from './color/isValidHexColor';
 
 import { base64ToBlob } from './convert/base64ToBlob';
 import { fromArray } from './convert/fromArray';
@@ -69,8 +69,8 @@ export interface Goldies {
     getDataAttributes: typeof getDataAttributes;
   };
   color: {
-    isValidHexSimpleColor: typeof isValidHexSimpleColor;
-    getContrast: typeof getContrast;
+    isValidHexColor: typeof isValidHexColor;
+    getContrastColor: typeof getContrastColor;
   };
   convert: {
     base64ToBlob: typeof base64ToBlob;
@@ -142,8 +142,8 @@ const goldies: Goldies = {
     getDataAttributes,
   },
   color: {
-    isValidHexSimpleColor,
-    getContrast,
+    isValidHexColor,
+    getContrastColor,
   },
   convert: {
     base64ToBlob,
