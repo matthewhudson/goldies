@@ -1,0 +1,31 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    # Group dev dependencies to reduce PR noise
+    groups:
+      dev-dependencies:
+        patterns:
+          - "@babel/*"
+          - "@rollup/*"
+          - "@types/*"
+          - "@typescript-eslint/*"
+          - "@vitest/*"
+          - "eslint*"
+          - "rollup*"
+        update-types:
+          - "minor"
+          - "patch"
+      testing:
+        patterns:
+          - "vitest"
+          - "jsdom"
+    # Limit number of simultaneous Dependabot PRs
+    open-pull-requests-limit: 10
+    # Add labels for easier filtering
+    labels:
+      - "dependencies"
+      - "automated"
