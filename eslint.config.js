@@ -1,6 +1,11 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default [
   js.configs.recommended,
@@ -29,7 +34,7 @@ export default [
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
-        tsconfigRootDir: '.',
+        tsconfigRootDir: __dirname,
       },
     },
     rules: {
