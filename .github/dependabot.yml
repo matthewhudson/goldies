@@ -23,8 +23,7 @@ updates:
         patterns:
           - "vitest"
           - "jsdom"
-          - "@vitest/*"
-    # Auto-merge patch and minor updates
+    # Limit number of simultaneous Dependabot PRs
     open-pull-requests-limit: 10
     # Add labels for easier filtering
     labels:
