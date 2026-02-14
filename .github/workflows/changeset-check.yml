@@ -1,0 +1,60 @@
+name: Changeset Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  changeset-check:
+    name: Check for changeset
+    runs-on: ubuntu-latest
+    # Skip for dependabot PRs (they auto-merge and don't need changesets)
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          # Full history needed for changeset to detect changes
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check for changeset
+        run: |
+          # Check if PR has 'no-changeset' label (escape hatch for docs/chores)
+          if gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name' | grep -q "no-changeset"; then
+            echo "✅ PR has 'no-changeset' label - skipping changeset requirement"
+            exit 0
+          fi
+
+          # Check if this PR added any changeset files (excluding README.md)
+          # This checks the diff against the base branch to ensure changesets are from THIS PR
+          if [ -n "$(git diff --name-only origin/${{ github.base_ref }} -- .changeset/*.md | grep -v 'README.md')" ]; then
+            echo "✅ Changeset found in this PR"
+            exit 0
+          else
+            echo "❌ No changeset found"
+            echo ""
+            echo "This PR requires a changeset to document the changes."
+            echo ""
+            echo "To create a changeset, run:"
+            echo "  npm run changeset"
+            echo ""
+            echo "Then commit the generated file in .changeset/"
+            echo ""
+            echo "If this PR doesn't need a changeset (docs, tests, or chores only),"
+            echo "add the 'no-changeset' label to this PR."
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
