@@ -19,9 +19,9 @@ npm install
 npm test
 
 # Run tests with coverage
-npm test:coverage
+npm run test:coverage
 
-# Run specific test file
+# Run specific test file (Vitest handles TypeScript files directly)
 npx vitest src/array/dedupe.test.ts
 
 # Watch mode for development
@@ -79,8 +79,8 @@ The build creates three types of outputs:
 
 - Each utility function lives in its own file with a co-located test file (e.g., `src/array/dedupe.ts` + `src/array/dedupe.test.ts`)
 - Utilities are organized by category: `array/`, `color/`, `convert/`, `dom/`, `files/`, `format/`, `node/`, `object/`, `string/`, `types/`, `utils/`
-- Node.js-only utilities: `files/*`, `node/*`
-- Browser-only utilities: `dom/*`
+- Node.js-only utilities: `files/*`, `node/*` (excluded from browser build)
+- Available in both builds: `array/*`, `color/*`, `convert/*`, `dom/*`, `format/*`, `object/*`, `string/*`, `types/*`, `utils/*`
 
 ## Adding New Utilities
 
@@ -159,7 +159,7 @@ All commits **must** follow the [Conventional Commits](https://www.conventionalc
 **Examples**:
 ```
 feat(array): add unique utility function
-fix(color): correct contrast calculation for edge cases
+fix(color): handle edge case in getContrastColor for invalid hex values
 docs: update README with new examples
 test(object): add coverage for pick function
 ```

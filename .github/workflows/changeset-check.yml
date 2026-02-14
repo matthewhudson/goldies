@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   changeset-check:
     name: Check for changeset
@@ -14,6 +18,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
+          # Full history needed for changeset to detect changes
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -32,9 +37,10 @@ jobs:
             exit 0
           fi
 
-          # Check if there are any changeset files
-          if ls .changeset/*.md 2>/dev/null | grep -v "README.md" >/dev/null; then
-            echo "✅ Changeset found"
+          # Check if this PR added any changeset files (excluding README.md)
+          # This checks the diff against the base branch to ensure changesets are from THIS PR
+          if [ -n "$(git diff --name-only origin/${{ github.base_ref }} -- .changeset/*.md | grep -v 'README.md')" ]; then
+            echo "✅ Changeset found in this PR"
             exit 0
           else
             echo "❌ No changeset found"
