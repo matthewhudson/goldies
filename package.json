@@ -242,7 +242,7 @@
     "eslint-config-prettier": "^10.1.5",
     "globals": "^16.2.0",
     "husky": "^9.0.11",
-    "jsdom": "^26.1.0",
+    "jsdom": "^28.0.0",
     "kleur": "^4.1.5",
     "lint-staged": "^16.1.0",
     "prettier": "^3.2.5",
@@ -257,7 +257,7 @@
     "typedoc": "^0.28.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.0",
-    "vitest": "^3.1.4"
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "kleur": "^4.1.5"
