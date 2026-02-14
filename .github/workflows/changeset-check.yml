@@ -1,0 +1,54 @@
+name: Changeset Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  changeset-check:
+    name: Check for changeset
+    runs-on: ubuntu-latest
+    # Skip for dependabot PRs (they auto-merge and don't need changesets)
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check for changeset
+        run: |
+          # Check if PR has 'no-changeset' label (escape hatch for docs/chores)
+          if gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name' | grep -q "no-changeset"; then
+            echo "✅ PR has 'no-changeset' label - skipping changeset requirement"
+            exit 0
+          fi
+
+          # Check if there are any changeset files
+          if ls .changeset/*.md 2>/dev/null | grep -v "README.md" >/dev/null; then
+            echo "✅ Changeset found"
+            exit 0
+          else
+            echo "❌ No changeset found"
+            echo ""
+            echo "This PR requires a changeset to document the changes."
+            echo ""
+            echo "To create a changeset, run:"
+            echo "  npm run changeset"
+            echo ""
+            echo "Then commit the generated file in .changeset/"
+            echo ""
+            echo "If this PR doesn't need a changeset (docs, tests, or chores only),"
+            echo "add the 'no-changeset' label to this PR."
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
