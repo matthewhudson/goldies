@@ -1,0 +1,77 @@
+name: Claude PR Review Iteration
+
+# Trigger on @claude mention in PR comments
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  iterate-on-feedback:
+    # Only run when @claude is mentioned in a PR comment
+    if: |
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '@claude')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Checkout the PR branch
+          ref: refs/pull/${{ github.event.issue.number }}/head
+          fetch-depth: 0
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          prompt: |
+            You are iterating on PR feedback to improve code quality.
+
+            ## Your Task
+
+            1. **Analyze ALL review comments** on this PR from:
+               - copilot-pull-request-reviewer
+               - Cursor Bugbot
+               - Human reviewers
+
+            2. **Categorize feedback**:
+               - 🔴 Critical: Security issues, bugs, breaking changes
+               - 🟠 High: Logic errors, documentation errors, bad patterns
+               - 🟡 Medium: Code quality, performance, maintainability
+               - 🟢 Low: Style preferences, minor suggestions
+
+            3. **Address feedback intelligently**:
+               - Fix ALL critical and high severity issues
+               - Fix medium issues if clearly beneficial
+               - Ignore low priority style nitpicks
+               - Explain in a comment why you're skipping anything
+
+            4. **Ensure quality**:
+               - Run `npm run lint` to check for linting errors
+               - Run `npm test` to ensure tests pass
+               - Make sure your changes don't break existing functionality
+
+            5. **Commit your changes**:
+               - Use conventional commit format
+               - Be specific about what was fixed
+               - Example: "fix: address security and documentation issues from PR review"
+
+            6. **After committing**:
+               - Wait for new review comments to appear
+               - If new comments arrive within 5 minutes, iterate again
+               - Continue until no more critical/high issues remain
+               - Post a summary comment when done
+
+            ## Success Criteria
+
+            Stop iterating when:
+            - No critical or high severity issues remain
+            - Only style preferences or invalid suggestions are left
+            - You've iterated 3 times (prevent infinite loops)
+
+            Be pragmatic and efficient. Focus on real improvements, not perfection.
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

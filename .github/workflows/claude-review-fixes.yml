@@ -1,0 +1,55 @@
+name: Claude Auto-fix PR Reviews
+
+on:
+  pull_request_review:
+    types: [submitted]
+  issue_comment:
+    types: [created]
+
+jobs:
+  auto-fix-reviews:
+    # Only run on PRs when there are review comments
+    if: |
+      (github.event_name == 'pull_request_review' && github.event.review.state == 'commented') ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Checkout the PR branch
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          prompt: |
+            Review all comments on this PR from copilot-pull-request-reviewer and Cursor Bugbot.
+
+            For each comment:
+            1. Assess if the feedback is valid and worth addressing
+            2. Categorize by severity (critical/high/medium/low)
+            3. Ignore trivial style suggestions or invalid feedback
+
+            Address all critical and high severity issues:
+            - Fix security issues (missing permissions, vulnerabilities)
+            - Fix bugs and logic errors
+            - Correct documentation inaccuracies
+            - Apply valid refactoring suggestions
+
+            For medium severity issues, use your judgment on whether to fix.
+
+            After making changes:
+            - Run tests if applicable (npm test)
+            - Ensure lint passes (npm run lint)
+            - Create a single commit with all fixes
+            - Use conventional commit format: "fix: address PR review feedback"
+
+            If no changes are needed, explain why in a PR comment.
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

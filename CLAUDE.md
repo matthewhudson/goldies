@@ -243,3 +243,53 @@ npm run release
 ```
 
 **Important**: Only maintainers with npm publishing rights should trigger releases. Most contributors only need to create changesets.
+
+## Automated PR Review Iteration (Claude Code Action)
+
+This repository uses [Claude Code Action](https://github.com/anthropics/claude-code-action) to automatically iterate on PR review feedback.
+
+### How It Works
+
+When review comments are posted by Copilot or Cursor Bugbot, you can trigger Claude to automatically:
+1. Analyze all review comments
+2. Categorize by severity (critical/high/medium/low)
+3. Fix valid issues
+4. Run tests and linting
+5. Commit changes
+6. Iterate until all reasonable feedback is addressed
+
+### Usage
+
+**Option 1: Automatic (on review submission)**
+- The `claude-review-fixes.yml` workflow triggers automatically when reviews are submitted
+- Requires `ANTHROPIC_API_KEY` secret to be configured
+
+**Option 2: Manual trigger (mention @claude)**
+- Comment `@claude please address the review feedback` on any PR
+- The `claude-pr-iteration.yml` workflow will activate
+- It iterates up to 3 times to address all critical/high severity issues
+
+### Setup (Maintainers Only)
+
+1. Install Claude Code Action:
+   ```bash
+   claude
+   /install-github-app
+   ```
+
+2. Add `ANTHROPIC_API_KEY` secret:
+   - Go to Settings → Secrets and variables → Actions
+   - Add `ANTHROPIC_API_KEY` with your API key
+
+3. The workflows are already configured in `.github/workflows/`
+
+### What Gets Fixed Automatically
+
+- ✅ Security issues (missing permissions, vulnerabilities)
+- ✅ Logic errors and bugs
+- ✅ Documentation inaccuracies
+- ✅ Breaking changes
+- ⚠️ Code quality issues (evaluated case-by-case)
+- ❌ Style preferences (typically ignored)
+
+The system is designed to be pragmatic and avoid unnecessary churn.
