@@ -1,6 +1,6 @@
 import { $, $$ } from './selectors';
 
-describe.skip('$ (single selector)', () => {
+describe('$ (single selector)', () => {
   beforeAll(() => {
     document.body.innerHTML = `
       <div id="a" class="foo"></div>
@@ -26,7 +26,7 @@ describe.skip('$ (single selector)', () => {
   });
 });
 
-describe.skip('$$ (multiple selector)', () => {
+describe('$$ (multiple selector)', () => {
   beforeAll(() => {
     document.body.innerHTML = `
       <div class="foo"></div>

@@ -4,7 +4,7 @@ import { domify } from './domify';
 /**
  * Test suite for the domify function
  */
-describe.skip('domify', () => {
+describe('domify', () => {
   describe('Basic functionality', () => {
     it('should convert simple HTML string to DOM element', () => {
       const result = domify('<p>Hello World</p>');
@@ -208,7 +208,7 @@ describe.skip('domify', () => {
     });
   });
 
-  describe.skip('Performance and memory', () => {
+  describe('Performance and memory', () => {
     it('should handle large HTML strings efficiently', () => {
       const largeContent = 'x'.repeat(10000);
       const result = domify(`<div>${largeContent}</div>`);
