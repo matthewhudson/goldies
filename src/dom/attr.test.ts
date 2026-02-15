@@ -1,6 +1,6 @@
 import { attr } from './attr';
 
-describe.skip('attr', () => {
+describe('attr', () => {
   let element: HTMLElement;
 
   beforeEach(() => {
