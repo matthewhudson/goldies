@@ -219,18 +219,16 @@ git commit -m "feat(array): add unique utility"
 
 ### Release Workflow (Automated)
 
-The release workflow (`.github/workflows/release.yml`) is triggered when:
-- Changeset files are pushed to `main` branch (automatic)
-- Manually via GitHub Actions UI (workflow_dispatch)
+The release workflow (`.github/workflows/release.yml`) runs on every push to `main` and can also be run manually from the GitHub Actions UI (workflow_dispatch). It uses [changesets/action](https://github.com/changesets/action) and never pushes to `main`, which is protected.
 
 **What happens automatically:**
-1. Runs `changeset version` to bump version in `package.json`
-2. Generates/updates `CHANGELOG.md`
-3. Creates a git commit: `chore(release): version X.Y.Z`
-4. Creates a git tag: `vX.Y.Z`
-5. Pushes commit and tag to GitHub
-6. Publishes package to npm registry
-7. Creates a GitHub release with notes
+1. While changesets are on `main`, it opens (or updates) a `chore(release): version packages` PR. That PR runs `changeset version`: it bumps `package.json`, updates `CHANGELOG.md`, and deletes the consumed changesets.
+2. When you merge that PR, the next run finds no changesets. It publishes the new version to npm, pushes the `vX.Y.Z` tag, and creates the GitHub release from the changelog entry.
+3. Runs with no changesets and nothing unpublished do nothing.
+
+**Required secrets:**
+- `NPM_TOKEN`: npm token that can publish `goldies`
+- `GH_TOKEN`: personal access token with Contents and Pull requests write access. With the default `GITHUB_TOKEN`, CI (a required check) would never run on the version PR.
 
 ### Manual Release (if needed)
 
