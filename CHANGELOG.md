@@ -1,5 +1,12 @@
 # goldies
 
+## 5.0.2
+
+### Patch Changes
+
+- df3dc9e: When `domify` wraps a non-`Error` value thrown during parsing, the original value is now available as the error's `cause`.
+- 856baef: Remove the unused `kleur` dependency. Nothing in goldies imported it, but every install pulled it in. goldies now has no runtime dependencies.
+
 ## 5.0.1
 
 ### Patch Changes
