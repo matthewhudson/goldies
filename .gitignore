@@ -269,3 +269,6 @@ Temporary Items
 .history
 
 # End of https://www.gitignore.io/api/visualstudiocod
+
+# Generated docs site (npm run docs:generate)
+site/

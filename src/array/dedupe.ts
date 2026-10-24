@@ -4,7 +4,7 @@
  * Adapted from: (c) 2019 Chris Ferdinandi, MIT License
  * https://gomakethings.com
  *
- * @param arr - The input array.
+ * @param array - The input array.
  * @returns A new array with duplicates removed.
  * @example
  * // Remove duplicates from an array

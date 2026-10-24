@@ -200,7 +200,7 @@
     "build": "tsdown",
     "clean": "rimraf dist",
     "dev": "tsdown --watch",
-    "docs:generate": "typedoc",
+    "docs:generate": "typedoc && node -e \"require('node:fs').cpSync('docs', 'site', { recursive: true })\"",
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "format": "biome format --write",
