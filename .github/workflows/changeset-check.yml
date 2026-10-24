@@ -12,8 +12,9 @@ jobs:
   changeset-check:
     name: Check for changeset
     runs-on: ubuntu-latest
-    # Skip for dependabot PRs (they auto-merge and don't need changesets)
-    if: github.event.pull_request.user.login != 'dependabot[bot]'
+    # Skip for dependabot PRs (they auto-merge and don't need changesets) and for the
+    # release workflow's version PR (it consumes changesets rather than adding one)
+    if: github.event.pull_request.user.login != 'dependabot[bot]' && github.head_ref != 'changeset-release/main'
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
