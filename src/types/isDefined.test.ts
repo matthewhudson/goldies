@@ -10,7 +10,7 @@ describe('isDefined', () => {
   })
 
   it('returns false for undefined values', () => {
-    let test
-    expect(isDefined(test)).toBe(false)
+    const options: { timeout?: number } = {}
+    expect(isDefined(options.timeout)).toBe(false)
   })
 })
