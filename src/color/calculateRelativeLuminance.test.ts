@@ -72,9 +72,9 @@ describe('calculateRelativeLuminance', () => {
   });
 
   describe('edge cases', () => {
-    it('should use default value #008000 when no argument provided', () => {
-      const result = calculateRelativeLuminance();
-      expect(result).toBeCloseTo(0.1543, 3);
+    it('should throw for invalid hex colors', () => {
+      expect(() => calculateRelativeLuminance('invalid')).toThrow('Invalid hex color: "invalid"');
+      expect(() => calculateRelativeLuminance('')).toThrow('Invalid hex color: ""');
     });
 
     it('should handle sRGB threshold boundary (0.03928)', () => {

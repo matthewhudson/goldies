@@ -20,9 +20,29 @@
       "import": "./dist/array/dedupe.mjs",
       "require": "./dist/array/dedupe.cjs"
     },
+    "./color/calculateRelativeLuminance": {
+      "import": "./dist/color/calculateRelativeLuminance.mjs",
+      "require": "./dist/color/calculateRelativeLuminance.cjs"
+    },
+    "./color/generateRandomHexColor": {
+      "import": "./dist/color/generateRandomHexColor.mjs",
+      "require": "./dist/color/generateRandomHexColor.cjs"
+    },
+    "./color/generateRandomHexColorInRange": {
+      "import": "./dist/color/generateRandomHexColorInRange.mjs",
+      "require": "./dist/color/generateRandomHexColorInRange.cjs"
+    },
     "./color/getContrastColor": {
       "import": "./dist/color/getContrastColor.mjs",
       "require": "./dist/color/getContrastColor.cjs"
+    },
+    "./color/getContrastRatio": {
+      "import": "./dist/color/getContrastRatio.mjs",
+      "require": "./dist/color/getContrastRatio.cjs"
+    },
+    "./color/hexToRgb": {
+      "import": "./dist/color/hexToRgb.mjs",
+      "require": "./dist/color/hexToRgb.cjs"
     },
     "./color/isValidHexColor": {
       "import": "./dist/color/isValidHexColor.mjs",
@@ -131,6 +151,10 @@
     "./types/isDefined": {
       "import": "./dist/types/isDefined.mjs",
       "require": "./dist/types/isDefined.cjs"
+    },
+    "./types/isExternalUrl": {
+      "import": "./dist/types/isExternalUrl.mjs",
+      "require": "./dist/types/isExternalUrl.cjs"
     },
     "./types/isJSON": {
       "import": "./dist/types/isJSON.mjs",

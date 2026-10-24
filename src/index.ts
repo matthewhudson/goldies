@@ -5,7 +5,12 @@ import { getFileType } from './files/getFileType.js';
 import { isDirectory } from './files/isDirectory.js';
 import { readFile } from './files/readFile.js';
 
+import { calculateRelativeLuminance } from './color/calculateRelativeLuminance.js';
+import { generateRandomHexColor } from './color/generateRandomHexColor.js';
+import { generateRandomHexColorInRange } from './color/generateRandomHexColorInRange.js';
 import { getContrastColor } from './color/getContrastColor.js';
+import { getContrastRatio } from './color/getContrastRatio.js';
+import { hexToRgb } from './color/hexToRgb.js';
 import { isValidHexColor } from './color/isValidHexColor.js';
 
 import { base64ToBlob } from './convert/base64ToBlob.js';
@@ -36,6 +41,7 @@ import { findUsernames } from './string/findUsernames.js';
 import { startsWith } from './string/startsWith.js';
 
 import { isDefined } from './types/isDefined.js';
+import { isExternalUrl } from './types/isExternalUrl.js';
 import { isJSON } from './types/isJSON.js';
 import { isNil } from './types/isNil.js';
 import { isNull } from './types/isNull.js';
@@ -43,7 +49,6 @@ import { isUndefined } from './types/isUndefined.js';
 import { isUrl } from './types/isUrl.js';
 
 import { buildQuery } from './utils/buildQuery.js';
-// getQueryString import removed - file not found
 import { getURLParams } from './utils/getURLParams.js';
 import { isBrowser } from './utils/isBrowser.js';
 import { isServer } from './utils/isServer.js';
@@ -61,36 +66,51 @@ export interface Goldies {
     $$: typeof $$;
     attr: typeof attr;
     domify: typeof domify;
+    /** @deprecated Use `element.classList.add(className)`. Removed in goldies 6.0. */
     addClass: typeof addClass;
+    /** @deprecated Use `element.classList.contains(className)`. Removed in goldies 6.0. */
     hasClass: typeof hasClass;
+    /** @deprecated Use `element.classList.remove(className)`. Removed in goldies 6.0. */
     removeClass: typeof removeClass;
+    /** @deprecated Use `element.classList.toggle(className)`. Removed in goldies 6.0. */
     toggleClass: typeof toggleClass;
     getCustomCSSVariables: typeof getCustomCSSVariables;
+    /** @deprecated Use `element.dataset`. Removed in goldies 6.0. */
     getDataAttributes: typeof getDataAttributes;
   };
   color: {
-    isValidHexColor: typeof isValidHexColor;
+    calculateRelativeLuminance: typeof calculateRelativeLuminance;
+    generateRandomHexColor: typeof generateRandomHexColor;
+    generateRandomHexColorInRange: typeof generateRandomHexColorInRange;
     getContrastColor: typeof getContrastColor;
+    getContrastRatio: typeof getContrastRatio;
+    hexToRgb: typeof hexToRgb;
+    isValidHexColor: typeof isValidHexColor;
   };
   convert: {
     base64ToBlob: typeof base64ToBlob;
+    /** @deprecated Use `String(arr)`. Removed in goldies 6.0. */
     fromArray: typeof fromArray;
     fromBase64: typeof fromBase64;
     parseJSONFromBytes: typeof parseJSONFromBytes;
     toBase64: typeof toBase64;
   };
   files: {
+    /** @deprecated Use `readdirSync(dir, { recursive: true, withFileTypes: true })` from `node:fs`. Removed in goldies 6.0. */
     getDirectoryTree: typeof getDirectoryTree;
     getFileType: typeof getFileType;
     isDirectory: typeof isDirectory;
+    /** @deprecated Use `readFile(path, 'utf8')` from `node:fs/promises`. Removed in goldies 6.0. */
     readFile: typeof readFile;
   };
   format: {
     formatBytes: typeof formatBytes;
   };
   string: {
+    /** @deprecated Use `str.toLowerCase().endsWith(ends.toLowerCase())`. Removed in goldies 6.0. */
     endsWith: typeof endsWith;
     findUsernames: typeof findUsernames;
+    /** @deprecated Use `haystack.toLowerCase().startsWith(needle.toLowerCase())`. Removed in goldies 6.0. */
     startsWith: typeof startsWith;
   };
   node: {
@@ -99,25 +119,30 @@ export interface Goldies {
   };
   types: {
     isDefined: typeof isDefined;
+    isExternalUrl: typeof isExternalUrl;
     isJSON: typeof isJSON;
     isNil: typeof isNil;
     isNull: typeof isNull;
+    /** @deprecated Renamed to `isExternalUrl`. Removed in goldies 6.0. */
     isUrl: typeof isUrl;
     isUndefined: typeof isUndefined;
   };
   object: {
+    /** @deprecated Use `structuredClone(obj)`. Removed in goldies 6.0. */
     clone: typeof clone;
     filter: typeof filter;
+    /** @deprecated Use `Object.hasOwn(target, key)`. Removed in goldies 6.0. */
     has: typeof has;
     pick: typeof pick;
   };
   utils: {
+    /** @deprecated Use `new URLSearchParams(data).toString()`. Removed in goldies 6.0. */
     buildQuery: typeof buildQuery;
     escapeHTML: typeof escapeHTML;
     isBrowser: typeof isBrowser;
     isServer: typeof isServer;
     isS3: typeof isS3;
-    // getQueryString removed - file not found
+    /** @deprecated Use `Object.fromEntries(new URL(url).searchParams)`. Removed in goldies 6.0. */
     getURLParams: typeof getURLParams;
     parseS3: typeof parseS3;
     sleep: typeof sleep;
@@ -142,8 +167,13 @@ const goldies: Goldies = {
     getDataAttributes,
   },
   color: {
-    isValidHexColor,
+    calculateRelativeLuminance,
+    generateRandomHexColor,
+    generateRandomHexColorInRange,
     getContrastColor,
+    getContrastRatio,
+    hexToRgb,
+    isValidHexColor,
   },
   convert: {
     base64ToBlob,
@@ -172,6 +202,7 @@ const goldies: Goldies = {
   },
   types: {
     isDefined,
+    isExternalUrl,
     isJSON,
     isNil,
     isNull,
@@ -190,7 +221,6 @@ const goldies: Goldies = {
     isBrowser,
     isServer,
     isS3,
-    // getQueryString removed
     getURLParams,
     parseS3,
     sleep,

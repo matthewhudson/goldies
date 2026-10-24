@@ -62,7 +62,7 @@ The library has two main entry points:
 `tsdown.config.ts` builds with [tsdown](https://tsdown.dev) (Rolldown-based):
 
 1. **One module per utility** (`dist/<category>/<name>.mjs`, `.cjs`, `.d.mts`, `.d.cts`):
-   - Every `src/**/*.ts` file except tests, `browser.ts` and the not-yet-exported utilities listed in the config is an entry
+   - Every `src/**/*.ts` file except tests and `browser.ts` is an entry
    - Each becomes a subpath export: `import { dedupe } from 'goldies/array/dedupe'` (or `require`)
 2. **Namespace entry** (`dist/index.mjs`, `dist/index.cjs`):
    - `import goldies from 'goldies'`, or `require('goldies')`, which returns the object itself (`module.exports = goldies`, typed with `export =`)
@@ -101,6 +101,8 @@ The library has two main entry points:
 - **Versioning**: Use Changesets for version management (`npm run changeset`)
 - **Security**: Watch for XSS, injection attacks, unsafe regex, and validate inputs at boundaries
 - **Backwards compatibility**: Maintain compatibility for minor/patch versions
+- **Deprecation**: Before removing a utility in a major version, mark it `@deprecated` in a minor one: in its own doc comment and on its members of the `Goldies` and `BrowserGoldies` interfaces, naming what to use instead. Editors cross out deprecated calls, and the API reference flags them
+- **Native first**: Don't add a utility that JavaScript or Node.js already provides in the supported versions (Node 22+ and current browsers), such as `Object.groupBy`, `structuredClone` or `URL.canParse`
 
 ## Documentation Site
 

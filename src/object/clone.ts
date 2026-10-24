@@ -16,6 +16,10 @@
  * console.log(cloned);                    // { a: 1, b: { c: 2 } }
  * console.log(cloned.b === original.b);   // false
  * console.log(Object.isFrozen(cloned.b)); // true, so `cloned.b.c = 4` throws in strict mode
+ *
+ * @deprecated Use the built-in `structuredClone(obj)`, which also copies objects that refer to
+ * themselves. Unlike `clone`, it doesn't freeze the copy, and it throws on functions.
+ * Will be removed in goldies 6.0.
  */
 export function clone<T>(obj: T): T {
   if (obj === null || typeof obj !== 'object') {

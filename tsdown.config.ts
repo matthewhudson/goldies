@@ -36,11 +36,6 @@ export default defineConfig([
       '!src/**/*.d.ts',
       // The browser bundle is built separately below
       '!src/browser.ts',
-      // Not exported yet
-      '!src/color/calculateRelativeLuminance.ts',
-      '!src/color/generateRandomHexColor.ts',
-      '!src/color/generateRandomHexColorInRange.ts',
-      '!src/utils/language.ts',
     ],
     format: ['esm', 'cjs'],
     platform: 'node',
