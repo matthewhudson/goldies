@@ -1,15 +1,12 @@
 /**
- * Parses a JSON object from a Buffer or Uint8Array.
+ * Parses a JSON object from a Buffer or Uint8Array. Works in Node.js and browsers.
  *
- * @param bytes - The Buffer or Uint8Array containing the JSON string.
+ * @param bytes - The Buffer or Uint8Array containing the JSON string (a Buffer is a Uint8Array).
  * @returns The parsed JSON object.
  * @example
  * const buffer = Buffer.from('{"key": "value"}', 'utf-8');
  * const result = parseJSONFromBytes(buffer); // { key: 'value' }
  */
-export function parseJSONFromBytes(bytes: Buffer | Uint8Array): unknown {
-  const jsonString = Buffer.isBuffer(bytes)
-    ? bytes.toString('utf-8')
-    : new TextDecoder('utf-8').decode(bytes);
-  return JSON.parse(jsonString);
+export function parseJSONFromBytes(bytes: Uint8Array): unknown {
+  return JSON.parse(new TextDecoder('utf-8').decode(bytes));
 }
