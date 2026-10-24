@@ -13,7 +13,8 @@
  */
 export const base64ToBlob = (b64Data: string, contentType: string = '', sliceSize: number = 512): Blob => {
   const byteCharacters = atob(b64Data);
-  const byteArrays: Uint8Array[] = [];
+  // Blob parts must be ArrayBuffer-backed (not SharedArrayBuffer) as of TypeScript 5.9's DOM types
+  const byteArrays: Uint8Array<ArrayBuffer>[] = [];
 
   for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
     const slice = byteCharacters.slice(offset, offset + sliceSize);
