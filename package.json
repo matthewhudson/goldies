@@ -212,7 +212,7 @@
     "prepare": "husky install",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:package": "node scripts/smoke-test.mjs && publint && attw --pack . --profile node16 --ignore-rules false-export-default cjs-resolves-to-esm",
+    "test:package": "node scripts/smoke-test.mjs && tsc -p scripts/types/tsconfig.json && tsc -p scripts/types/tsconfig.browser.json && publint && attw --pack . --profile node16 --ignore-rules false-export-default cjs-resolves-to-esm",
     "typecheck": "tsc --noEmit --project tsconfig.typecheck.json",
     "validate": "npm run lint && npm run test && npm run build && npm run test:package",
     "changeset": "changeset",
