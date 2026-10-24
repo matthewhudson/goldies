@@ -1,17 +1,16 @@
 name: Claude Auto-fix PR Reviews
 
+# Runs on submitted reviews only. @claude comments are handled by claude-pr-iteration.yml;
+# comment events also carry no pull_request payload, so the checkout below would
+# fall back to the default branch.
 on:
   pull_request_review:
     types: [submitted]
-  issue_comment:
-    types: [created]
 
 jobs:
   auto-fix-reviews:
     # Only run on PRs when there are review comments
-    if: |
-      (github.event_name == 'pull_request_review' && github.event.review.state == 'commented') ||
-      (github.event_name == 'issue_comment' && github.event.issue.pull_request)
+    if: github.event.review.state == 'commented'
     runs-on: ubuntu-latest
     permissions:
       contents: write

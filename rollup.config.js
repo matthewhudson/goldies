@@ -97,7 +97,7 @@ export default [
   // Node.js bundles (monolithic)
   {
     input: 'src/index.ts',
-    external: [...Object.keys(pkg.dependencies), 'fs', 'path', 'child_process', 'fs/promises', 'net'],
+    external: [...Object.keys(pkg.dependencies ?? {}), 'fs', 'path', 'child_process', 'fs/promises', 'net'],
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
       { file: pkg.module, format: 'esm', sourcemap: true }
@@ -188,7 +188,7 @@ export default [
       'node/port': 'src/node/port.ts',
       'node/sh': 'src/node/sh.ts'
     },
-    external: [...Object.keys(pkg.dependencies), 'fs', 'path', 'child_process', 'fs/promises', 'net'],
+    external: [...Object.keys(pkg.dependencies ?? {}), 'fs', 'path', 'child_process', 'fs/promises', 'net'],
     output: {
       dir: 'dist/modules',
       format: 'esm',
