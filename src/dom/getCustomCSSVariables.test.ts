@@ -23,14 +23,15 @@ describe('getCustomCSSVariables', () => {
   });
 
   test('keeps colons and semicolons inside values', () => {
+    // Unquoted url(): jsdom versions differ on whether they keep quotes inside it
     const style = addStyle(
-      ':root { --bg: url(http://example.com/a.png); --icon: url("data:image/svg+xml;base64,PHN2Zz4="); }'
+      ':root { --bg: url(http://example.com/a.png); --icon: url(data:image/svg+xml;base64,PHN2Zz4=); }'
     );
     try {
       expect(getCustomCSSVariables()).toEqual(
         expect.arrayContaining([
           { key: '--bg', value: 'url(http://example.com/a.png)' },
-          { key: '--icon', value: 'url("data:image/svg+xml;base64,PHN2Zz4=")' },
+          { key: '--icon', value: 'url(data:image/svg+xml;base64,PHN2Zz4=)' },
         ])
       );
     } finally {

@@ -1,7 +1,7 @@
 import { isUrl } from './isUrl';
 
 describe('isUrl', () => {
-  // Note: window.location.host is set to 'localhost' in vitest.setup.ts
+  // Note: window.location.host is 'localhost' (jsdom url in vitest.config.ts)
   // The isUrl function checks if a string is an external URL (different host than current)
   // by creating an anchor element and checking its host property
 
