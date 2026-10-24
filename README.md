@@ -142,7 +142,7 @@ With direct imports, your bundle only includes the functions you use.
 | `isNil` | Check if value is null or undefined | `goldies/types/isNil` |
 | `isNull` | Check if value is null | `goldies/types/isNull` |
 | `isUndefined` | Check if value is undefined | `goldies/types/isUndefined` |
-| `isUrl` | Check if string is valid URL | `goldies/types/isUrl` |
+| `isUrl` | Check if a string is a URL on a different host than the current page | `goldies/types/isUrl` |
 
 ### Utils
 
