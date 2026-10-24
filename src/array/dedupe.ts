@@ -12,8 +12,6 @@
  * console.log(uniqueArray); // Output: [1, 2, 3, 4, 5]
  */
 export function dedupe<T>(array: T[]): T[] {
-  return array.filter((item, index) => (
-      array.indexOf(item) === index
-    )
-  );
+  // Set keeps first occurrences in order and, unlike indexOf, matches NaN
+  return Array.from(new Set(array));
 } 

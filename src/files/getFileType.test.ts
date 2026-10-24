@@ -30,4 +30,23 @@ describe('getFileType', () => {
     const fileType = getFileType('foo')
     expect(fileType).toBe('unknown')
   })
+
+  it('matches whole extensions, not suffixes', () => {
+    expect(getFileType('camera')).toBe('unknown')
+    expect(getFileType('extra')).toBe('unknown')
+    expect(getFileType('report.data')).toBe('unknown')
+  })
+
+  it('accepts file names and paths', () => {
+    expect(getFileType('photo.JPG')).toBe('image')
+    expect(getFileType('/tmp/backup.tar.gz')).toBe('archive')
+    expect(getFileType('.mp3')).toBe('audio')
+  })
+
+  it('recognizes common formats', () => {
+    expect(getFileType('pdf')).toBe('document')
+    expect(getFileType('doc')).toBe('document')
+    expect(getFileType('mov')).toBe('video')
+    expect(getFileType('heic')).toBe('image')
+  })
 })

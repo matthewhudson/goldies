@@ -46,6 +46,24 @@ describe('clone()', () => {
     expect(clone(false)).toBe(false)
   })
 
+  test('clones Date values', () => {
+    const original = { when: new Date(0) }
+    const cloned = clone(original)
+    expect(cloned.when).toBeInstanceOf(Date)
+    expect(cloned.when.getTime()).toBe(0)
+    expect(cloned.when).not.toBe(original.when)
+  })
+
+  test('clones Map and Set values', () => {
+    const original = { map: new Map([['a', { b: 1 }]]), set: new Set([1, 2]) }
+    const cloned = clone(original)
+    expect(cloned.map).toBeInstanceOf(Map)
+    expect(cloned.map.get('a')).toEqual({ b: 1 })
+    expect(cloned.map.get('a')).not.toBe(original.map.get('a'))
+    expect(cloned.set).toBeInstanceOf(Set)
+    expect([...cloned.set]).toEqual([1, 2])
+  })
+
   test('returns a frozen object', () => {
     const original = { a: 1, b: 2 }
     const cloned = clone(original)

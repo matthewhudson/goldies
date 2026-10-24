@@ -1,21 +1,35 @@
 import { base64ToBlob } from './base64ToBlob'
 
+// jsdom's Blob has no arrayBuffer(), so read it back with FileReader
+const readBytes = (blob: Blob): Promise<number[]> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (): void => resolve(Array.from(new Uint8Array(reader.result as ArrayBuffer)));
+    reader.onerror = (): void => reject(reader.error);
+    reader.readAsArrayBuffer(blob);
+  });
+
+const allBytes = Array.from({ length: 256 }, (_, i) => i);
+const allBytesBase64 = btoa(String.fromCharCode(...allBytes));
+
 describe('base64ToBlob', () => {
-  test('converts a Base64 encoded string to a Blob object', () => {
-    const b64Data = 'data:image/png;base64,iVBORw0KG...'
-    const contentType = 'image/png'
-    const result = base64ToBlob(b64Data, contentType)
+  test('decodes Base64 into the original bytes', async () => {
+    const result = base64ToBlob(btoa('hello'), 'text/plain')
 
     expect(result).toBeInstanceOf(Blob)
-    expect(result.type).toBe(contentType)
+    expect(result.type).toBe('text/plain')
+    expect(await readBytes(result)).toEqual([104, 101, 108, 108, 111])
+  })
+
+  test('decodes binary data byte-for-byte', async () => {
+    expect(await readBytes(base64ToBlob(allBytesBase64))).toEqual(allBytes)
   })
 
   test('uses default contentType and sliceSize', () => {
-    const b64Data = 'data:image/png;base64,iVBORw0KG...'
-    const result = base64ToBlob(b64Data)
+    const result = base64ToBlob(allBytesBase64)
 
-    expect(result).toBeInstanceOf(Blob)
     expect(result.type).toBe('')
+    expect(result.size).toBe(256)
   })
 
   test('handles empty input', () => {
@@ -26,27 +40,15 @@ describe('base64ToBlob', () => {
     expect(result.type).toBe('')
   })
 
-  test('handles invalid Base64 input', () => {
-    const invalidB64Data = 'invalid base64 data';
-    const result = base64ToBlob(invalidB64Data);
-
-    expect(result).toBeInstanceOf(Blob);
-    expect(result.size).toBeGreaterThan(0);
+  test('throws on invalid Base64 input', () => {
+    expect(() => base64ToBlob('!@#$%^&*()')).toThrow();
+    expect(() => base64ToBlob('data:image/png;base64,iVBORw0KGgo=')).toThrow();
   });
 
-  test('handles non-Base64 characters', () => {
-    const nonB64Data = '!@#$%^&*()';
-    const result = base64ToBlob(nonB64Data);
+  test('handles custom sliceSize', async () => {
+    const result = base64ToBlob(allBytesBase64, 'application/octet-stream', 7);
 
-    expect(result).toBeInstanceOf(Blob);
-    expect(result.size).toBeGreaterThan(0);
-  });
-
-  test('handles custom sliceSize', () => {
-    const b64Data = 'data:image/png;base64,iVBORw0KG...';
-    const result = base64ToBlob(b64Data, 'image/png', 1024);
-
-    expect(result).toBeInstanceOf(Blob);
-    expect(result.type).toBe('image/png');
+    expect(result.type).toBe('application/octet-stream');
+    expect(await readBytes(result)).toEqual(allBytes);
   });
 })

@@ -9,4 +9,4 @@
  * const result = endsWith('JavaScript', 'script');
  */
 export const endsWith = (str: string, ends: string): boolean =>
-  str.toLowerCase().lastIndexOf(ends.toLowerCase()) === str.length - ends.length;
+  str.toLowerCase().endsWith(ends.toLowerCase());

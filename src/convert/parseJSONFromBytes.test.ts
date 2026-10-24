@@ -24,6 +24,16 @@ describe('parseJSONFromBytes', () => {
     expect(() => parseJSONFromBytes(invalidJson)).toThrow();
   });
 
+  test('works without Node Buffer (browsers)', () => {
+    const bytes = new TextEncoder().encode('{"key": "value"}');
+    vi.stubGlobal('Buffer', undefined);
+    try {
+      expect(parseJSONFromBytes(bytes)).toEqual({ key: 'value' });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   test('throws on empty input', () => {
     const emptyBuffer = Buffer.from('', 'utf-8');
     expect(() => parseJSONFromBytes(emptyBuffer)).toThrow();

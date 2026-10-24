@@ -17,6 +17,11 @@ describe('endsWith', () => {
     expect(endsWith('', 'hello')).toBe(false);
   });
 
+  test('returns false when the suffix is longer than the string', () => {
+    expect(endsWith('a', 'ab')).toBe(false);
+    expect(endsWith('', 'x')).toBe(false);
+  });
+
   test('handles whitespace', () => {
     expect(endsWith('hello  ', '  ')).toBe(true);
     expect(endsWith('hello', '  ')).toBe(false);

@@ -9,12 +9,6 @@
  * const params = getUrlParams(url);
  */
 export function getURLParams(url: string): Record<string, string> {
-  const params: URLSearchParams = new URLSearchParams(new URL(url).search);
-
-  return Object.fromEntries(
-    Array.from(params.entries()).map(([key, value]) => [
-      decodeURIComponent(key),
-      decodeURIComponent(value),
-    ])
-  );
+  // searchParams already decodes keys and values
+  return Object.fromEntries(new URL(url).searchParams);
 }
