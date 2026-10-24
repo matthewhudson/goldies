@@ -1,12 +1,20 @@
 name: Release
 
+# main is protected (PRs and the build check are required, admins included), so this
+# workflow never pushes to it. With changesets on main, it opens or updates a
+# "chore(release): version packages" PR. Merging that PR leaves no changesets, and
+# the next run publishes to npm, pushes the version tag, and creates the GitHub release.
 on:
   workflow_dispatch: # Manual trigger
   push:
     branches:
       - main
-    paths:
-      - '.changeset/**'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
@@ -14,18 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs
+          # Full history so Changesets can generate changelogs
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Pushes made with GITHUB_TOKEN don't trigger workflows, so CI (a required
+          # check) would never run on the version PR. GH_TOKEN is a personal access token.
+          token: ${{ secrets.GH_TOKEN }}
 
+      # No registry-url: changesets/action writes ~/.npmrc from NPM_TOKEN
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22.x
-          registry-url: 'https://registry.npmjs.org/'
-          scope: '@matthewhudson'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -37,33 +46,14 @@ jobs:
       - name: Test built package
         run: npm run test:package
 
-      - name: Version and Create GitHub Release
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          
-          # Apply version changes
-          npx changeset version
-          
-          # Get version from package.json
-          VERSION=$(node -p "require('./package.json').version")
-          
-          # Extract changes from the latest changeset
-          CHANGESET_CONTENT=$(find .changeset -name "*.md" -not -name "README.md" -type f -exec cat {} \;)
-          
-          # Commit version changes
-          git add .
-          git commit -m "chore(release): version $VERSION"
-          git tag -a "v$VERSION" -m "Release v$VERSION"
-          git push --follow-tags
-          
-          # Create GitHub Release
-          npx conventional-changelog-cli -p angular -i CHANGELOG.md -s
-          gh release create "v$VERSION" --title "v$VERSION" --notes "$CHANGESET_CONTENT" --generate-notes
+      - name: Create version PR or publish to npm
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          # Publishes the dist/ built and tested above
+          publish: npx changeset publish
+          commit: 'chore(release): version packages'
+          title: 'chore(release): version packages'
+          github-token: ${{ secrets.GH_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to npm
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}"
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
