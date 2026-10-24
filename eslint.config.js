@@ -46,7 +46,7 @@ export default [
   },
   {
     // For config files, don't require strict typechecking
-    files: ['*.config.ts', '*.config.js', 'rollup.config.js'],
+    files: ['*.config.ts', '*.config.js'],
     languageOptions: {
       parserOptions: {
         project: null, // Don't require TypeScript project for these files

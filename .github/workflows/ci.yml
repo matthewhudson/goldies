@@ -43,6 +43,10 @@ jobs:
     - name: Build
       run: npm run build
 
+    # The build generates package.json's exports, main, module and types
+    - name: Check package.json is up to date
+      run: git diff --exit-code -- package.json || { echo "::error::package.json is out of date. Run npm run build and commit it."; exit 1; }
+
     - name: Test built package
       run: npm run test:package
 
