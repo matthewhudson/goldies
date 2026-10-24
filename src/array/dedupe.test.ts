@@ -30,6 +30,10 @@ describe('dedupe', () => {
     expect(dedupe([0, false, '', 0, false, ''])).toEqual([0, false, '']);
   });
 
+  test('keeps a single NaN', () => {
+    expect(dedupe([NaN, 1, NaN])).toEqual([NaN, 1]);
+  });
+
   test('dedupes a larger array', () => {
     expect(dedupe([1, 2, 3, 1, 4, 2, 5, 3, 6])).toEqual([1, 2, 3, 4, 5, 6]);
   });
