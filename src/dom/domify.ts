@@ -74,6 +74,6 @@ export function domify(html: string): Element | undefined {
     if (error instanceof TypeError || error instanceof Error) {
       throw error;
     }
-    throw new Error(`Failed to parse HTML: ${String(error)}`);
+    throw new Error(`Failed to parse HTML: ${String(error)}`, { cause: error });
   }
 }

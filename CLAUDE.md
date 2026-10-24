@@ -122,7 +122,7 @@ Also add the import and export to:
 ## Testing
 
 - Test runner: Vitest with JSDOM environment
-- Global test setup: `vitest.setup.ts` (mocks DOM globals)
+- DOM globals come from the jsdom environment, with the page URL set to `http://localhost` in `vitest.config.ts`
 - Coverage provider: v8
 - All new functions must have corresponding test files
 
