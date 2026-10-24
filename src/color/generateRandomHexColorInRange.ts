@@ -1,18 +1,20 @@
+import { hexToRgb } from './hexToRgb.js';
+
 /**
  * Generates a random hexadecimal color code within a specified RGB range.
  *
  * Creates a random color where each RGB component is independently randomized
- * within the bounds defined by the minimum and maximum colors. This is useful
+ * between the corresponding components of the two colors. This is useful
  * for generating colors within a specific color palette or theme.
  *
- * @param minColor - The minimum boundary hex color code. Each RGB component of the
- *   result will be >= the corresponding component of this color.
- *   The leading `#` is optional. Defaults to `#000000` (black).
- * @param maxColor - The maximum boundary hex color code. Each RGB component of the
- *   result will be <= the corresponding component of this color.
- *   The leading `#` is optional. Defaults to `#ffffff` (white).
+ * @param minColor - One bound of the range, as a 3- or 6-digit hex color. The leading `#`
+ *   is optional. Defaults to `#000000` (black).
+ * @param maxColor - The other bound, as a 3- or 6-digit hex color. The leading `#` is
+ *   optional. Defaults to `#ffffff` (white). If a channel of `minColor` is the higher one,
+ *   the bounds for that channel are swapped.
  * @returns A random 6-character hexadecimal color code with leading `#`,
  *   where each RGB component falls within the specified range.
+ * @throws {Error} If either color isn't a 3- or 6-digit hex color.
  *
  * @example
  * // Generate any color in the full spectrum
@@ -30,9 +32,9 @@
  * // => '#c24510'
  *
  * @example
- * // Generate grayscale colors
+ * // Generate muted colors, with every channel between 0x33 and 0xcc
  * generateRandomHexColorInRange('#333333', '#cccccc');
- * // => '#7a7a7a'
+ * // => '#7a4f9c'
  *
  * @example
  * // Using default values
@@ -43,28 +45,16 @@ export function generateRandomHexColorInRange(
   minColor: string = '#000000',
   maxColor: string = '#ffffff'
 ): string {
-  // If a leading # is provided, remove it
-  if (minColor.startsWith('#')) {
-    minColor = minColor.slice(1);
-  }
-  if (maxColor.startsWith('#')) {
-    maxColor = maxColor.slice(1);
-  }
-
-  // Convert to RGB value
-  const minR = parseInt(minColor.slice(0, 2), 16);
-  const minG = parseInt(minColor.slice(2, 4), 16);
-  const minB = parseInt(minColor.slice(4, 6), 16);
-
-  const maxR = parseInt(maxColor.slice(0, 2), 16);
-  const maxG = parseInt(maxColor.slice(2, 4), 16);
-  const maxB = parseInt(maxColor.slice(4, 6), 16);
+  const min = hexToRgb(minColor);
+  const max = hexToRgb(maxColor);
 
   // Generate random RGB values within the range
-  const r = Math.floor(Math.random() * (maxR - minR + 1)) + minR;
-  const g = Math.floor(Math.random() * (maxG - minG + 1)) + minG;
-  const b = Math.floor(Math.random() * (maxB - minB + 1)) + minB;
+  const channels = (['r', 'g', 'b'] as const).map((channel) => {
+    const low = Math.min(min[channel], max[channel]);
+    const high = Math.max(min[channel], max[channel]);
+    return Math.floor(Math.random() * (high - low + 1)) + low;
+  });
 
   // Convert back to hex
-  return `#${[r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')}`;
+  return `#${channels.map((x) => x.toString(16).padStart(2, '0')).join('')}`;
 }

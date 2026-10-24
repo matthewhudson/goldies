@@ -1,3 +1,5 @@
+import { hexToRgb } from './hexToRgb.js';
+
 /**
  * Calculates the relative luminance of a color according to WCAG 2.0 guidelines.
  *
@@ -6,8 +8,8 @@
  * commonly used for calculating color contrast ratios for accessibility.
  *
  * @param hexCode - A 3 or 6 character hexadecimal color code. The leading `#` is optional.
- *   Defaults to `#008000` (green) if not provided.
  * @returns The relative luminance value as a number between 0 (black) and 1 (white).
+ * @throws {Error} If `hexCode` isn't a 3- or 6-digit hex color.
  *
  * @example
  * // Pure red
@@ -29,42 +31,17 @@
  * calculateRelativeLuminance('000');
  * // => 0
  *
- * @example
- * // Green (default value)
- * calculateRelativeLuminance();
- * // => 0.1543... (approximately)
- *
  * @see {@link https://www.w3.org/TR/WCAG20/#relativeluminancedef|WCAG 2.0 Relative Luminance}
  * @see {@link https://en.wikipedia.org/wiki/Relative_luminance|Wikipedia: Relative Luminance}
  */
-export function calculateRelativeLuminance(hexCode: string = '#008000'): number {
-  // If a leading # is provided, remove it
-  if (hexCode.startsWith('#')) {
-    hexCode = hexCode.slice(1);
-  }
+export function calculateRelativeLuminance(hexCode: string): number {
+  const { r, g, b } = hexToRgb(hexCode);
 
-  // If a three-character hexcode, make six-character
-  if (hexCode.length === 3) {
-    hexCode = hexCode
-      .split('')
-      .map((hexCharacter) => hexCharacter + hexCharacter)
-      .join('');
-  }
-
-  // Convert to RGB value
-  const r = parseInt(hexCode.slice(0, 2), 16);
-  const g = parseInt(hexCode.slice(2, 4), 16);
-  const b = parseInt(hexCode.slice(4, 6), 16);
-
-  // Convert to sRGB
-  const rsRGB = r / 255;
-  const gsRGB = g / 255;
-  const bsRGB = b / 255;
-
-  // Convert to linear RGB
-  const rLinear = rsRGB <= 0.03928 ? rsRGB / 12.92 : ((rsRGB + 0.055) / 1.055) ** 2.4;
-  const gLinear = gsRGB <= 0.03928 ? gsRGB / 12.92 : ((gsRGB + 0.055) / 1.055) ** 2.4;
-  const bLinear = bsRGB <= 0.03928 ? bsRGB / 12.92 : ((bsRGB + 0.055) / 1.055) ** 2.4;
+  // Convert each channel to sRGB, then to linear RGB
+  const [rLinear, gLinear, bLinear] = [r, g, b].map((channel) => {
+    const sRGB = channel / 255;
+    return sRGB <= 0.03928 ? sRGB / 12.92 : ((sRGB + 0.055) / 1.055) ** 2.4;
+  });
 
   // Calculate relative luminance
   return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;

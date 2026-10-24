@@ -21,7 +21,8 @@
  * // => ['#f4a123', '#82cd4e', '#1a2b3c', '#ff9900', '#abc123']
  */
 export function generateRandomHexColor(): string {
-  return `#${Math.floor(Math.random() * 16777215)
+  // 0x1000000 colors: Math.random() is below 1, so this reaches 0xffffff (white) but not past it
+  return `#${Math.floor(Math.random() * 0x1000000)
     .toString(16)
     .padStart(6, '0')}`;
 }

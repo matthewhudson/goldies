@@ -7,6 +7,8 @@
  * const url = 'https://example.com?param1=value1&param2=value2';
  * // returns { param1: 'value1', param2: 'value2' }
  * const params = getUrlParams(url);
+ *
+ * @deprecated Use `Object.fromEntries(new URL(url).searchParams)`, which this returns. Will be removed in goldies 6.0.
  */
 export function getURLParams(url: string): Record<string, string> {
   // searchParams already decodes keys and values

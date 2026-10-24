@@ -7,6 +7,9 @@
  * @example
  * // returns true
  * const result = endsWith('JavaScript', 'script');
+ *
+ * @deprecated Use the built-in `endsWith`, lowercasing both strings for the same case-insensitive
+ * check: `str.toLowerCase().endsWith(ends.toLowerCase())`. Will be removed in goldies 6.0.
  */
 export const endsWith = (str: string, ends: string): boolean =>
   str.toLowerCase().endsWith(ends.toLowerCase());

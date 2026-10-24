@@ -81,6 +81,34 @@ describe('generateRandomHexColorInRange', () => {
       const color = generateRandomHexColorInRange('#FF0000', '#FFFFFF');
       expect(color).toMatch(/^#[0-9a-f]{6}$/);
     });
+
+    it('should handle 3-digit hex codes', () => {
+      expect(generateRandomHexColorInRange('#f00', '#f00')).toBe('#ff0000');
+      expect(generateRandomHexColorInRange('abc', 'abc')).toBe('#aabbcc');
+    });
+
+    it('should throw for invalid hex codes', () => {
+      expect(() => generateRandomHexColorInRange('red', '#ffffff')).toThrow(
+        'Invalid hex color: "red"'
+      );
+      expect(() => generateRandomHexColorInRange('#000000', '#ff')).toThrow(
+        'Invalid hex color: "#ff"'
+      );
+    });
+  });
+
+  describe('bound order', () => {
+    it('should cover the range between the colors whichever is given first', () => {
+      const random = vi.spyOn(Math, 'random');
+      try {
+        random.mockReturnValue(0);
+        expect(generateRandomHexColorInRange('#ffffff', '#000000')).toBe('#000000');
+        random.mockReturnValue(0.9999999999);
+        expect(generateRandomHexColorInRange('#ffffff', '#000000')).toBe('#ffffff');
+      } finally {
+        random.mockRestore();
+      }
+    });
   });
 
   describe('default values', () => {

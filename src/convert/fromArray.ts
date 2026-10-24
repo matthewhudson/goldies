@@ -6,6 +6,8 @@
  * @example
  * const inputArray = ['a', 'b', 'c'];
  * const result = fromArray(inputArray); // 'a,b,c'
+ *
+ * @deprecated Use `String(arr)` or `arr.toString()`. Will be removed in goldies 6.0.
  */
 export function fromArray<T>(arr: T[]): string | undefined {
   return Array.isArray(arr) ? arr.toString() : undefined;

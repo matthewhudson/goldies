@@ -88,6 +88,15 @@ describe('generateRandomHexColor', () => {
       Math.random = originalRandom;
     });
 
+    it('should be able to return white', () => {
+      const random = vi.spyOn(Math, 'random').mockReturnValue(0.9999999999);
+      try {
+        expect(generateRandomHexColor()).toBe('#ffffff');
+      } finally {
+        random.mockRestore();
+      }
+    });
+
     it('should generate valid colors in repeated calls', () => {
       for (let i = 0; i < 20; i++) {
         const color = generateRandomHexColor();

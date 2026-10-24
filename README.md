@@ -39,10 +39,10 @@ import goldies from 'goldies';
 const uniqueArray = goldies.array.dedupe([1, 2, 2, 3]);
 
 // Object utilities
-const cloned = goldies.object.clone({ name: 'John' });
+const picked = goldies.object.pick({ name: 'John', age: 30 }, ['name']);
 
-// String utilities
-const hasPrefix = goldies.string.startsWith('Hello world', 'Hello');
+// Color utilities
+const ratio = goldies.color.getContrastRatio('#777777', '#ffffff'); // 4.48
 ```
 
 CommonJS works too:
@@ -56,21 +56,21 @@ const goldies = require('goldies');
 ```typescript
 // Only import what you need for smaller bundle size
 import { dedupe } from 'goldies/array/dedupe';
-import { clone } from 'goldies/object/clone';
-import { startsWith } from 'goldies/string/startsWith';
+import { pick } from 'goldies/object/pick';
+import { getContrastRatio } from 'goldies/color/getContrastRatio';
 
 const uniqueArray = dedupe([1, 2, 2, 3]);
-const cloned = clone({ name: 'John' });
-const hasPrefix = startsWith('Hello world', 'Hello');
+const picked = pick({ name: 'John', age: 30 }, ['name']);
+const ratio = getContrastRatio('#777777', '#ffffff');
 ```
 
-Direct imports are ESM-only. From CommonJS, use `require('goldies')` or a dynamic `import()`.
+Direct imports work with `require` too: `const { dedupe } = require('goldies/array/dedupe');`
 
 ## Bundle Size Comparison
 
 | Import Style | Bundle Size |
 |--------------|-------------|
-| Full library (browser) | ~5 KB minified, ~2.3 KB gzipped |
+| Full library (browser) | ~6.5 KB minified, ~3 KB gzipped |
 | Single function | ~0.1-0.8 KB minified |
 
 With direct imports, your bundle only includes the functions you use.
@@ -87,7 +87,12 @@ With direct imports, your bundle only includes the functions you use.
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
+| `calculateRelativeLuminance` | WCAG relative luminance of a hex color, from 0 to 1 | `goldies/color/calculateRelativeLuminance` |
+| `generateRandomHexColor` | Random hex color | `goldies/color/generateRandomHexColor` |
+| `generateRandomHexColorInRange` | Random hex color between two colors, channel by channel | `goldies/color/generateRandomHexColorInRange` |
 | `getContrastColor` | Pick black or white text for a background color | `goldies/color/getContrastColor` |
+| `getContrastRatio` | WCAG contrast ratio between two colors, from 1 to 21 | `goldies/color/getContrastRatio` |
+| `hexToRgb` | Convert a 3- or 6-digit hex color to `{ r, g, b }` | `goldies/color/hexToRgb` |
 | `isValidHexColor` | Validate a 6-digit hex color (`#rrggbb`) | `goldies/color/isValidHexColor` |
 
 ### Convert
@@ -95,7 +100,6 @@ With direct imports, your bundle only includes the functions you use.
 | Function | Description | Import Path |
 |----------|-------------|-------------|
 | `base64ToBlob` | Convert base64 string to Blob | `goldies/convert/base64ToBlob` |
-| `fromArray` | Convert array to other formats | `goldies/convert/fromArray` |
 | `fromBase64` | Decode base64 string | `goldies/convert/fromBase64` |
 | `parseJSONFromBytes` | Parse JSON from byte array | `goldies/convert/parseJSONFromBytes` |
 | `toBase64` | Encode string to base64 | `goldies/convert/toBase64` |
@@ -107,10 +111,8 @@ With direct imports, your bundle only includes the functions you use.
 | `$` | Query selector (similar to jQuery) | `goldies/dom/selectors` |
 | `$$` | Query selector all (similar to jQuery) | `goldies/dom/selectors` |
 | `attr` | Get/set element attributes | `goldies/dom/attr` |
-| `addClass`, `removeClass`, `toggleClass` | Manipulate element classes | `goldies/dom/classes` |
 | `domify` | Create DOM elements from HTML string | `goldies/dom/domify` |
 | `getCustomCSSVariables` | Get CSS custom properties | `goldies/dom/getCustomCSSVariables` |
-| `getDataAttributes` | Get data attributes from element | `goldies/dom/getDataAttributes` |
 
 ### Format
 
@@ -122,37 +124,31 @@ With direct imports, your bundle only includes the functions you use.
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
-| `clone` | Deep clone an object | `goldies/object/clone` |
 | `filter` | Filter object properties | `goldies/object/filter` |
-| `has` | Check if object has property | `goldies/object/has` |
 | `pick` | Pick specific properties from object | `goldies/object/pick` |
 
 ### String
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
-| `endsWith` | Check if string ends with substring | `goldies/string/endsWith` |
 | `findUsernames` | Extract usernames from string | `goldies/string/findUsernames` |
-| `startsWith` | Check if string starts with substring | `goldies/string/startsWith` |
 
 ### Types
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
 | `isDefined` | Check if value is defined | `goldies/types/isDefined` |
+| `isExternalUrl` | Check if a string is a URL on a different host than the current page | `goldies/types/isExternalUrl` |
 | `isJSON` | Check if string is valid JSON | `goldies/types/isJSON` |
 | `isNil` | Check if value is null or undefined | `goldies/types/isNil` |
 | `isNull` | Check if value is null | `goldies/types/isNull` |
 | `isUndefined` | Check if value is undefined | `goldies/types/isUndefined` |
-| `isUrl` | Check if a string is a URL on a different host than the current page | `goldies/types/isUrl` |
 
 ### Utils
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
-| `buildQuery` | Build URL query string | `goldies/utils/buildQuery` |
 | `escapeHTML` | Escape HTML characters | `goldies/utils/escapeHTML` |
-| `getURLParams` | Parse URL parameters | `goldies/utils/getURLParams` |
 | `isBrowser` | Check if code runs in browser | `goldies/utils/isBrowser` |
 | `isServer` | Check if code runs on server | `goldies/utils/isServer` |
 | `reloadPageWhenOnline` | Auto-reload page when back online | `goldies/utils/reloadPageWhenOnline` |
@@ -163,10 +159,8 @@ With direct imports, your bundle only includes the functions you use.
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
-| `getDirectoryTree` | Generate directory structure | `goldies/files/getDirectoryTree` |
 | `getFileType` | Determine file type | `goldies/files/getFileType` |
 | `isDirectory` | Check if path is directory | `goldies/files/isDirectory` |
-| `readFile` | Read file contents | `goldies/files/readFile` |
 
 ### Node (Node.js only)
 
@@ -175,16 +169,35 @@ With direct imports, your bundle only includes the functions you use.
 | `port` | Find available network port | `goldies/node/port` |
 | `sh` | Execute shell commands | `goldies/node/sh` |
 
+### Deprecated (removed in 6.0)
+
+These still work in 5.x, but JavaScript and Node.js now do the same job. Editors show them crossed out.
+
+| Function | Use instead |
+|----------|-------------|
+| `addClass`, `hasClass`, `removeClass`, `toggleClass` | `element.classList.add`, `.contains`, `.remove`, `.toggle` |
+| `buildQuery` | `new URLSearchParams(data).toString()` |
+| `clone` | `structuredClone(obj)`, which doesn't freeze the copy |
+| `endsWith` | `str.toLowerCase().endsWith(ends.toLowerCase())` |
+| `fromArray` | `String(arr)` |
+| `getDataAttributes` | `element.dataset` |
+| `getDirectoryTree` | `readdirSync(dir, { recursive: true, withFileTypes: true })` from `node:fs` |
+| `getURLParams` | `Object.fromEntries(new URL(url).searchParams)` |
+| `has` | `Object.hasOwn(target, key)` |
+| `isUrl` | `isExternalUrl` (same function, new name) |
+| `readFile` | `readFile(path, 'utf8')` from `node:fs/promises` |
+| `startsWith` | `str.toLowerCase().startsWith(prefix.toLowerCase())` |
+
 ## Library Features
 
-- **Array Utilities**: Deduplication, filtering, and more
-- **DOM Utilities**: Element selection, class manipulation, and attribute handling
-- **Color Utilities**: Color validation and contrast calculation
-- **File Utilities**: Directory tree generation, file type detection
-- **String Utilities**: Pattern matching, username detection
+- **Array Utilities**: Deduplication
+- **DOM Utilities**: Element selection, attributes, HTML parsing, and CSS variables
+- **Color Utilities**: Validation, conversion, WCAG contrast and random colors
+- **File Utilities**: File type detection and directory checks
+- **String Utilities**: Username detection
 - **Type Checking**: Comprehensive type checking utilities
-- **Object Utilities**: Cloning, filtering, and property manipulation
-- **General Utilities**: URL parsing, query string building, and more
+- **Object Utilities**: Picking and filtering properties
+- **General Utilities**: HTML escaping, S3 paths, environment checks, and more
 
 ## TypeScript Support
 
