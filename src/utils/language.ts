@@ -1,4 +1,4 @@
-import { isDefined } from '../types/isDefined'
+import { isDefined } from '../types/isDefined.js'
 
 /**
  * Get the browser's language.

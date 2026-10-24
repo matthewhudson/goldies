@@ -43,6 +43,12 @@ const cloned = goldies.object.clone({ name: 'John' });
 const hasPrefix = goldies.string.startsWith('Hello world', 'Hello');
 ```
 
+CommonJS works too:
+
+```javascript
+const goldies = require('goldies');
+```
+
 ### 2. Tree-shakable direct imports (recommended)
 
 ```typescript
@@ -56,14 +62,16 @@ const cloned = clone({ name: 'John' });
 const hasPrefix = startsWith('Hello world', 'Hello');
 ```
 
+Direct imports are ESM-only. From CommonJS, use `require('goldies')` or a dynamic `import()`.
+
 ## Bundle Size Comparison
 
 | Import Style | Bundle Size |
 |--------------|-------------|
-| Full library | ~28 KB (minified) |
-| Single function | ~0.3-1 KB (minified) |
+| Full library (browser) | ~5 KB minified, ~2.3 KB gzipped |
+| Single function | ~0.1-0.8 KB minified |
 
-Using direct imports can reduce your bundle size by up to 99% if you only need a few functions!
+With direct imports, your bundle only includes the functions you use.
 
 ## Available Utilities
 
@@ -77,8 +85,8 @@ Using direct imports can reduce your bundle size by up to 99% if you only need a
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
-| `getContrast` | Calculate contrast ratio between colors | `goldies/color/getContrast` |
-| `isValidHexSimpleColor` | Validate a hex color code | `goldies/color/isValidHexSimpleColor` |
+| `getContrastColor` | Pick black or white text for a background color | `goldies/color/getContrastColor` |
+| `isValidHexColor` | Validate a 6-digit hex color (`#rrggbb`) | `goldies/color/isValidHexColor` |
 
 ### Convert
 

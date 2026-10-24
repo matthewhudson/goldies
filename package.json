@@ -3,28 +3,36 @@
   "version": "5.0.0",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "type": "module",
-  "main": "./dist/cjs/goldies.js",
+  "main": "./dist/cjs/goldies.cjs",
   "module": "./dist/esm/goldies.js",
   "browser": "./dist/browser/goldies.min.js",
   "types": "./dist/modules/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/modules/types/index.d.ts",
-      "browser": "./dist/browser/goldies.min.js",
-      "import": "./dist/esm/goldies.js",
-      "require": "./dist/cjs/goldies.js"
+      "browser": {
+        "types": "./dist/modules/types/browser.d.ts",
+        "default": "./dist/browser/goldies.min.js"
+      },
+      "import": {
+        "types": "./dist/modules/types/index.d.ts",
+        "default": "./dist/esm/goldies.js"
+      },
+      "require": {
+        "types": "./dist/cjs/goldies.d.cts",
+        "default": "./dist/cjs/goldies.cjs"
+      }
     },
     "./array/dedupe": {
       "types": "./dist/modules/types/array/dedupe.d.ts",
       "import": "./dist/modules/array/dedupe.js"
     },
-    "./color/getContrast": {
-      "types": "./dist/modules/types/color/getContrast.d.ts",
-      "import": "./dist/modules/color/getContrast.js"
+    "./color/getContrastColor": {
+      "types": "./dist/modules/types/color/getContrastColor.d.ts",
+      "import": "./dist/modules/color/getContrastColor.js"
     },
-    "./color/isValidHexSimpleColor": {
-      "types": "./dist/modules/types/color/isValidHexSimpleColor.d.ts",
-      "import": "./dist/modules/color/isValidHexSimpleColor.js"
+    "./color/isValidHexColor": {
+      "types": "./dist/modules/types/color/isValidHexColor.d.ts",
+      "import": "./dist/modules/color/isValidHexColor.js"
     },
     "./convert/base64ToBlob": {
       "types": "./dist/modules/types/convert/base64ToBlob.d.ts",
@@ -204,8 +212,9 @@
     "prepare": "husky install",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:package": "node scripts/smoke-test.mjs && attw --pack . --profile node16 --ignore-rules false-export-default cjs-resolves-to-esm",
     "typecheck": "tsc --noEmit --project tsconfig.typecheck.json",
-    "validate": "npm run lint && npm run test && npm run build",
+    "validate": "npm run lint && npm run test && npm run build && npm run test:package",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "npm run build && changeset publish"
@@ -217,6 +226,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@babel/core": "^7.27.4",
     "@babel/plugin-transform-runtime": "^7.27.4",
     "@babel/preset-env": "^7.27.2",

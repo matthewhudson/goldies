@@ -21,6 +21,27 @@ const pkg = await readJSONFile('./package.json')
 
 const env = process.env.NODE_ENV
 
+// The CJS bundle sets `module.exports = goldies`, so require() consumers need
+// `export =` types rather than the ESM declarations' `export default`.
+const cjsTypes = {
+  name: 'cjs-types',
+  generateBundle (options) {
+    if (options.format !== 'cjs') return
+    this.emitFile({
+      type: 'asset',
+      fileName: 'goldies.d.cts',
+      source: [
+        '// @ts-ignore TS1479 before TypeScript 5.8: type-only import of ESM declarations from CJS',
+        "import type { Goldies } from '../modules/types/index.js'",
+        '',
+        'declare const goldies: Goldies',
+        'export = goldies',
+        ''
+      ].join('\n')
+    })
+  }
+}
+
 export default [
   // Browser UMD bundle (monolithic)
   {
@@ -46,6 +67,7 @@ export default [
         browser: true
       }),
       typescript({
+        tsconfig: './tsconfig.build.json',
         compilerOptions: {
           target: 'es2022',
           module: 'esnext',
@@ -68,7 +90,8 @@ export default [
         'process.env.NODE_ENV': JSON.stringify(env),
         preventAssignment: true
       }),
-      env === 'production' && terser()
+      // Always minify: this is the published goldies.min.js
+      terser()
     ]
   },
   // Node.js bundles (monolithic)
@@ -81,6 +104,7 @@ export default [
     ],
     plugins: [
       typescript({
+        tsconfig: './tsconfig.build.json',
         compilerOptions: {
           target: 'es2022',
           module: 'esnext',
@@ -95,6 +119,7 @@ export default [
         'process.env.NODE_ENV': JSON.stringify(env),
         preventAssignment: true
       }),
+      cjsTypes,
       env === 'production' && terser()
     ]
   },
@@ -173,6 +198,7 @@ export default [
     },
     plugins: [
       typescript({
+        tsconfig: './tsconfig.build.json',
         compilerOptions: {
           target: 'es2022',
           module: 'esnext',
