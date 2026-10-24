@@ -16,6 +16,10 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./array/chunk": {
+      "import": "./dist/array/chunk.mjs",
+      "require": "./dist/array/chunk.cjs"
+    },
     "./array/dedupe": {
       "import": "./dist/array/dedupe.mjs",
       "require": "./dist/array/dedupe.cjs"
@@ -132,6 +136,10 @@
       "import": "./dist/object/has.mjs",
       "require": "./dist/object/has.cjs"
     },
+    "./object/omit": {
+      "import": "./dist/object/omit.mjs",
+      "require": "./dist/object/omit.cjs"
+    },
     "./object/pick": {
       "import": "./dist/object/pick.mjs",
       "require": "./dist/object/pick.cjs"
@@ -180,6 +188,10 @@
       "import": "./dist/utils/buildQuery.mjs",
       "require": "./dist/utils/buildQuery.cjs"
     },
+    "./utils/debounce": {
+      "import": "./dist/utils/debounce.mjs",
+      "require": "./dist/utils/debounce.cjs"
+    },
     "./utils/escapeHTML": {
       "import": "./dist/utils/escapeHTML.mjs",
       "require": "./dist/utils/escapeHTML.cjs"
@@ -200,6 +212,10 @@
       "import": "./dist/utils/reloadPageWhenOnline.mjs",
       "require": "./dist/utils/reloadPageWhenOnline.cjs"
     },
+    "./utils/retry": {
+      "import": "./dist/utils/retry.mjs",
+      "require": "./dist/utils/retry.cjs"
+    },
     "./utils/s3": {
       "import": "./dist/utils/s3.mjs",
       "require": "./dist/utils/s3.cjs"
@@ -207,6 +223,10 @@
     "./utils/sleep": {
       "import": "./dist/utils/sleep.mjs",
       "require": "./dist/utils/sleep.cjs"
+    },
+    "./utils/throttle": {
+      "import": "./dist/utils/throttle.mjs",
+      "require": "./dist/utils/throttle.cjs"
     },
     "./package.json": "./package.json"
   },

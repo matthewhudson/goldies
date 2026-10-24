@@ -16,10 +16,7 @@
  *
  * // pickedObj is now { a: 1, c: 3 }
  */
-export function pick<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  props: K[]
-): Pick<T, K> {
+export function pick<T extends object, K extends keyof T>(obj: T, props: K[]): Pick<T, K> {
   if (!obj || !props) return {} as Pick<T, K>;
 
   const picked: Partial<T> = {};

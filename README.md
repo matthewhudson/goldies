@@ -70,7 +70,7 @@ Direct imports work with `require` too: `const { dedupe } = require('goldies/arr
 
 | Import Style | Bundle Size |
 |--------------|-------------|
-| Full library (browser) | ~6.5 KB minified, ~3 KB gzipped |
+| Full library (browser) | ~8 KB minified, ~3.5 KB gzipped |
 | Single function | ~0.1-0.8 KB minified |
 
 With direct imports, your bundle only includes the functions you use.
@@ -81,6 +81,7 @@ With direct imports, your bundle only includes the functions you use.
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
+| `chunk` | Split an array into chunks of a given size | `goldies/array/chunk` |
 | `dedupe` | Remove duplicates from an array | `goldies/array/dedupe` |
 
 ### Color
@@ -125,6 +126,7 @@ With direct imports, your bundle only includes the functions you use.
 | Function | Description | Import Path |
 |----------|-------------|-------------|
 | `filter` | Filter object properties | `goldies/object/filter` |
+| `omit` | Copy an object without the given properties | `goldies/object/omit` |
 | `pick` | Pick specific properties from object | `goldies/object/pick` |
 
 ### String
@@ -148,12 +150,15 @@ With direct imports, your bundle only includes the functions you use.
 
 | Function | Description | Import Path |
 |----------|-------------|-------------|
+| `debounce` | Call a function once calls stop for a while | `goldies/utils/debounce` |
 | `escapeHTML` | Escape HTML characters | `goldies/utils/escapeHTML` |
 | `isBrowser` | Check if code runs in browser | `goldies/utils/isBrowser` |
 | `isServer` | Check if code runs on server | `goldies/utils/isServer` |
 | `reloadPageWhenOnline` | Auto-reload page when back online | `goldies/utils/reloadPageWhenOnline` |
+| `retry` | Retry a function with exponential backoff, cancellable with an `AbortSignal` | `goldies/utils/retry` |
 | `s3` | S3 URL utilities | `goldies/utils/s3` |
 | `sleep` | Promise-based delay | `goldies/utils/sleep` |
+| `throttle` | Call a function at most once per interval | `goldies/utils/throttle` |
 
 ### Files (Node.js only)
 
@@ -190,14 +195,14 @@ These still work in 5.x, but JavaScript and Node.js now do the same job. Editors
 
 ## Library Features
 
-- **Array Utilities**: Deduplication
+- **Array Utilities**: Deduplication and chunking
 - **DOM Utilities**: Element selection, attributes, HTML parsing, and CSS variables
 - **Color Utilities**: Validation, conversion, WCAG contrast and random colors
 - **File Utilities**: File type detection and directory checks
 - **String Utilities**: Username detection
 - **Type Checking**: Comprehensive type checking utilities
-- **Object Utilities**: Picking and filtering properties
-- **General Utilities**: HTML escaping, S3 paths, environment checks, and more
+- **Object Utilities**: Picking, omitting, and filtering properties
+- **General Utilities**: Debounce, throttle, retry with backoff, HTML escaping, S3 paths, and more
 
 ## TypeScript Support
 
