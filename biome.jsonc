@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  // Skip everything .gitignore lists (dist/, coverage/, node_modules/...)
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": {
+    "includes": [
+      // Code and JSON only; Markdown and YAML are left as they are
+      "**/*.{ts,mts,cts,js,mjs,cjs,json,jsonc}",
+      // Generated: the old JSDoc site, and package.json (the build writes its
+      // exports, main, module and types)
+      "!docs",
+      "!package.json",
+      "!package-lock.json"
+    ]
+  },
+  // The house style from the former .prettierrc
+  "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 100, "lineEnding": "lf" },
+  "javascript": {
+    "formatter": { "quoteStyle": "single", "semicolons": "always", "trailingCommas": "es5" }
+  },
+  // No import sorting: formatting and linting only
+  "assist": { "enabled": false },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "correctness": {
+        // Unused `_`-prefixed variables and parameters are allowed
+        "noUnusedVariables": "error"
+      },
+      "suspicious": {
+        "noConsole": { "level": "warn", "options": { "allow": ["warn", "error"] } }
+      }
+    }
+  },
+  "overrides": [
+    {
+      // Command-line scripts report through the console
+      "includes": ["scripts/**"],
+      "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
+    },
+    {
+      // Tests assert on elements their own setup created
+      "includes": ["**/*.test.ts"],
+      "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } }
+    }
+  ]
+}
