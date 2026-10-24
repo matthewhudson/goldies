@@ -1,10 +1,10 @@
-import { pick } from './pick'
+import { pick } from './pick';
 
 describe('pick()', () => {
   test('creates a new object with only the specified properties', () => {
-    const obj = { foo: 'bar', baz: 'qux', corge: 'grault' }
-    expect(pick(obj, ['foo', 'baz'])).toEqual({ foo: 'bar', baz: 'qux' })
-  })
+    const obj = { foo: 'bar', baz: 'qux', corge: 'grault' };
+    expect(pick(obj, ['foo', 'baz'])).toEqual({ foo: 'bar', baz: 'qux' });
+  });
 
   test('returns empty object if either object or properties are not provided', () => {
     expect(pick({} as Record<string, unknown>, ['foo', 'baz'])).toEqual({});
@@ -26,4 +26,4 @@ describe('pick()', () => {
     const obj = { foo: 'bar', baz: 'qux' };
     expect(pick(obj, ['foo', 'nonexistent' as keyof typeof obj])).toEqual({ foo: 'bar' });
   });
-})
+});

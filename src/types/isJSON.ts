@@ -14,13 +14,13 @@
 export const isJSON = (data): boolean => {
   // If it's not a string, we return false immediately since we know it can't be valid JSON.
   if (typeof data !== 'string') {
-    return false
+    return false;
   }
 
   try {
-    JSON.parse(data)
-    return true
+    JSON.parse(data);
+    return true;
   } catch {
-    return false
+    return false;
   }
-}
+};

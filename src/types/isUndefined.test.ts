@@ -1,4 +1,4 @@
-import { isUndefined } from './isUndefined'
+import { isUndefined } from './isUndefined';
 
 describe('isUndefined', () => {
   it('should return true if value is undefined', () => {
@@ -17,4 +17,4 @@ describe('isUndefined', () => {
   it('should return true for missing input', () => {
     expect(isUndefined()).toBe(true);
   });
-})
+});

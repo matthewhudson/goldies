@@ -10,10 +10,10 @@
  * @example
  * // Get an attribute
  * const style = attr(element, 'style');
- * 
+ *
  * // Set an attribute
  * attr(element, 'id', 'new-element-id');
- * 
+ *
  * // Remove an attribute
  * attr(element, 'data-temp', null);
  */

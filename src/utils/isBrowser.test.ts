@@ -1,16 +1,16 @@
-import { isBrowser } from './isBrowser'
+import { isBrowser } from './isBrowser';
 
 describe('isBrowser', () => {
   test('returns true when running in a browser-like environment', () => {
-    expect(isBrowser()).toBe(true)
-  })
+    expect(isBrowser()).toBe(true);
+  });
 
   test('returns false when running in a non-browser environment', () => {
-    const originalWindow = global.window
-    delete global.window
+    const originalWindow = global.window;
+    delete global.window;
 
-    expect(isBrowser()).toBe(false)
+    expect(isBrowser()).toBe(false);
 
-    global.window = originalWindow
-  })
-})
+    global.window = originalWindow;
+  });
+});

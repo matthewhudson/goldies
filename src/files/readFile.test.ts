@@ -1,14 +1,14 @@
-import tmp from 'tmp'
-import fs from 'node:fs'
-import { readFile } from './readFile'
+import tmp from 'tmp';
+import fs from 'node:fs';
+import { readFile } from './readFile';
 
 describe('readFile', () => {
-  let tmpDir: string
+  let tmpDir: string;
 
   beforeAll(() => {
     // Create a temporary directory
-    tmpDir = tmp.dirSync({ unsafeCleanup: true }).name
-  })
+    tmpDir = tmp.dirSync({ unsafeCleanup: true }).name;
+  });
 
   // afterAll(() => {
   // Cleanup the temporary directory
@@ -16,14 +16,14 @@ describe('readFile', () => {
   // })
 
   test('should read the content of a file and return it as a string', async () => {
-    const fileContent = 'Hello, world!'
-    const filePath = `${tmpDir}/test.txt`
+    const fileContent = 'Hello, world!';
+    const filePath = `${tmpDir}/test.txt`;
 
     // Create a file in the temporary directory
-    fs.writeFileSync(filePath, fileContent)
+    fs.writeFileSync(filePath, fileContent);
 
     // Read the file and compare the contents
-    const content = await readFile(filePath)
-    expect(content).toEqual(fileContent)
-  })
-})
+    const content = await readFile(filePath);
+    expect(content).toEqual(fileContent);
+  });
+});

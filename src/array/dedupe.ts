@@ -14,4 +14,4 @@
 export function dedupe<T>(array: T[]): T[] {
   // Set keeps first occurrences in order and, unlike indexOf, matches NaN
   return Array.from(new Set(array));
-} 
+}

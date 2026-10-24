@@ -1,4 +1,4 @@
-import { reloadPageWhenOnline } from './reloadPageWhenOnline'
+import { reloadPageWhenOnline } from './reloadPageWhenOnline';
 import { vi } from 'vitest';
 
 interface CustomWindow extends Window {

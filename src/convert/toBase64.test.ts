@@ -1,4 +1,4 @@
-import { toBase64 } from './toBase64'
+import { toBase64 } from './toBase64';
 
 describe('toBase64', () => {
   test('encodes a string to Base64', () => {
@@ -29,4 +29,4 @@ describe('toBase64', () => {
       vi.unstubAllGlobals();
     }
   });
-})
+});

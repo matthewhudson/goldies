@@ -8,7 +8,7 @@
  * @example
  * // Using the global window object
  * reloadPageWhenOnline();
- * 
+ *
  * // Using a specific window object (useful for testing)
  * reloadPageWhenOnline(customWindow);
  */

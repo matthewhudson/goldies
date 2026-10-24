@@ -64,5 +64,5 @@ export default [
       'docs/scripts/third-party/**', // Ignore all third-party scripts
       '**/*.d.ts',
     ],
-  }
+  },
 ];

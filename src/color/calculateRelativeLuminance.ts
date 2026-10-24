@@ -68,4 +68,4 @@ export function calculateRelativeLuminance(hexCode: string = '#008000'): number 
 
   // Calculate relative luminance
   return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
-} 
+}
