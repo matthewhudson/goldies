@@ -20,4 +20,13 @@ describe('toBase64', () => {
   test('handles missing input', () => {
     expect(toBase64()).toBe('');
   });
+
+  test('works without Node Buffer (browsers)', () => {
+    vi.stubGlobal('Buffer', undefined);
+    try {
+      expect(toBase64('Hello 🌍')).toBe('SGVsbG8g8J+MjQ==');
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
 })
