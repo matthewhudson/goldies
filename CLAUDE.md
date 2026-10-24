@@ -219,15 +219,16 @@ git commit -m "feat(array): add unique utility"
 
 ### Release Workflow (Automated)
 
-The release workflow (`.github/workflows/release.yml`) runs on every push to `main` and can also be run manually from the GitHub Actions UI (workflow_dispatch). It uses [changesets/action](https://github.com/changesets/action) and never pushes to `main`, which is protected.
+The release workflow (`.github/workflows/release.yml`) runs on every push to `main` and can also be run manually from the GitHub Actions UI (workflow_dispatch). It uses the [changesets/action](https://github.com/changesets/action) v2 sub-actions and never pushes to `main`, which is protected.
 
 **What happens automatically:**
-1. While changesets are on `main`, it opens (or updates) a `chore(release): version packages` PR. That PR runs `changeset version`: it bumps `package.json`, updates `CHANGELOG.md`, and deletes the consumed changesets.
-2. When you merge that PR, the next run finds no changesets. It publishes the new version to npm, pushes the `vX.Y.Z` tag, and creates the GitHub release from the changelog entry.
+1. While changesets are on `main`, the `version` job opens (or updates) a `chore(release): version packages` PR. That PR runs `changeset version`: it bumps `package.json`, updates `CHANGELOG.md`, and deletes the consumed changesets.
+2. When you merge that PR, the next run finds no changesets. The `pack` job builds the package, runs `npm run test:package` on it and packs it. The `publish` job publishes that tarball to npm, pushes the `vX.Y.Z` tag, and creates the GitHub release from the changelog entry.
 3. Runs with no changesets and nothing unpublished do nothing.
 
-**Required secrets:**
-- `NPM_TOKEN`: npm token that can publish `goldies`
+**npm authentication:** publishing uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC), so there is no npm token to store or rotate, and each release gets a provenance attestation. The trusted publisher is configured on npmjs.com (package settings → Trusted Publisher → GitHub Actions: `matthewhudson` / `goldies` / `release.yml`). Renaming `release.yml` breaks publishing until that setting is updated. Trusted publishing needs npm 11.5.1+, which ships with the Node 24 in `.nvmrc`.
+
+**Required secret:**
 - `GH_TOKEN`: personal access token with Contents and Pull requests write access. With the default `GITHUB_TOKEN`, CI (a required check) would never run on the version PR.
 
 ### Manual Release (if needed)

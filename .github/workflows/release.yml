@@ -1,41 +1,102 @@
 name: Release
 
 # main is protected (PRs and the build check are required, admins included), so this
-# workflow never pushes to it. With changesets on main, it opens or updates a
-# "chore(release): version packages" PR. Merging that PR leaves no changesets, and
-# the next run publishes to npm, pushes the version tag, and creates the GitHub release.
+# workflow never pushes to it. With changesets on main, the version job opens or updates a
+# "chore(release): version packages" PR. Merging that PR leaves no changesets, so the next
+# run builds, checks and packs the package, then publishes it to npm with trusted
+# publishing (OIDC, no npm token), pushes the version tag and creates the GitHub release.
 on:
   workflow_dispatch: # Manual trigger
   push:
     branches:
       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+# Each job asks for only the permissions it needs
+permissions: {}
 
-permissions:
-  contents: write
-  pull-requests: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  select-mode:
     runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.select-mode.outputs.mode }}
+      publish-plan-artifact-id: ${{ steps.select-mode.outputs.publish-plan-artifact-id }}
+    permissions:
+      contents: read
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Select Changesets mode
+        id: select-mode
+        uses: changesets/action/select-mode@v2
+
+  version:
+    if: needs.select-mode.outputs.mode == 'version'
+    needs: select-mode
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
         with:
           # Full history so Changesets can generate changelogs
           fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create or update version PR
+        uses: changesets/action/version@v2
+        with:
+          script: npm run version-packages
+          commit-message: 'chore(release): version packages'
+          pr-title: 'chore(release): version packages'
           # Pushes made with GITHUB_TOKEN don't trigger workflows, so CI (a required
           # check) would never run on the version PR. GH_TOKEN is a personal access token.
-          token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
 
-      # No registry-url: changesets/action writes ~/.npmrc from NPM_TOKEN
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+  pack:
+    if: needs.select-mode.outputs.mode == 'publish'
+    needs: select-mode
+    runs-on: ubuntu-latest
+    outputs:
+      pack-dir-artifact-id: ${{ steps.pack.outputs.pack-dir-artifact-id }}
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
         with:
-          node-version: 22.x
-          cache: 'npm'
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
 
       - name: Install Dependencies
         run: npm ci
@@ -43,17 +104,42 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The tarball packed below is the one published, so it's checked first
       - name: Test built package
         run: npm run test:package
 
-      - name: Create version PR or publish to npm
-        uses: changesets/action@v1
+      - name: Pack
+        id: pack
+        uses: changesets/action/pack@v2
         with:
-          version: npm run version-packages
-          # Publishes the dist/ built and tested above
-          publish: npx changeset publish
-          commit: 'chore(release): version packages'
-          title: 'chore(release): version packages'
-          github-token: ${{ secrets.GH_TOKEN }}
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          publish-plan-artifact-id: ${{ needs.select-mode.outputs.publish-plan-artifact-id }}
+
+  publish:
+    needs: pack
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to push the version tag and create the GitHub release
+      id-token: write # for npm trusted publishing
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      # Trusted publishing needs npm >= 11.5.1, which ships with Node 24 (.nvmrc)
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Show npm version
+        run: npm --version
+
+      - name: Publish to npm
+        uses: changesets/action/publish@v2
+        with:
+          pack-dir-artifact-id: ${{ needs.pack.outputs.pack-dir-artifact-id }}
