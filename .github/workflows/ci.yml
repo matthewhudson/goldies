@@ -40,7 +40,10 @@ jobs:
     
     - name: Build
       run: npm run build
-    
+
+    - name: Test built package
+      run: npm run test:package
+
     # Optional: Upload coverage to Codecov
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4

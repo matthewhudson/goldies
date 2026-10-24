@@ -34,6 +34,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Test built package
+        run: npm run test:package
+
       - name: Version and Create GitHub Release
         run: |
           git config --global user.name "github-actions"
