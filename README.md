@@ -10,6 +10,8 @@ A wide-ranging collection of JavaScript helpers covering debugging, serializatio
 [![Node.js: v22](https://img.shields.io/badge/node-v22-green.svg)](https://nodejs.org/en/)
 [![CI](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml/badge.svg)](https://github.com/matthewhudson/goldies/actions/workflows/ci.yml)
 
+**[API reference](https://matthewhudson.github.io/goldies/api/)** · [Live demo](https://matthewhudson.github.io/goldies/)
+
 ## Features
 
 - 🌲 **Tree-shakable**: Import only what you need
