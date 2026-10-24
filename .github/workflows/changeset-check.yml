@@ -17,15 +17,15 @@ jobs:
     if: github.event.pull_request.user.login != 'dependabot[bot]' && github.head_ref != 'changeset-release/main'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # Full history needed for changeset to detect changes
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 22.x
+          node-version-file: .nvmrc
 
       - name: Install Dependencies
         run: npm ci

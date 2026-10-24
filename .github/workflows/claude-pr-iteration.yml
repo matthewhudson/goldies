@@ -18,7 +18,7 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Checkout the PR branch
           ref: refs/pull/${{ github.event.issue.number }}/head

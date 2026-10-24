@@ -15,13 +15,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x]
+        # 22.x is the oldest supported line, and "build (22.x)" is a required check on main.
+        # 24.x matches .nvmrc.
+        node-version: [22.x, 24.x]
 
     steps:
-    - uses: actions/checkout@v4
-    
+    - uses: actions/checkout@v7
+
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -46,7 +48,8 @@ jobs:
 
     # Optional: Upload coverage to Codecov
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v4
+      if: matrix.node-version == '22.x'
+      uses: codecov/codecov-action@v7
       with:
         # Token is optional since Codecov can also detect public repositories via GitHub Actions
         # token: ${{ secrets.CODECOV_TOKEN }}
