@@ -20,4 +20,9 @@ describe('getURLParams', () => {
     const url = 'https://example.com?key%20with%20spaces=value%20with%20spaces'
     expect(getURLParams(url)).toEqual({ 'key with spaces': 'value with spaces' })
   })
+
+  test('decodes each key and value exactly once', () => {
+    expect(getURLParams('https://example.com?q=100%25')).toEqual({ q: '100%' })
+    expect(getURLParams('https://example.com?path=a%2520b')).toEqual({ path: 'a%20b' })
+  })
 })
