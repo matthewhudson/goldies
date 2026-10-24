@@ -102,6 +102,13 @@ The library has two main entry points:
 - **Security**: Watch for XSS, injection attacks, unsafe regex, and validate inputs at boundaries
 - **Backwards compatibility**: Maintain compatibility for minor/patch versions
 
+## Documentation Site
+
+https://matthewhudson.github.io/goldies/ is built by `npm run docs:generate` into `site/` (gitignored) and deployed by `.github/workflows/docs.yml` from `main` (Pages source: GitHub Actions):
+
+- `docs/`: hand-written pages, copied to the site root (`docs/index.html` is the demo home page)
+- `site/api/`: the typedoc API reference. `typedoc.config.mjs` takes its entry points from `package.json`'s `exports`, so every exported subpath gets a page. Doc comments are checked: a warning (such as an `@param` naming a parameter that doesn't exist) fails the build, and PRs build the site.
+
 ## Testing
 
 - Test runner: Vitest with JSDOM environment

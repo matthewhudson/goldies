@@ -6,9 +6,7 @@
     "includes": [
       // Code and JSON only; Markdown and YAML are left as they are
       "**/*.{ts,mts,cts,js,mjs,cjs,json,jsonc}",
-      // Generated: the old JSDoc site, and package.json (the build writes its
-      // exports, main, module and types)
-      "!docs",
+      // Generated: package.json's exports, main, module and types come from the build
       "!package.json",
       "!package-lock.json"
     ]
