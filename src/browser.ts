@@ -1,3 +1,4 @@
+import { chunk } from './array/chunk.js';
 import { dedupe } from './array/dedupe.js';
 
 import { calculateRelativeLuminance } from './color/calculateRelativeLuminance.js';
@@ -26,6 +27,7 @@ import { formatBytes } from './format/formatBytes.js';
 import { clone } from './object/clone.js';
 import { filter } from './object/filter.js';
 import { has } from './object/has.js';
+import { omit } from './object/omit.js';
 import { pick } from './object/pick.js';
 
 import { endsWith } from './string/endsWith.js';
@@ -41,17 +43,21 @@ import { isUndefined } from './types/isUndefined.js';
 import { isUrl } from './types/isUrl.js';
 
 import { buildQuery } from './utils/buildQuery.js';
+import { debounce } from './utils/debounce.js';
 import { getURLParams } from './utils/getURLParams.js';
 import { isBrowser } from './utils/isBrowser.js';
 import { isServer } from './utils/isServer.js';
 import { reloadPageWhenOnline } from './utils/reloadPageWhenOnline.js';
+import { retry } from './utils/retry.js';
 import { escapeHTML } from './utils/escapeHTML.js';
 import { isS3, parseS3 } from './utils/s3.js';
 import { sleep } from './utils/sleep.js';
+import { throttle } from './utils/throttle.js';
 
 // Define the browser-specific interface
 export interface BrowserGoldies {
   array: {
+    chunk: typeof chunk;
     dedupe: typeof dedupe;
   };
   dom: {
@@ -114,11 +120,13 @@ export interface BrowserGoldies {
     filter: typeof filter;
     /** @deprecated Use `Object.hasOwn(target, key)`. Removed in goldies 6.0. */
     has: typeof has;
+    omit: typeof omit;
     pick: typeof pick;
   };
   utils: {
     /** @deprecated Use `new URLSearchParams(data).toString()`. Removed in goldies 6.0. */
     buildQuery: typeof buildQuery;
+    debounce: typeof debounce;
     escapeHTML: typeof escapeHTML;
     isBrowser: typeof isBrowser;
     isServer: typeof isServer;
@@ -126,7 +134,9 @@ export interface BrowserGoldies {
     /** @deprecated Use `Object.fromEntries(new URL(url).searchParams)`. Removed in goldies 6.0. */
     getURLParams: typeof getURLParams;
     parseS3: typeof parseS3;
+    retry: typeof retry;
     sleep: typeof sleep;
+    throttle: typeof throttle;
     reloadPageWhenOnline: typeof reloadPageWhenOnline;
   };
 }
@@ -134,6 +144,7 @@ export interface BrowserGoldies {
 // Create browser-only bundle
 const browserGoldies: BrowserGoldies = {
   array: {
+    chunk,
     dedupe,
   },
   dom: {
@@ -185,17 +196,21 @@ const browserGoldies: BrowserGoldies = {
     clone,
     filter,
     has,
+    omit,
     pick,
   },
   utils: {
     buildQuery,
+    debounce,
     escapeHTML,
     isBrowser,
     isServer,
     isS3,
     getURLParams,
     parseS3,
+    retry,
     sleep,
+    throttle,
     reloadPageWhenOnline,
   },
 };
