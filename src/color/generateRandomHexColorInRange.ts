@@ -66,5 +66,5 @@ export function generateRandomHexColorInRange(
   const b = Math.floor(Math.random() * (maxB - minB + 1)) + minB;
 
   // Convert back to hex
-  return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('');
+  return `#${[r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')}`;
 } 

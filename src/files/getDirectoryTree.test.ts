@@ -1,9 +1,9 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import tmp from 'tmp'
 import { getDirectoryTree } from './getDirectoryTree'
 
 describe('getDirectory', () => {
-  let tmpDir
+  let tmpDir: { name: string }
 
   beforeAll(() => {
     tmpDir = tmp.dirSync({ unsafeCleanup: true })

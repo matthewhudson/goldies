@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { exec } from 'node:child_process';
 
 /**
  * Executes a shell command and returns it as a Promise.
@@ -7,7 +7,7 @@ import { exec } from 'child_process';
  * @returns A Promise that resolves with the output of the shell command.
  */
 export function sh(cmd?: string): Promise<string> {
-  if (!cmd || !cmd.trim()) {
+  if (!cmd?.trim()) {
     return Promise.resolve('');
   }
   return new Promise((resolve) => {

@@ -1,9 +1,9 @@
 import tmp from 'tmp'
-import fs from 'fs'
+import fs from 'node:fs'
 import { readFile } from './readFile'
 
 describe('readFile', () => {
-  let tmpDir
+  let tmpDir: string
 
   beforeAll(() => {
     // Create a temporary directory

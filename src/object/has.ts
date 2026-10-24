@@ -10,5 +10,5 @@
  * has(obj, 'c'); // returns false
  */
 export function has(target: object, key: string): boolean {
-  return Object.prototype.hasOwnProperty.call(target, key);
+  return Object.hasOwn(target, key);
 }
