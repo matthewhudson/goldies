@@ -1,4 +1,4 @@
-import * as fs from 'fs/promises';
+import * as fs from 'node:fs/promises';
 
 /**
  * Reads a file and returns a promise that resolves with the file's contents.

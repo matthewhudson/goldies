@@ -20,8 +20,8 @@ export default {
         'revert',
         'style',
         'test',
-        'release'
-      ]
-    ]
-  }
+        'release',
+      ],
+    ],
+  },
 };

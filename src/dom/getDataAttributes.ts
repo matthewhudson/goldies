@@ -1,6 +1,6 @@
 /**
  * Returns all HTML `data-*` attributes attached to an element.
- * 
+ *
  * @example Can be used as promise:
  * const dataAttributes = getDataAttributes($el)
  *

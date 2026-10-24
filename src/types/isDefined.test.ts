@@ -1,16 +1,16 @@
-import { isDefined } from './isDefined'
+import { isDefined } from './isDefined';
 
 describe('isDefined', () => {
   it('returns true for defined values', () => {
-    expect(isDefined(null)).toBe(true)
-    expect(isDefined(undefined)).toBe(false)
-    expect(isDefined('')).toBe(true)
-    expect(isDefined(0)).toBe(true)
-    expect(isDefined(false)).toBe(true)
-  })
+    expect(isDefined(null)).toBe(true);
+    expect(isDefined(undefined)).toBe(false);
+    expect(isDefined('')).toBe(true);
+    expect(isDefined(0)).toBe(true);
+    expect(isDefined(false)).toBe(true);
+  });
 
   it('returns false for undefined values', () => {
-    const options: { timeout?: number } = {}
-    expect(isDefined(options.timeout)).toBe(false)
-  })
-})
+    const options: { timeout?: number } = {};
+    expect(isDefined(options.timeout)).toBe(false);
+  });
+});

@@ -3,19 +3,19 @@
  * twice (such as `webm`) resolves to the first type.
  */
 const fileTypeExtensions: Record<string, string[]> = {
-  // prettier-ignore
+  // biome-ignore format: a few extensions per line is easier to scan
   document: [
     'txt', 'pdf', 'rtf', 'doc', 'docx', 'docm', 'dot', 'dotx', 'xls', 'xlsx', 'xlt', 'xltx',
     'ppt', 'pptx', 'pot', 'potx', 'pps', 'ppsx', 'sldx', 'xps', 'odb', 'odc', 'odf', 'odft',
     'odg', 'odi', 'odm', 'odp', 'ods', 'odt', 'otc', 'otg', 'oth', 'oti', 'otp', 'ots', 'ott',
   ],
-  // prettier-ignore
+  // biome-ignore format: a few extensions per line is easier to scan
   video: [
     '3g2', '3gp', 'avi', 'f4v', 'flv', 'h261', 'h263', 'h264', 'jpgv', 'jpm', 'jpx', 'm4u',
     'm4v', 'mkv', 'mov', 'mp4', 'mp4v', 'mpe', 'mpeg', 'mpg', 'mpg4', 'mts', 'mxu', 'ogv',
     'pyv', 'qt', 'vob', 'webm', 'wm', 'wmv', 'wmx', 'wvx',
   ],
-  // prettier-ignore
+  // biome-ignore format: a few extensions per line is easier to scan
   audio: [
     'aa', 'aac', 'aax', 'act', 'aiff', 'alac', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
     'flac', 'gsm', 'iklax', 'm4a', 'm4b', 'm4p', 'mmf', 'mogg', 'mp3', 'mpc', 'msv', 'nmf',
@@ -23,7 +23,7 @@ const fileTypeExtensions: Record<string, string[]> = {
     'wv',
   ],
   archive: ['7z', 'bz2', 'gz', 'gzip', 'rar', 'tar', 'tgz', 'xz', 'zip'],
-  // prettier-ignore
+  // biome-ignore format: a few extensions per line is easier to scan
   image: [
     'ai', 'avif', 'bmp', 'gif', 'heic', 'heif', 'ico', 'jpeg', 'jpg', 'png', 'psd', 'svg',
     'tiff', 'webp',

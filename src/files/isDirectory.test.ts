@@ -1,33 +1,33 @@
-import fs from 'fs'
-import path from 'path'
-import { isDirectory } from './isDirectory'
+import fs from 'node:fs';
+import path from 'node:path';
+import { isDirectory } from './isDirectory';
 
 describe('isDirectory', () => {
-  const directoryPath = './test_directory'
-  const fileName = 'test_directory_item.txt'
-  const directoryName = 'test_subdirectory'
-  const directoryItemPath = path.join(directoryPath, directoryName)
+  const directoryPath = './test_directory';
+  const fileName = 'test_directory_item.txt';
+  const directoryName = 'test_subdirectory';
+  const directoryItemPath = path.join(directoryPath, directoryName);
 
   beforeAll(() => {
     // Create test directory and subdirectory
-    fs.mkdirSync(directoryPath)
-    fs.mkdirSync(directoryItemPath)
+    fs.mkdirSync(directoryPath);
+    fs.mkdirSync(directoryItemPath);
     // Create test file
-    fs.writeFileSync(path.join(directoryPath, fileName), 'test')
-  })
+    fs.writeFileSync(path.join(directoryPath, fileName), 'test');
+  });
 
   afterAll(() => {
     // Remove test directory and subdirectory
-    fs.rmdirSync(directoryItemPath)
-    fs.unlinkSync(path.join(directoryPath, fileName))
-    fs.rmdirSync(directoryPath)
-  })
+    fs.rmdirSync(directoryItemPath);
+    fs.unlinkSync(path.join(directoryPath, fileName));
+    fs.rmdirSync(directoryPath);
+  });
 
   it('returns true for a subdirectory', () => {
-    expect(isDirectory(directoryPath, directoryName)).toBe(true)
-  })
+    expect(isDirectory(directoryPath, directoryName)).toBe(true);
+  });
 
   it('returns false for a file', () => {
-    expect(isDirectory(directoryPath, fileName)).toBe(false)
-  })
-})
+    expect(isDirectory(directoryPath, fileName)).toBe(false);
+  });
+});

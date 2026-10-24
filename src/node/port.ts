@@ -1,4 +1,4 @@
-import { createServer } from 'net';
+import { createServer } from 'node:net';
 
 /**
  * Finds an available port for listening.

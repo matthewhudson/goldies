@@ -1,4 +1,4 @@
-import { getLanguage, getMessage } from './language'
+import { getLanguage, getMessage } from './language';
 import { vi } from 'vitest';
 
 // This interface should ideally be in a global type declaration file

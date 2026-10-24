@@ -21,7 +21,7 @@ export function filter<T extends Record<string, unknown>>(
 
   // Loop through each item in the object and test it
   for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    if (Object.hasOwn(obj, key)) {
       // If the callback validates true, push item to the new object
       if (callback(obj[key], key, obj)) {
         filtered[key] = obj[key];

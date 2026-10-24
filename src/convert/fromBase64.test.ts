@@ -1,4 +1,4 @@
-import { fromBase64 } from './fromBase64'
+import { fromBase64 } from './fromBase64';
 
 describe('fromBase64', () => {
   test('decodes a Base64 encoded string to ASCII', () => {
@@ -35,4 +35,4 @@ describe('fromBase64', () => {
       vi.unstubAllGlobals();
     }
   });
-})
+});

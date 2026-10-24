@@ -38,7 +38,6 @@ export function removeClass($element: Element, className: string): void {
   $element.classList.remove(className);
 }
 
-
 /**
  * Toggle a CSS class name from an element.
  *

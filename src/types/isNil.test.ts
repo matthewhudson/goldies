@@ -1,4 +1,4 @@
-import { isNil } from './isNil'
+import { isNil } from './isNil';
 
 describe('isNil', () => {
   it('should return true if value is null', () => {
@@ -22,8 +22,8 @@ describe('isNil', () => {
   });
 
   it('should return false for NaN', () => {
-    expect(isNil(NaN)).toBe(false)
-  })
+    expect(isNil(NaN)).toBe(false);
+  });
 
   it('should return false for empty strings', () => {
     expect(isNil('')).toBe(false);
@@ -32,4 +32,4 @@ describe('isNil', () => {
   it('should return false for whitespace strings', () => {
     expect(isNil('   ')).toBe(false);
   });
-})
+});

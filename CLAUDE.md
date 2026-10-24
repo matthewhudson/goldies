@@ -36,7 +36,7 @@ npm run lint
 # Fix linting issues
 npm run lint:fix
 
-# Format code with Prettier
+# Format code with Biome
 npm run format
 
 # Type checking without emitting files

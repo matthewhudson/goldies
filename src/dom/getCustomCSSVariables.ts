@@ -8,8 +8,8 @@
  *
  * @returns {Array<{key: string, value: string}>} Array of CSS variable objects with key and value properties
  */
-export function getCustomCSSVariables(): Array<{key: string, value: string}> {
-  const variables: Array<{key: string, value: string}> = [];
+export function getCustomCSSVariables(): Array<{ key: string; value: string }> {
+  const variables: Array<{ key: string; value: string }> = [];
 
   for (const styleSheet of Array.from(document.styleSheets)) {
     let rules: CSSRuleList;

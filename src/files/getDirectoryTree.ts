@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 /**
  * Recursively reads a directory and returns an array of all files.
@@ -11,18 +11,18 @@ import * as path from 'path'
  * getDirectoryTree('/path/to/directory') // returns ['/path/to/directory/file1.txt', '/path/to/directory/subdirectory/file2.txt', ...]
  */
 export function getDirectoryTree(directoryPath: string): string[] {
-  const directoryItems = fs.readdirSync(directoryPath)
-  const filelist: string[] = []
+  const directoryItems = fs.readdirSync(directoryPath);
+  const filelist: string[] = [];
 
   directoryItems.forEach((file: string) => {
-    const filePath = path.join(directoryPath, file)
+    const filePath = path.join(directoryPath, file);
 
     if (fs.statSync(filePath).isDirectory()) {
-      filelist.push(...getDirectoryTree(filePath))
+      filelist.push(...getDirectoryTree(filePath));
     } else {
-      filelist.push(filePath)
+      filelist.push(filePath);
     }
-  })
+  });
 
-  return filelist
+  return filelist;
 }

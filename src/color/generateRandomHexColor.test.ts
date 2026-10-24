@@ -39,7 +39,7 @@ describe('generateRandomHexColor', () => {
       for (let i = 0; i < 100; i++) {
         colors.push(generateRandomHexColor());
       }
-      
+
       // Check that we're getting some variety in the colors
       const uniqueColors = new Set(colors);
       expect(uniqueColors.size).toBeGreaterThan(90); // Should have high variety
@@ -57,11 +57,11 @@ describe('generateRandomHexColor', () => {
       // Mock Math.random to return a small value that needs padding
       const originalRandom = Math.random;
       Math.random = (): number => 0.000001;
-      
+
       const color = generateRandomHexColor();
       expect(color).toMatch(/^#[0-9a-f]{6}$/);
       expect(color.length).toBe(7);
-      
+
       Math.random = originalRandom;
     });
   });
@@ -70,21 +70,21 @@ describe('generateRandomHexColor', () => {
     it('should handle Math.random returning 0', () => {
       const originalRandom = Math.random;
       Math.random = (): number => 0;
-      
+
       const color = generateRandomHexColor();
       expect(color).toBe('#000000');
-      
+
       Math.random = originalRandom;
     });
 
     it('should handle Math.random returning close to 1', () => {
       const originalRandom = Math.random;
       Math.random = (): number => 0.999999;
-      
+
       const color = generateRandomHexColor();
       expect(color).toMatch(/^#[0-9a-f]{6}$/);
       expect(color.length).toBe(7);
-      
+
       Math.random = originalRandom;
     });
 
@@ -104,9 +104,9 @@ describe('generateRandomHexColor', () => {
       }
 
       // Check we have some darker colors (first char after # is 0-7)
-      const hasDarkColors = colors.some(c => '01234567'.includes(c[1]));
+      const hasDarkColors = colors.some((c) => '01234567'.includes(c[1]));
       // Check we have some lighter colors (first char after # is 8-f)
-      const hasLightColors = colors.some(c => '89abcdef'.includes(c[1]));
+      const hasLightColors = colors.some((c) => '89abcdef'.includes(c[1]));
 
       expect(hasDarkColors).toBe(true);
       expect(hasLightColors).toBe(true);

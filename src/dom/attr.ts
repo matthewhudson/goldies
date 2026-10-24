@@ -10,10 +10,10 @@
  * @example
  * // Get an attribute
  * const style = attr(element, 'style');
- * 
+ *
  * // Set an attribute
  * attr(element, 'id', 'new-element-id');
- * 
+ *
  * // Remove an attribute
  * attr(element, 'data-temp', null);
  */
@@ -30,7 +30,8 @@ export function attr(
     throw new TypeError('Attribute name must be a string');
   }
 
-  // Get attribute
+  // Get attribute. arguments.length tells attr(el, name) apart from attr(el, name, undefined)
+  // biome-ignore lint/complexity/noArguments: see above
   if (arguments.length === 2) {
     return element.getAttribute(name);
   }

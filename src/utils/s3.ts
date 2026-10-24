@@ -23,6 +23,6 @@ export const isS3 = (path: string): boolean => /^s3:\/\/.+\/.+/i.test(path);
  */
 export const parseS3 = (path: string): { Bucket: string; Key: string } => {
   if (!isS3(path)) throw new Error('Invalid S3 path');
-  const s3object: string[] = path.replace(/^s3:\/\//i, '').split('/');
-  return { Bucket: s3object.shift()!, Key: s3object.join('/') };
+  const [Bucket, ...keyParts] = path.replace(/^s3:\/\//i, '').split('/');
+  return { Bucket, Key: keyParts.join('/') };
 };

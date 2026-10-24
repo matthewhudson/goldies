@@ -22,13 +22,13 @@ describe('generateRandomHexColorInRange', () => {
     it('should generate colors within specified range', () => {
       const minColor = '#404040';
       const maxColor = '#808080';
-      
+
       for (let i = 0; i < 20; i++) {
         const color = generateRandomHexColorInRange(minColor, maxColor);
         const colorValue = parseInt(color.slice(1), 16);
         const minValue = parseInt(minColor.slice(1), 16);
         const maxValue = parseInt(maxColor.slice(1), 16);
-        
+
         expect(colorValue).toBeGreaterThanOrEqual(minValue);
         expect(colorValue).toBeLessThanOrEqual(maxValue);
       }
@@ -50,9 +50,9 @@ describe('generateRandomHexColorInRange', () => {
       for (let i = 0; i < 10; i++) {
         colors.push(generateRandomHexColorInRange('#000000', '#ff0000'));
       }
-      
+
       // All colors should have green=00 and blue=00
-      colors.forEach(color => {
+      colors.forEach((color) => {
         expect(color.slice(3, 5)).toBe('00'); // green
         expect(color.slice(5, 7)).toBe('00'); // blue
       });
@@ -117,11 +117,11 @@ describe('generateRandomHexColorInRange', () => {
       const colors = [];
       const minColor = '#000000';
       const maxColor = '#ffffff';
-      
+
       for (let i = 0; i < 100; i++) {
         colors.push(generateRandomHexColorInRange(minColor, maxColor));
       }
-      
+
       const uniqueColors = new Set(colors);
       expect(uniqueColors.size).toBeGreaterThan(90);
     });
@@ -144,9 +144,9 @@ describe('generateRandomHexColorInRange', () => {
       for (let i = 0; i < 20; i++) {
         colors.push(generateRandomHexColorInRange('#000000', '#000fff'));
       }
-      
+
       // All should be properly formatted with padding
-      colors.forEach(color => {
+      colors.forEach((color) => {
         expect(color).toMatch(/^#[0-9a-f]{6}$/);
         expect(color.length).toBe(7);
       });
@@ -164,8 +164,8 @@ describe('generateRandomHexColorInRange', () => {
       for (let i = 0; i < 10; i++) {
         colors.push(generateRandomHexColorInRange('#000066', '#0000ff'));
       }
-      
-      colors.forEach(color => {
+
+      colors.forEach((color) => {
         // Should have R=00, G=00, and B in range 66-ff
         expect(color.slice(1, 3)).toBe('00'); // red
         expect(color.slice(3, 5)).toBe('00'); // green
@@ -180,12 +180,12 @@ describe('generateRandomHexColorInRange', () => {
       for (let i = 0; i < 10; i++) {
         colors.push(generateRandomHexColorInRange('#333333', '#cccccc'));
       }
-      
-      colors.forEach(color => {
+
+      colors.forEach((color) => {
         const r = parseInt(color.slice(1, 3), 16);
         const g = parseInt(color.slice(3, 5), 16);
         const b = parseInt(color.slice(5, 7), 16);
-        
+
         // All components should be in the range
         expect(r).toBeGreaterThanOrEqual(0x33);
         expect(r).toBeLessThanOrEqual(0xcc);
@@ -201,12 +201,12 @@ describe('generateRandomHexColorInRange', () => {
       for (let i = 0; i < 10; i++) {
         colors.push(generateRandomHexColorInRange('#800000', '#ff8800'));
       }
-      
-      colors.forEach(color => {
+
+      colors.forEach((color) => {
         const r = parseInt(color.slice(1, 3), 16);
         const g = parseInt(color.slice(3, 5), 16);
         const b = parseInt(color.slice(5, 7), 16);
-        
+
         expect(r).toBeGreaterThanOrEqual(0x80);
         expect(r).toBeLessThanOrEqual(0xff);
         expect(g).toBeGreaterThanOrEqual(0x00);

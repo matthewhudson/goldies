@@ -1,6 +1,5 @@
 // Type-checks the built package as a require() consumer sees it (npm run test:package).
 // require('goldies') returns the namespace object, so the types must too, not `.default`.
-// eslint-disable-next-line @typescript-eslint/no-require-imports -- the form under test
 import goldies = require('goldies');
 import { dedupe } from 'goldies/array/dedupe';
 
