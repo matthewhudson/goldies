@@ -79,4 +79,17 @@ describe('isUrl', () => {
     expect(isUrl('https://example.com#section')).toBe(true);
     expect(isUrl('https://example.com/page#anchor')).toBe(true);
   });
+
+  test('works without a DOM (Node.js)', () => {
+    vi.stubGlobal('window', undefined);
+    vi.stubGlobal('document', undefined);
+    try {
+      expect(isUrl('https://example.com')).toBe(true);
+      expect(isUrl('/about')).toBe(false);
+      expect(isUrl('mailto:test@example.com')).toBe(false);
+      expect(isUrl('')).toBe(false);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
 });
