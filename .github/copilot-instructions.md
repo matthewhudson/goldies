@@ -39,7 +39,7 @@ This is a JavaScript utility library (`goldies`) that provides helper functions 
 
 ## What NOT to Flag
 
-- Minor style issues (Prettier handles formatting)
+- Minor style issues (Biome handles formatting)
 - Simple one-line changes
 - Documentation-only updates
 - Dependency updates (Dependabot handles these)

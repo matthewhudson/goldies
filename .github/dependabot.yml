@@ -10,9 +10,7 @@ updates:
       dev-dependencies:
         patterns:
           - "@types/*"
-          - "@typescript-eslint/*"
           - "@vitest/*"
-          - "eslint*"
         update-types:
           - "minor"
           - "patch"
