@@ -1,5 +1,23 @@
 # goldies
 
+## 5.2.0
+
+### Minor Changes
+
+- 3d663fc: New color utilities: `hexToRgb`, `getContrastRatio` (the WCAG contrast ratio between two colors), `calculateRelativeLuminance`, `generateRandomHexColor` and `generateRandomHexColorInRange`, at `goldies/color/<name>` and on `goldies.color`. They take 3- or 6-digit hex colors, with or without the `#`, and throw an error for anything else.
+- 3d663fc: Deprecate the utilities that JavaScript or Node.js now provides, ahead of their removal in 6.0. They still work, and editors show them crossed out with the replacement. The README lists them all: `startsWith`, `endsWith`, `has`, `clone`, `addClass`, `hasClass`, `removeClass`, `toggleClass`, `getDataAttributes`, `fromArray`, `readFile`, `getURLParams`, `buildQuery` and `getDirectoryTree`.
+  
+  `isUrl` is renamed to `isExternalUrl` (`goldies/types/isExternalUrl`), which says what it checks: whether a string is a URL on a different host than the current page. `isUrl` remains as a deprecated alias.
+- 12f6d07: New utilities:
+  
+  - `chunk` (`goldies/array/chunk`) splits an array into chunks of a given size.
+  - `omit` (`goldies/object/omit`) copies an object without the given properties, the opposite of `pick`.
+  - `debounce` (`goldies/utils/debounce`) calls a function once calls stop for a while, and `throttle` (`goldies/utils/throttle`) calls it at most once per interval. Both keep `this` and the argument types, take `leading` and `trailing` options, and have `cancel()` and `flush()` methods.
+  - `retry` (`goldies/utils/retry`) calls a function until it succeeds, with exponential backoff. Its options set the number of attempts, the delay and its growth, an `AbortSignal` to stop it, and a `shouldRetry` check to give up early on errors that won't go away.
+  
+  `pick` and `filter` now accept objects whose type is an `interface`. Before, TypeScript rejected them because interfaces have no index signature.
+- 3d663fc: `isNull`, `isUndefined` and `isNil` are now type guards, so TypeScript narrows the value you check: after `if (!isNil(value))`, `value` is no longer `null | undefined`.
+
 ## 5.1.0
 
 ### Minor Changes
