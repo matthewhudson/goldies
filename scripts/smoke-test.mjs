@@ -31,7 +31,10 @@ const [{ files }] = JSON.parse(
   })
 );
 const packed = new Set(files.map((file) => file.path));
-const subpaths = Object.keys(pkg.exports).filter((key) => key !== '.');
+// JavaScript subpaths only: './package.json' is exported too
+const subpaths = Object.keys(pkg.exports).filter(
+  (key) => key !== '.' && typeof pkg.exports[key] === 'object'
+);
 
 const exportTargets = (conditions) =>
   typeof conditions === 'string' ? [conditions] : Object.values(conditions).flatMap(exportTargets);
@@ -44,9 +47,9 @@ await check('every export target is in the packed tarball', () => {
   assert.deepEqual(missing, [], 'export targets missing from the tarball');
 });
 
-await check('test declarations are not packed', () => {
-  const testDeclarations = [...packed].filter((path) => path.endsWith('.test.d.ts'));
-  assert.deepEqual(testDeclarations, []);
+await check('test files are not packed', () => {
+  const testFiles = [...packed].filter((path) => path.includes('.test.'));
+  assert.deepEqual(testFiles, []);
 });
 
 let cjsKeys = [];
@@ -63,13 +66,18 @@ await check("import goldies from 'goldies' matches require()", async () => {
   assert.deepEqual(Object.keys(goldies), cjsKeys);
 });
 
+const hasFunction = (mod) => Object.values(mod).some((value) => typeof value === 'function');
+
 for (const subpath of subpaths) {
   const specifier = `goldies${subpath.slice(1)}`;
   await check(`import '${specifier}' exports a function`, async () => {
-    const mod = await import(specifier);
-    const functions = Object.values(mod).filter((value) => typeof value === 'function');
-    assert.ok(functions.length > 0, `${specifier} has no function exports`);
+    assert.ok(hasFunction(await import(specifier)), `${specifier} has no function exports`);
   });
+  if (pkg.exports[subpath].require) {
+    await check(`require('${specifier}') exports a function`, () => {
+      assert.ok(hasFunction(require(specifier)), `${specifier} has no function exports`);
+    });
+  }
 }
 
 await check('browser bundle runs without Node globals and is minified', () => {

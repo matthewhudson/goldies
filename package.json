@@ -3,193 +3,188 @@
   "version": "5.0.2",
   "description": "A wide-ranging collection of JavaScript helpers covering debugging, de-/serialization, sanitization, validation, HTTP requests and more.",
   "type": "module",
-  "main": "./dist/cjs/goldies.cjs",
-  "module": "./dist/esm/goldies.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "browser": "./dist/browser/goldies.min.js",
-  "types": "./dist/modules/types/index.d.ts",
+  "types": "./dist/index.d.mts",
   "exports": {
     ".": {
       "browser": {
-        "types": "./dist/modules/types/browser.d.ts",
+        "types": "./dist/browser/goldies.min.d.ts",
         "default": "./dist/browser/goldies.min.js"
       },
-      "import": {
-        "types": "./dist/modules/types/index.d.ts",
-        "default": "./dist/esm/goldies.js"
-      },
-      "require": {
-        "types": "./dist/cjs/goldies.d.cts",
-        "default": "./dist/cjs/goldies.cjs"
-      }
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./array/dedupe": {
-      "types": "./dist/modules/types/array/dedupe.d.ts",
-      "import": "./dist/modules/array/dedupe.js"
+      "import": "./dist/array/dedupe.mjs",
+      "require": "./dist/array/dedupe.cjs"
     },
     "./color/getContrastColor": {
-      "types": "./dist/modules/types/color/getContrastColor.d.ts",
-      "import": "./dist/modules/color/getContrastColor.js"
+      "import": "./dist/color/getContrastColor.mjs",
+      "require": "./dist/color/getContrastColor.cjs"
     },
     "./color/isValidHexColor": {
-      "types": "./dist/modules/types/color/isValidHexColor.d.ts",
-      "import": "./dist/modules/color/isValidHexColor.js"
+      "import": "./dist/color/isValidHexColor.mjs",
+      "require": "./dist/color/isValidHexColor.cjs"
     },
     "./convert/base64ToBlob": {
-      "types": "./dist/modules/types/convert/base64ToBlob.d.ts",
-      "import": "./dist/modules/convert/base64ToBlob.js"
+      "import": "./dist/convert/base64ToBlob.mjs",
+      "require": "./dist/convert/base64ToBlob.cjs"
     },
     "./convert/fromArray": {
-      "types": "./dist/modules/types/convert/fromArray.d.ts",
-      "import": "./dist/modules/convert/fromArray.js"
+      "import": "./dist/convert/fromArray.mjs",
+      "require": "./dist/convert/fromArray.cjs"
     },
     "./convert/fromBase64": {
-      "types": "./dist/modules/types/convert/fromBase64.d.ts",
-      "import": "./dist/modules/convert/fromBase64.js"
+      "import": "./dist/convert/fromBase64.mjs",
+      "require": "./dist/convert/fromBase64.cjs"
     },
     "./convert/parseJSONFromBytes": {
-      "types": "./dist/modules/types/convert/parseJSONFromBytes.d.ts",
-      "import": "./dist/modules/convert/parseJSONFromBytes.js"
+      "import": "./dist/convert/parseJSONFromBytes.mjs",
+      "require": "./dist/convert/parseJSONFromBytes.cjs"
     },
     "./convert/toBase64": {
-      "types": "./dist/modules/types/convert/toBase64.d.ts",
-      "import": "./dist/modules/convert/toBase64.js"
+      "import": "./dist/convert/toBase64.mjs",
+      "require": "./dist/convert/toBase64.cjs"
     },
     "./dom/attr": {
-      "types": "./dist/modules/types/dom/attr.d.ts",
-      "import": "./dist/modules/dom/attr.js"
+      "import": "./dist/dom/attr.mjs",
+      "require": "./dist/dom/attr.cjs"
     },
     "./dom/classes": {
-      "types": "./dist/modules/types/dom/classes.d.ts",
-      "import": "./dist/modules/dom/classes.js"
+      "import": "./dist/dom/classes.mjs",
+      "require": "./dist/dom/classes.cjs"
     },
     "./dom/domify": {
-      "types": "./dist/modules/types/dom/domify.d.ts",
-      "import": "./dist/modules/dom/domify.js"
+      "import": "./dist/dom/domify.mjs",
+      "require": "./dist/dom/domify.cjs"
     },
     "./dom/getCustomCSSVariables": {
-      "types": "./dist/modules/types/dom/getCustomCSSVariables.d.ts",
-      "import": "./dist/modules/dom/getCustomCSSVariables.js"
+      "import": "./dist/dom/getCustomCSSVariables.mjs",
+      "require": "./dist/dom/getCustomCSSVariables.cjs"
     },
     "./dom/getDataAttributes": {
-      "types": "./dist/modules/types/dom/getDataAttributes.d.ts",
-      "import": "./dist/modules/dom/getDataAttributes.js"
+      "import": "./dist/dom/getDataAttributes.mjs",
+      "require": "./dist/dom/getDataAttributes.cjs"
     },
     "./dom/selectors": {
-      "types": "./dist/modules/types/dom/selectors.d.ts",
-      "import": "./dist/modules/dom/selectors.js"
-    },
-    "./format/formatBytes": {
-      "types": "./dist/modules/types/format/formatBytes.d.ts",
-      "import": "./dist/modules/format/formatBytes.js"
-    },
-    "./object/clone": {
-      "types": "./dist/modules/types/object/clone.d.ts",
-      "import": "./dist/modules/object/clone.js"
-    },
-    "./object/filter": {
-      "types": "./dist/modules/types/object/filter.d.ts",
-      "import": "./dist/modules/object/filter.js"
-    },
-    "./object/has": {
-      "types": "./dist/modules/types/object/has.d.ts",
-      "import": "./dist/modules/object/has.js"
-    },
-    "./object/pick": {
-      "types": "./dist/modules/types/object/pick.d.ts",
-      "import": "./dist/modules/object/pick.js"
-    },
-    "./string/endsWith": {
-      "types": "./dist/modules/types/string/endsWith.d.ts",
-      "import": "./dist/modules/string/endsWith.js"
-    },
-    "./string/findUsernames": {
-      "types": "./dist/modules/types/string/findUsernames.d.ts",
-      "import": "./dist/modules/string/findUsernames.js"
-    },
-    "./string/startsWith": {
-      "types": "./dist/modules/types/string/startsWith.d.ts",
-      "import": "./dist/modules/string/startsWith.js"
-    },
-    "./types/isDefined": {
-      "types": "./dist/modules/types/types/isDefined.d.ts",
-      "import": "./dist/modules/types/isDefined.js"
-    },
-    "./types/isJSON": {
-      "types": "./dist/modules/types/types/isJSON.d.ts",
-      "import": "./dist/modules/types/isJSON.js"
-    },
-    "./types/isNil": {
-      "types": "./dist/modules/types/types/isNil.d.ts",
-      "import": "./dist/modules/types/isNil.js"
-    },
-    "./types/isNull": {
-      "types": "./dist/modules/types/types/isNull.d.ts",
-      "import": "./dist/modules/types/isNull.js"
-    },
-    "./types/isUndefined": {
-      "types": "./dist/modules/types/types/isUndefined.d.ts",
-      "import": "./dist/modules/types/isUndefined.js"
-    },
-    "./types/isUrl": {
-      "types": "./dist/modules/types/types/isUrl.d.ts",
-      "import": "./dist/modules/types/isUrl.js"
-    },
-    "./utils/buildQuery": {
-      "types": "./dist/modules/types/utils/buildQuery.d.ts",
-      "import": "./dist/modules/utils/buildQuery.js"
-    },
-    "./utils/escapeHTML": {
-      "types": "./dist/modules/types/utils/escapeHTML.d.ts",
-      "import": "./dist/modules/utils/escapeHTML.js"
-    },
-    "./utils/getURLParams": {
-      "types": "./dist/modules/types/utils/getURLParams.d.ts",
-      "import": "./dist/modules/utils/getURLParams.js"
-    },
-    "./utils/isBrowser": {
-      "types": "./dist/modules/types/utils/isBrowser.d.ts",
-      "import": "./dist/modules/utils/isBrowser.js"
-    },
-    "./utils/isServer": {
-      "types": "./dist/modules/types/utils/isServer.d.ts",
-      "import": "./dist/modules/utils/isServer.js"
-    },
-    "./utils/reloadPageWhenOnline": {
-      "types": "./dist/modules/types/utils/reloadPageWhenOnline.d.ts",
-      "import": "./dist/modules/utils/reloadPageWhenOnline.js"
-    },
-    "./utils/s3": {
-      "types": "./dist/modules/types/utils/s3.d.ts",
-      "import": "./dist/modules/utils/s3.js"
-    },
-    "./utils/sleep": {
-      "types": "./dist/modules/types/utils/sleep.d.ts",
-      "import": "./dist/modules/utils/sleep.js"
+      "import": "./dist/dom/selectors.mjs",
+      "require": "./dist/dom/selectors.cjs"
     },
     "./files/getDirectoryTree": {
-      "types": "./dist/modules/types/files/getDirectoryTree.d.ts",
-      "import": "./dist/modules/files/getDirectoryTree.js"
+      "import": "./dist/files/getDirectoryTree.mjs",
+      "require": "./dist/files/getDirectoryTree.cjs"
     },
     "./files/getFileType": {
-      "types": "./dist/modules/types/files/getFileType.d.ts",
-      "import": "./dist/modules/files/getFileType.js"
+      "import": "./dist/files/getFileType.mjs",
+      "require": "./dist/files/getFileType.cjs"
     },
     "./files/isDirectory": {
-      "types": "./dist/modules/types/files/isDirectory.d.ts",
-      "import": "./dist/modules/files/isDirectory.js"
+      "import": "./dist/files/isDirectory.mjs",
+      "require": "./dist/files/isDirectory.cjs"
     },
     "./files/readFile": {
-      "types": "./dist/modules/types/files/readFile.d.ts",
-      "import": "./dist/modules/files/readFile.js"
+      "import": "./dist/files/readFile.mjs",
+      "require": "./dist/files/readFile.cjs"
+    },
+    "./format/formatBytes": {
+      "import": "./dist/format/formatBytes.mjs",
+      "require": "./dist/format/formatBytes.cjs"
     },
     "./node/port": {
-      "types": "./dist/modules/types/node/port.d.ts",
-      "import": "./dist/modules/node/port.js"
+      "import": "./dist/node/port.mjs",
+      "require": "./dist/node/port.cjs"
     },
     "./node/sh": {
-      "types": "./dist/modules/types/node/sh.d.ts",
-      "import": "./dist/modules/node/sh.js"
-    }
+      "import": "./dist/node/sh.mjs",
+      "require": "./dist/node/sh.cjs"
+    },
+    "./object/clone": {
+      "import": "./dist/object/clone.mjs",
+      "require": "./dist/object/clone.cjs"
+    },
+    "./object/filter": {
+      "import": "./dist/object/filter.mjs",
+      "require": "./dist/object/filter.cjs"
+    },
+    "./object/has": {
+      "import": "./dist/object/has.mjs",
+      "require": "./dist/object/has.cjs"
+    },
+    "./object/pick": {
+      "import": "./dist/object/pick.mjs",
+      "require": "./dist/object/pick.cjs"
+    },
+    "./string/endsWith": {
+      "import": "./dist/string/endsWith.mjs",
+      "require": "./dist/string/endsWith.cjs"
+    },
+    "./string/findUsernames": {
+      "import": "./dist/string/findUsernames.mjs",
+      "require": "./dist/string/findUsernames.cjs"
+    },
+    "./string/startsWith": {
+      "import": "./dist/string/startsWith.mjs",
+      "require": "./dist/string/startsWith.cjs"
+    },
+    "./types/isDefined": {
+      "import": "./dist/types/isDefined.mjs",
+      "require": "./dist/types/isDefined.cjs"
+    },
+    "./types/isJSON": {
+      "import": "./dist/types/isJSON.mjs",
+      "require": "./dist/types/isJSON.cjs"
+    },
+    "./types/isNil": {
+      "import": "./dist/types/isNil.mjs",
+      "require": "./dist/types/isNil.cjs"
+    },
+    "./types/isNull": {
+      "import": "./dist/types/isNull.mjs",
+      "require": "./dist/types/isNull.cjs"
+    },
+    "./types/isUndefined": {
+      "import": "./dist/types/isUndefined.mjs",
+      "require": "./dist/types/isUndefined.cjs"
+    },
+    "./types/isUrl": {
+      "import": "./dist/types/isUrl.mjs",
+      "require": "./dist/types/isUrl.cjs"
+    },
+    "./utils/buildQuery": {
+      "import": "./dist/utils/buildQuery.mjs",
+      "require": "./dist/utils/buildQuery.cjs"
+    },
+    "./utils/escapeHTML": {
+      "import": "./dist/utils/escapeHTML.mjs",
+      "require": "./dist/utils/escapeHTML.cjs"
+    },
+    "./utils/getURLParams": {
+      "import": "./dist/utils/getURLParams.mjs",
+      "require": "./dist/utils/getURLParams.cjs"
+    },
+    "./utils/isBrowser": {
+      "import": "./dist/utils/isBrowser.mjs",
+      "require": "./dist/utils/isBrowser.cjs"
+    },
+    "./utils/isServer": {
+      "import": "./dist/utils/isServer.mjs",
+      "require": "./dist/utils/isServer.cjs"
+    },
+    "./utils/reloadPageWhenOnline": {
+      "import": "./dist/utils/reloadPageWhenOnline.mjs",
+      "require": "./dist/utils/reloadPageWhenOnline.cjs"
+    },
+    "./utils/s3": {
+      "import": "./dist/utils/s3.mjs",
+      "require": "./dist/utils/s3.cjs"
+    },
+    "./utils/sleep": {
+      "import": "./dist/utils/sleep.mjs",
+      "require": "./dist/utils/sleep.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": false,
   "files": [
@@ -202,9 +197,9 @@
     "functions"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsdown",
     "clean": "rimraf dist",
-    "dev": "rollup -c -w",
+    "dev": "tsdown --watch",
     "docs:generate": "typedoc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -212,7 +207,7 @@
     "prepare": "husky install",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:package": "node scripts/smoke-test.mjs && publint && attw --pack . --profile node16 --ignore-rules false-export-default cjs-resolves-to-esm",
+    "test:package": "node scripts/smoke-test.mjs && tsc -p scripts/types/tsconfig.json && tsc -p scripts/types/tsconfig.browser.json && publint && attw --pack . --profile node16 --ignore-rules false-export-default",
     "typecheck": "tsc --noEmit --project tsconfig.typecheck.json",
     "validate": "npm run lint && npm run test && npm run build && npm run test:package",
     "changeset": "changeset",
@@ -227,20 +222,10 @@
   "license": "MIT",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
-    "@babel/core": "^7.27.4",
-    "@babel/plugin-transform-runtime": "^7.27.4",
-    "@babel/preset-env": "^7.27.2",
-    "@babel/runtime": "^7.27.4",
     "@changesets/cli": "^3.0.3",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^10.0.1",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-replace": "^6.0.2",
-    "@rollup/plugin-terser": "^1.0.2",
-    "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^22.15.29",
     "@typescript-eslint/eslint-plugin": "^8.72.0",
     "@typescript-eslint/parser": "^8.72.0",
@@ -254,10 +239,8 @@
     "prettier": "^3.2.5",
     "publint": "^0.3.25",
     "rimraf": "^6.1.3",
-    "rollup": "^4.12.0",
-    "rollup-plugin-polyfill-node": "^0.13.0",
     "tmp": "^0.2.3",
-    "tslib": "^2.8.1",
+    "tsdown": "0.23.2",
     "typedoc": "^0.28.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.72.0",

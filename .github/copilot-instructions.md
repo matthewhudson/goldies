@@ -18,7 +18,7 @@ This is a JavaScript utility library (`goldies`) that provides helper functions 
 - Flag any breaking changes to public APIs
 
 ### 3. Build & CI Configuration
-- Validate Rollup/build configuration changes
+- Validate build configuration changes (tsdown.config.ts)
 - Check GitHub Actions workflow permissions and triggers
 - Verify conventional commit message format
 - Ensure package.json exports are correct
